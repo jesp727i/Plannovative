@@ -13,17 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UserInterfaceLayer
+namespace UserInterfaceLayer.View
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    
+    public partial class PlannovativeView : UserControl
     {
-        public MainWindow()
+        public PlannovativeView()
         {
-            InitializeComponent();
+            
         }
-
     }
 }
