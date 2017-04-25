@@ -59,10 +59,10 @@
 
     <Compile Include="View\CreateCustomerView.xaml.cs">
       <DependentUpon>CreateCustomerView.xaml</DependentUpon>
-
-
-      <DependentUpon>CreateTaskView.xaml</DependentUpon>
-
+    </Compile> 
+      <Compile Include="View\CreateTaskView.xaml.cs">
+        <DependentUpon>CreateTaskView.xaml</DependentUpon>
+      </Compile>
     <Compile Include="MyICommand.cs" />
     <Compile Include="ViewModel\PlannovativeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -85,18 +85,20 @@
       <SubType>Code</SubType>
     </Compile>
 
-    <Page Include="View\CreateCustomerView.xaml">
-
-
-    <Page Include="View\CreateTaskView.xaml">
-
-    <Page Include="View\PlannovativeView.xaml">
-
-
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+	<Page Include="View\CreateTaskView.xaml">
+	
+	</Page>
+	<Page Include="View\PlannovativeView.xaml">
+    
+  </Page> 
+	
+	<Page Include="View\CreateCustomerView.xaml">
+    <SubType>Designer</SubType>
+    <Generator>MSBuild:Compile</Generator>
     </Page>
+
   </ItemGroup>
+ 
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
