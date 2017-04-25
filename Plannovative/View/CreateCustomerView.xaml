@@ -1,0 +1,32 @@
+﻿<Window x:Class="Plannovative.View.CreateCustomerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Plannovative.View"
+        mc:Ignorable="d"
+        Title="Kunde" Height="300" Width="420">
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <Label Height="23" Content="Navn*" Margin="0,0,0,0"/>
+                <Label Height="23" Content="Email" Margin="0,3,0,3"/>
+                <Label Height="23" Content="Tlf." Margin="0,0,0,3"/>
+                <Label Height="23" Content="Addresse" Margin="0,0,0,3"/>
+                <Label Height="23" Content="Post nr." Margin="0,0,0,3"/>
+                <Label Height="23" Content="By" Margin="0,0,0,3"/>
+                <Label Height="23" Content="CVR nr." Margin="0,0,0,3"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,0">
+                <TextBox x:Name="TxtName" Height="23" TextWrapping="Wrap" Text="eks. Zizzi" Margin="0,3,0,3"/>
+                <TextBox x:Name="TxtEmail" Height="23" TextWrapping="Wrap" Text="eks. Zizzi@hotmail.dk" Margin="0,0,0,3"/>
+                <TextBox x:Name="TxtPhone" Height="23" TextWrapping="Wrap" Text="eks. 77228844" Margin="0,0,0,3"/>
+                <TextBox x:Name="TxtAddress" Height="23" TextWrapping="Wrap" Text="eks. Tjæreborgvej 21" Margin="0,0,0,3"/>
+                <TextBox x:Name="TxtZip" Height="23" TextWrapping="Wrap" Text="eks. 5400" Margin="0,0,0,3"/>
+                <TextBox x:Name="TxtCity" Height="23" TextWrapping="Wrap" Text="eks. Tjæreborg" Margin="0,0,0,3"/>
+                <TextBox x:Name="TxtCVR" Height="23" TextWrapping="Wrap" Text="eks. 888999222" Margin="0,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        
+    </Grid>
+</Window>
