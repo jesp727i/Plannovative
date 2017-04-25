@@ -57,6 +57,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
 
+    <Compile Include="View\CreateCustomerView.xaml.cs">
+      <DependentUpon>CreateCustomerView.xaml</DependentUpon>
+
+
       <DependentUpon>CreateTaskView.xaml</DependentUpon>
 
     <Compile Include="MyICommand.cs" />
@@ -65,6 +69,7 @@
     <Compile Include="BindableBase.cs" />
     <Compile Include="View\PlannovativeView.xaml.cs">
       <DependentUpon>PlannovativeView.xaml</DependentUpon>
+
 
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -80,9 +85,13 @@
       <SubType>Code</SubType>
     </Compile>
 
+    <Page Include="View\CreateCustomerView.xaml">
+
+
     <Page Include="View\CreateTaskView.xaml">
 
     <Page Include="View\PlannovativeView.xaml">
+
 
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
