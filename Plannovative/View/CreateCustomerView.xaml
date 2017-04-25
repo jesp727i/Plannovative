@@ -5,28 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Plannovative.View"
         mc:Ignorable="d"
-        Title="Kunde" Height="300" Width="420">
+        Title="Kunde" Height="300" Width="320">
     <Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical">
-                <Label Height="23" Content="Navn*" Margin="0,0,0,0"/>
-                <Label Height="23" Content="Email" Margin="0,3,0,3"/>
-                <Label Height="23" Content="Tlf." Margin="0,0,0,3"/>
-                <Label Height="23" Content="Addresse" Margin="0,0,0,3"/>
-                <Label Height="23" Content="Post nr." Margin="0,0,0,3"/>
-                <Label Height="23" Content="By" Margin="0,0,0,3"/>
-                <Label Height="23" Content="CVR nr." Margin="0,0,0,3"/>
+        <StackPanel Orientation="Vertical" Width="320" Margin="0,0,0,0" >
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,10" Height="205" Width="320">
+                <StackPanel Orientation="Vertical" Margin="30,0,0,0">
+                    <Label Height="23" Content="Navn*" Margin="0,0,0,0"/>
+                    <Label Height="23" Content="Email" Margin="0,5,0,5"/>
+                    <Label Height="23" Content="Tlf." Margin="0,0,0,5"/>
+                    <Label Height="23" Content="Addresse" Margin="0,0,0,5"/>
+                    <Label Height="23" Content="Post nr." Margin="0,0,0,5"/>
+                    <Label Height="23" Content="By" Margin="0,0,0,5"/>
+                    <Label Height="23" Content="CVR nr." Margin="0,0,0,5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBox x:Name="TxtName" Height="23" Width="200" TextWrapping="Wrap" Text="eks. Zizzi" Margin="0,5,0,5"/>
+                    <TextBox x:Name="TxtEmail" Height="23" TextWrapping="Wrap" Text="eks. Zizzi@hotmail.dk" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtPhone" Height="23" TextWrapping="Wrap" Text="eks. 77228844" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtAddress" Height="23" TextWrapping="Wrap" Text="eks. Tjæreborgvej 21" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtZip" Height="23" TextWrapping="Wrap" Text="eks. 5400" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtCity" Height="23" TextWrapping="Wrap" Text="eks. Tjæreborg" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtCVR" Height="23" TextWrapping="Wrap" Text="eks. 888999222" Margin="0,0,0,0"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="0,0,0,0">
-                <TextBox x:Name="TxtName" Height="23" TextWrapping="Wrap" Text="eks. Zizzi" Margin="0,3,0,3"/>
-                <TextBox x:Name="TxtEmail" Height="23" TextWrapping="Wrap" Text="eks. Zizzi@hotmail.dk" Margin="0,0,0,3"/>
-                <TextBox x:Name="TxtPhone" Height="23" TextWrapping="Wrap" Text="eks. 77228844" Margin="0,0,0,3"/>
-                <TextBox x:Name="TxtAddress" Height="23" TextWrapping="Wrap" Text="eks. Tjæreborgvej 21" Margin="0,0,0,3"/>
-                <TextBox x:Name="TxtZip" Height="23" TextWrapping="Wrap" Text="eks. 5400" Margin="0,0,0,3"/>
-                <TextBox x:Name="TxtCity" Height="23" TextWrapping="Wrap" Text="eks. Tjæreborg" Margin="0,0,0,3"/>
-                <TextBox x:Name="TxtCVR" Height="23" TextWrapping="Wrap" Text="eks. 888999222" Margin="0,0,0,0"/>
+            <StackPanel Orientation="Horizontal" Height="20" Width="320">
+                <Button x:Name="BtnClose" Content="Luk" HorizontalAlignment="Left" Margin="20,0,100,0" VerticalAlignment="Top" Width="90" Click="BtnClose_Click"/>
+                <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90" Click="BtnSave_Click"/>
             </StackPanel>
         </StackPanel>
-        
     </Grid>
 </Window>

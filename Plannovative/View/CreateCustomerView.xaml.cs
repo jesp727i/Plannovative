@@ -23,5 +23,15 @@ namespace Plannovative.View
         {
             InitializeComponent();
         }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
