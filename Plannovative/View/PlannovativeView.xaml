@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="UserInterfaceLayer.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserInterfaceLayer.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1080">
+    <Canvas>
+        <Button x:Name="BtnCreateTask" Content="Opret opgave" HorizontalAlignment="Left" Margin="140,10,0,0" VerticalAlignment="Top" Width="90" />
+        <Button x:Name="BtnShowCustomers" Content="Kunder" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Width="90"/>
+        <TextBox x:Name="TxtBoxSearch" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Søg" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="listBoxToDo" HorizontalAlignment="Left" Height="639" Margin="10,40,0,0" VerticalAlignment="Top" Width="340" Padding="0">
+            <Label x:Name="labelToDo" HorizontalAlignment="Center" Content="Kommende" Width="320" HorizontalContentAlignment="Center" FontSize="14"/>
+        </ListBox>
+        <ListBox x:Name="listBoxInProgress" HorizontalAlignment="Left" Height="639" Margin="365,40,0,0" VerticalAlignment="Top" Width="340">
+            <Label x:Name="labelInProgress" HorizontalAlignment="Center" Content="Igang værende" Width="320" HorizontalContentAlignment="Center" FontSize="14"/>
+        </ListBox>
+        <ListBox x:Name="listBoxDone" HorizontalAlignment="Right" Height="639" Margin="720,40,0,0" VerticalAlignment="Top" Width="340">
+            <Label x:Name="labelDone" HorizontalAlignment="Center" Content="Færdig" Width="320" HorizontalContentAlignment="Center" FontSize="14"/>
+        </ListBox>
+
+    </Canvas>
+</UserControl>
