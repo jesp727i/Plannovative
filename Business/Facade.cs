@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plannovative
+namespace Business
 {
-    class Kunder
+    public class Facade
     {
+        
     }
 }
