@@ -8,13 +8,13 @@ namespace DomainLayer
 {
     public class Customer
     {
-        public string Name;
-        public string Email;
-        public int Phone;
-        public string Address;
-        public int Zip;
-        public string City;
-        public int Cvr;
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public int Phone { get; set; }
+        public string Address { get; set; }
+        public int Zip { get; set; }
+        public string City { get; set; }
+        public int Cvr { get; set; } 
 
 
         public Customer( string name, string email, int phone, string address, int zip, string city, int cvr)
