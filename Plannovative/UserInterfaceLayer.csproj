@@ -59,8 +59,8 @@
     <Compile Include="View\CreateCustomerView.xaml.cs">
       <DependentUpon>CreateCustomerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CreateTaskView.xaml.cs">
-      <DependentUpon>CreateTaskView.xaml</DependentUpon>
+    <Compile Include="View\CreateJobView.xaml.cs">
+      <DependentUpon>CreateJobView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyICommand.cs" />
     <Compile Include="ViewModel\PlannovativeViewModel.cs" />
@@ -81,7 +81,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\CreateTaskView.xaml">
+    <Page Include="View\CreateJobView.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PlannovativeView.xaml">
     </Page>

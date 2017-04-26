@@ -17,9 +17,9 @@ namespace UserInterfaceLayer.View
     /// <summary>
     /// Interaction logic for CreateTaskView.xaml
     /// </summary>
-    public partial class CreateTaskView : Window
+    public partial class CreateJobView : Window
     {
-        public CreateTaskView()
+        public CreateJobView()
         {
             InitializeComponent();
         }
