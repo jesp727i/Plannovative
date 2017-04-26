@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Plannovative.View
+namespace UserInterfaceLayer.View
 {
     /// <summary>
     /// Interaction logic for CreateTaskView.xaml
@@ -21,6 +21,7 @@ namespace Plannovative.View
     {
         public CreateTaskView()
         {
+            InitializeComponent();
         }
 
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -38,5 +39,7 @@ namespace Plannovative.View
         {
             this.Close();
         }
+
+
     }
 }
