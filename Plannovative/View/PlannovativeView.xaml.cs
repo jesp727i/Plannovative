@@ -25,7 +25,8 @@ namespace UserInterfaceLayer.View
 
         private void BtnCreateTask_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateTaskView CTV = new CreateTaskView();
+            CTV.ShowDialog();
         }
     }
 }
