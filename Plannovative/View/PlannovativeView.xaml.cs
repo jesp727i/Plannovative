@@ -20,7 +20,12 @@ namespace UserInterfaceLayer.View
     {
         public PlannovativeView()
         {
-            
+            InitializeComponent();
+        }
+
+        private void BtnCreateTask_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

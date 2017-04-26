@@ -25,8 +25,8 @@ namespace Plannovative.View
 
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            CreateCustomerView CCV = new CreateCustomerView();
-            CCV.ShowDialog();
+            //CreateCustomerView CCV = new CreateCustomerView();
+            //CCV.ShowDialog();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
