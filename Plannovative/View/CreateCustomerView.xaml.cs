@@ -10,20 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace UserInterfaceLayer.View
 {
-    
-    public partial class PlannovativeView : UserControl
+    /// <summary>
+    /// Interaction logic for CreateCustomerView.xaml
+    /// </summary>
+    public partial class CreateCustomerView : Window
     {
-        public PlannovativeView()
+        public CreateCustomerView()
         {
             InitializeComponent();
         }
 
-        private void BtnCreateTask_Click(object sender, RoutedEventArgs e)
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
 
         }

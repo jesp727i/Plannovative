@@ -56,16 +56,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-
+    <Compile Include="View\CreateCustomerView.xaml.cs">
+      <DependentUpon>CreateCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateTaskView.xaml.cs">
       <DependentUpon>CreateTaskView.xaml</DependentUpon>
-
+    </Compile>
     <Compile Include="MyICommand.cs" />
     <Compile Include="ViewModel\PlannovativeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="BindableBase.cs" />
     <Compile Include="View\PlannovativeView.xaml.cs">
       <DependentUpon>PlannovativeView.xaml</DependentUpon>
-
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -79,11 +81,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-
     <Page Include="View\CreateTaskView.xaml">
-
+    </Page>
     <Page Include="View\PlannovativeView.xaml">
-
+    </Page>
+    <Page Include="View\CreateCustomerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,13 +127,8 @@
       <Name>DomainLayer</Name>
     </ProjectReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-
   <ItemGroup />
-
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
