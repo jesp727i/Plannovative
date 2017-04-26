@@ -11,10 +11,10 @@ namespace UserInterfaceLayer.ViewModel
         public MainWindowViewModel()
         {
             NavCommand = new MyICommand<string>(OnNav);
+            OnNav("Plan");
         }
 
         private PlannovativeViewModel PVM = new PlannovativeViewModel();
-
 
         private BindableBase _CurrentViewModel;
 
