@@ -21,7 +21,7 @@ namespace Test
         [TestMethod]
         public void CanGetListFromRepo()
         {
-            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", 28734552, "denvej 10", 5000, "Odense", 88889999);
+            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", "28734552", "denvej 10", "5000", "Odense", "88889999");
             Job newJob = new Job("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
 
             jobRepo.SaveJob(newJob);
@@ -34,7 +34,7 @@ namespace Test
         [TestMethod]
         public void CanSaveOneJobToRepo()
         {
-            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", 28734552, "denvej 10", 5000, "Odense", 88889999);
+            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", "28734552", "denvej 10", "5000", "Odense", "88889999");
             Job newJob = new Job("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
             jobRepo.SaveJob(newJob);
 
@@ -45,7 +45,7 @@ namespace Test
         [TestMethod]
         public void CanSaveTwoJobToRepo()
         {
-            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", 28734552, "denvej 10", 5000, "Odense", 88889999);
+            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", "28734552", "denvej 10", "5000", "Odense", "88889999");
             Job newJob1 = new Job("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
             Job newJob2 = new Job("Banner", newCustomer, "Lav et banner", Convert.ToDateTime("04/11/2017"), false, 200.00);
 
@@ -58,10 +58,12 @@ namespace Test
         [TestMethod]
         public void CanSaveOneJobFromFactory()
         {
-            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", 28734552, "denvej 10", 5000, "Odense", 88889999);
+            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", "28734552", "denvej 10", "5000", "Odense", "88889999");
 
             jobFac.CreateJob("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
-
+            jobFac.CreateJob("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
+            int repoListCount = jobRepo.GetList().Count;
+            Assert.AreEqual(2, repoListCount);
         }
     }
 }
