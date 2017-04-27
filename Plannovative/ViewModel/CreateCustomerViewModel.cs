@@ -16,9 +16,11 @@ namespace Plannovative.ViewModel
           
         }
 
-        internal void NewCustomer(string Name, string Email, string Phone, string Address, string Zip, string City, string Cvr)
+        internal void NewCustomer(string name, string Email, string phone, string address, string zip, string city, string cvr)
         {
-           
+           BF.SaveCustomerToRepo( name, Email, phone, address, zip, city, cvr);
+            
+            
         }
     }
 
