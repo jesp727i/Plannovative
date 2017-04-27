@@ -21,10 +21,13 @@ namespace Business
 
         private void AddToJobRepo()
         {
-            JobRepository jobRepo = new JobRepository();
+            //JobRepository jobRepo = new JobRepository();
             //var instance = jobRepo.GetInstance();
             //instance.SaveJob(currentJob); ?? det samme som linien neden under?
-            jobRepo.SaveJob(currentJob);
+            JobRepository.Instance.SaveJob(currentJob);
+
+            //jobRepo.Instance.SaveJob(currentJob);
+            //jobRepo.SaveJob(currentJob);
             
         }
 
