@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UserInterfaceLayer.ViewModel;
 
 namespace UserInterfaceLayer.View
 {
@@ -19,9 +20,13 @@ namespace UserInterfaceLayer.View
     /// </summary>
     public partial class CreateJobView : Window
     {
+
+        CreateJobViewModel CJVM;
         public CreateJobView()
         {
             InitializeComponent();
+            CJVM = new CreateJobViewModel();
+            //comboBoxCustomer.ItemsSource = CJVM
         }
 
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -32,14 +37,14 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            //CJVM.
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
+        
 
     }
 }
