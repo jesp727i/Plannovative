@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plannovative.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace UserInterfaceLayer.View
     /// </summary>
     public partial class CreateCustomerView : Window
     {
+        CreateCustomerViewModel CCVM;
+
         public CreateCustomerView()
         {
             InitializeComponent();
+            CCVM = new CreateCustomerViewModel();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -31,6 +35,7 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            CCVM.NewCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
 
         }
     }
