@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerFactory.cs" />
+    <Compile Include="CustomerRepository.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="JobRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
