@@ -14,6 +14,7 @@ namespace Business
         public CustomerRepository()
         {
             CustomerList = new List<Customer>();
+
         }
 
         public CustomerRepository GetInstance()

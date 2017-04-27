@@ -26,7 +26,7 @@ namespace UserInterfaceLayer.View
         {
             InitializeComponent();
             CJVM = new CreateJobViewModel();
-            //comboBoxCustomer.ItemsSource = CJVM
+            comboBoxCustomer.ItemsSource = CJVM.GetCostumerList();
         }
 
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)

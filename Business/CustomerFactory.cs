@@ -16,16 +16,14 @@ namespace Business
         {
             Customer newCustomer = new Customer(name, email, phone, address, zip, city, cvr);
             currentCustomer = newCustomer;
+            AddToCumstomerRepo();
         }
             
             public void AddToCumstomerRepo()
         {
             CustomerRepository CustomerRepo = new CustomerRepository();
             CustomerRepo.GetInstance().SaveCustomer(currentCustomer);
-
-
-
         }
-        }
-    }
+   }
+}
 
