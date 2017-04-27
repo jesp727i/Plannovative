@@ -8,7 +8,7 @@ namespace Business
 {
     public class JobRepository
     {
-
+        static List<Job> jobList;
         #region Singleton
         private static volatile JobRepository instance;
         private static object synchronizationRoot = new Object();
@@ -24,6 +24,7 @@ namespace Business
                         if (instance == null)
                         {
                             instance = new JobRepository();
+                            
                         }
                     }
                 }
@@ -33,7 +34,7 @@ namespace Business
         }
         #endregion
 
-        List<Job> jobList;
+
         public JobRepository()
         {
             jobList = new List<Job>();
@@ -41,7 +42,7 @@ namespace Business
 
         public void SaveJob(Job newJob)
         {
-            this.jobList.Add(newJob);
+            jobList.Add(newJob);
 
 
         }
