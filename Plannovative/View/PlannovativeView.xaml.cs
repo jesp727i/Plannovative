@@ -23,9 +23,9 @@ namespace UserInterfaceLayer.View
             InitializeComponent();
         }
 
-        private void BtnCreateTask_Click(object sender, RoutedEventArgs e)
+        private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
         {
-            CreateTaskView CTV = new CreateTaskView();
+            CreateJobView CTV = new CreateJobView();
             CTV.ShowDialog();
         }
     }
