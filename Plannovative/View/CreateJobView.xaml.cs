@@ -11,17 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UserInterfaceLayer.ViewModel;
 
 namespace UserInterfaceLayer.View
 {
     /// <summary>
     /// Interaction logic for CreateTaskView.xaml
     /// </summary>
-    public partial class CreateTaskView : Window
+    public partial class CreateJobView : Window
     {
-        public CreateTaskView()
+
+        CreateJobViewModel CJVM;
+        public CreateJobView()
         {
             InitializeComponent();
+            CJVM = new CreateJobViewModel();
+            comboBoxCustomer.ItemsSource = CJVM.GetCostumerList();
         }
 
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -32,14 +37,14 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show(TxtTaskName.Text + comboBoxCustomer.Text + TxtDescription.Text + CalenderDeadline.SelectedDate + comboBoxPriceType.Text + TxtPrice.Text);
+            //CJVM.NewJob(TxtTaskName, comboBoxCustomer, TxtDescription, CalenderDeadline, comboBoxPriceType, TxtPrice);
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
 
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1080">
     <Canvas>
-        <Button x:Name="BtnCreateTask" Content="Opret opgave" HorizontalAlignment="Left" Margin="140,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnCreateTask_Click" />
+        <Button x:Name="BtnCreateTask" Content="Opret opgave" HorizontalAlignment="Left" Margin="140,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnCreateJob_Click" />
         <Button x:Name="BtnShowCustomers" Content="Kunder" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Width="90"/>
         <TextBox x:Name="TxtBoxSearch" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Søg" VerticalAlignment="Top" Width="120"/>
         <ListBox x:Name="listBoxToDo" HorizontalAlignment="Left" Height="639" Margin="10,40,0,0" VerticalAlignment="Top" Width="340" Padding="0">

@@ -16,6 +16,7 @@ namespace Business
         {
             Job newJob = new Job(name, jobCustomer, description, deadline, priceType, price);
             currentJob = newJob;
+            AddToJobRepo();
         }
 
         public void AddToJobRepo()

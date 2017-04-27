@@ -40,13 +40,11 @@ namespace Business
         public void SaveJobToRepo(string name, Customer jobCustomer, string description, DateTime deadline, bool priceType, double price)
         {
             jobFac.CreateJob(name, jobCustomer, description, deadline, priceType, price);
-            jobFac.AddToJobRepo();
         }
 
         public void SaveCustomerToRepo(string name, string email, int phone, string address, int zip, string city, int cvr)
         {
             customerFac.CreateCustomer(name, email, phone, address, zip, city, cvr);
-            customerFac.AddToCumstomerRepo();
             
         }
 
