@@ -8,16 +8,35 @@ namespace Business
 {
     public class JobRepository
     {
+
+        #region Singleton
+        private static volatile JobRepository instance;
+        private static object synchronizationRoot = new Object();
+
+        public static JobRepository Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (synchronizationRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new JobRepository();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+        #endregion
+
         List<Job> jobList;
-        static JobRepository jobRepo = new JobRepository();
         public JobRepository()
         {
             jobList = new List<Job>();
-        }
-
-        public JobRepository GetInstance()
-        {
-            return jobRepo;
         }
 
         public void SaveJob(Job newJob)
