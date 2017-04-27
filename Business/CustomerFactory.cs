@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class CustomerFactory
+    public class CustomerFactory
     {
 
 
         Customer currentCustomer;
-        public void CreateCustomer(string name, string email, int phone, string address, int zip, string city, int cvr)
+        public void CreateCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             Customer newCustomer = new Customer(name, email, phone, address, zip, city, cvr);
             currentCustomer = newCustomer;
             AddToCumstomerRepo();
         }
             
-            public void AddToCumstomerRepo()
+           private void AddToCumstomerRepo()
         {
             CustomerRepository CustomerRepo = new CustomerRepository();
-            CustomerRepo.GetInstance().SaveCustomer(currentCustomer);
+            CustomerRepo.SaveCustomer(currentCustomer);
         }
    }
 }
