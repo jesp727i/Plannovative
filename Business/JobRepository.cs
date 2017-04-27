@@ -27,7 +27,10 @@ namespace Business
 
         }
 
-
+        public List<Job> GetList()
+        {
+            return jobList;
+        }
 
 
 
