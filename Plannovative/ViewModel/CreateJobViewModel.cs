@@ -19,7 +19,7 @@ namespace UserInterfaceLayer.ViewModel
             BF = new BusinessFacade();
             for (int i = 0; i<=4; i++)
             {
-                BF.SaveCustomerToRepo("hanne" + i, "email", 66666666, "adresse 1", 4444, "by", i);
+                BF.SaveCustomerToRepo("hanne" + i, "email", "66666666", "adresse 1", "4444", "by", "i");
             }
             
         }
