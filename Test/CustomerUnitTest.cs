@@ -15,8 +15,7 @@ namespace Test
         Customer cust2;
 
         [TestInitialize]
-
-        public void initialize()
+        public void TestInitialize()
         {
             CustRepo = new CustomerRepository();
             CustFac = new CustomerFactory();
@@ -50,7 +49,7 @@ namespace Test
         }
 
         [TestMethod]
-        public void CustomerFactoryMethodTest()
+        public void CustomerFactoryMethodTest() // Her testet om createcustomer metoden i factory virker.
         {
             int repoListCount = CustRepo.GetList().Count;
             Assert.AreEqual(0, repoListCount);
@@ -60,8 +59,6 @@ namespace Test
             Assert.AreEqual(2, repoListCount);
 
         }
-
-
 
 
     }
