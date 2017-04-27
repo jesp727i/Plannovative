@@ -9,17 +9,35 @@ namespace Business
 {
     public class CustomerRepository
     {
+        #region Singleton
+        private static volatile CustomerRepository instance;
+        private static object synchronizationRoot = new Object();
+
+        public static CustomerRepository Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (synchronizationRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new CustomerRepository();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+        #endregion
+
         List<Customer> CustomerList;
-        static CustomerRepository CustomerRepo = new CustomerRepository();
+        
         public CustomerRepository()
         {
             CustomerList = new List<Customer>();
 
-        }
-
-        public CustomerRepository GetInstance()
-        {
-            return CustomerRepo;
         }
 
         public void SaveCustomer(Customer newCustomer)

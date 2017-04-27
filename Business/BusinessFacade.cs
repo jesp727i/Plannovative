@@ -59,7 +59,7 @@ namespace Business
         public List<Customer> GetCustomerListFromRepo()
         {
             List<Customer> currentList = new List<Customer>();
-            currentList = customerRepo.GetInstance().GetList();
+            currentList = customerRepo.GetList();
 
             return currentList;
         }
