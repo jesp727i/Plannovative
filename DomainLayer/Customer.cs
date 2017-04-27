@@ -10,14 +10,14 @@ namespace DomainLayer
     {
         public string Name { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Address { get; set; }
-        public int Zip { get; set; }
+        public string Zip { get; set; }
         public string City { get; set; }
-        public int Cvr { get; set; } 
+        public string Cvr { get; set; } 
 
 
-        public Customer( string name, string email, int phone, string address, int zip, string city, int cvr)
+        public Customer( string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             Name = name;
             Email = email;
