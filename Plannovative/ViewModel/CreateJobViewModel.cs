@@ -1,6 +1,7 @@
 ﻿using Business;
 using DomainLayer;
 using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,14 +25,21 @@ namespace UserInterfaceLayer.ViewModel
         }
             
              
-        internal void NewJob(string name, string Customer)
+        internal bool NewJob(string name, string customer, string description, string deadline, string priceType, string price)
         {
 
+
+            return true;
         }
 
         internal IEnumerable GetCostumerList()
         {
-            return BF.GetCustomerListFromRepo();
+            List<String> customerNames = new List<string>();
+            foreach (Customer Cust in BF.GetCustomerListFromRepo())
+            {
+                customerNames.Add(Cust.Name);
+            }
+            return customerNames;
 
         }
     }
