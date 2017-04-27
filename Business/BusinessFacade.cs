@@ -42,7 +42,7 @@ namespace Business
             jobFac.CreateJob(name, jobCustomer, description, deadline, priceType, price);
         }
 
-        public void SaveCustomerToRepo(string name, string email, int phone, string address, int zip, string city, int cvr)
+        public void SaveCustomerToRepo(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             customerFac.CreateCustomer(name, email, phone, address, zip, city, cvr);
             
@@ -51,7 +51,7 @@ namespace Business
         public List<Job> GetJobListFromRepo()
         {
             List<Job> currentList = new List<Job>();
-            currentList = jobRepo.GetInstance().GetList();
+            currentList = jobRepo.GetList();
 
             return currentList;
         }
