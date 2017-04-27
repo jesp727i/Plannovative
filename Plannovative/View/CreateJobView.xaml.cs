@@ -37,14 +37,14 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //CJVM.
+            MessageBox.Show(TxtTaskName.Text + comboBoxCustomer.Text + TxtDescription.Text + CalenderDeadline.SelectedDate + comboBoxPriceType.Text + TxtPrice.Text);
+            //CJVM.NewJob(TxtTaskName, comboBoxCustomer, TxtDescription, CalenderDeadline, comboBoxPriceType, TxtPrice);
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-        
 
     }
 }
