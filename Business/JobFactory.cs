@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class JobFactory
+    public class JobFactory
     {
 
         Job currentJob;
@@ -19,12 +19,12 @@ namespace Business
             AddToJobRepo();
         }
 
-        public void AddToJobRepo()
+        private void AddToJobRepo()
         {
             JobRepository jobRepo = new JobRepository();
             //var instance = jobRepo.GetInstance();
             //instance.SaveJob(currentJob); ?? det samme som linien neden under?
-            jobRepo.GetInstance().SaveJob(currentJob);
+            jobRepo.SaveJob(currentJob);
             
         }
 
