@@ -9,6 +9,8 @@ namespace Business
 {
     public class CustomerRepository
     {
+      static List<Customer> CustomerList;
+
         #region Singleton
         private static volatile CustomerRepository instance;
         private static object synchronizationRoot = new Object();
@@ -24,6 +26,7 @@ namespace Business
                         if (instance == null)
                         {
                             instance = new CustomerRepository();
+                            //instance.CustomerList = new List<Customer>();
                         }
                     }
                 }
@@ -32,8 +35,8 @@ namespace Business
         }
         #endregion
 
-        List<Customer> CustomerList;
-        
+
+
         public CustomerRepository()
         {
             CustomerList = new List<Customer>();
@@ -42,7 +45,8 @@ namespace Business
 
         public void SaveCustomer(Customer newCustomer)
         {
-            this.CustomerList.Add(newCustomer);
+
+            CustomerList.Add(newCustomer);
                 
         }
 

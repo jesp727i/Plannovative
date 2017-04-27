@@ -10,19 +10,20 @@ namespace Business
     public class CustomerFactory
     {
 
-
+        
         Customer currentCustomer;
         public void CreateCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             Customer newCustomer = new Customer(name, email, phone, address, zip, city, cvr);
             currentCustomer = newCustomer;
-            AddToCumstomerRepo();
+            AddToCustomerRepo();
         }
             
-           private void AddToCumstomerRepo()
+           private void AddToCustomerRepo()
         {
-            CustomerRepository CustomerRepo = new CustomerRepository();
-            CustomerRepo.SaveCustomer(currentCustomer);
+            CustomerRepository.Instance.SaveCustomer(currentCustomer);
+            //CustomerRepository CustomerRepo = new CustomerRepository();
+            //CustomerRepo.SaveCustomer(currentCustomer);
         }
    }
 }
