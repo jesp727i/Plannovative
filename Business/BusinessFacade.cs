@@ -33,33 +33,33 @@ namespace Business
         #endregion
 
         JobFactory jobFac = new JobFactory();
-        JobRepository jobRepo = new JobRepository();
+        //JobRepository jobRepo = new JobRepository();
         CustomerFactory customerFac = new CustomerFactory();
-        CustomerRepository customerRepo = new CustomerRepository();
+        //CustomerRepository customerRepo = new CustomerRepository();
 
-        public void SaveJobToRepo(string name, Customer jobCustomer, string description, DateTime deadline, bool priceType, double price)
+        public void SaveJob(string name, Customer customer, string description, DateTime deadline, bool priceType, double price)
         {
-            jobFac.CreateJob(name, jobCustomer, description, deadline, priceType, price);
+            jobFac.CreateJob(name, customer, description, deadline, priceType, price);
         }
 
-        public void SaveCustomerToRepo(string name, string email, string phone, string address, string zip, string city, string cvr)
+        public void SaveCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             customerFac.CreateCustomer(name, email, phone, address, zip, city, cvr);
             
         }
 
-        public List<Job> GetJobListFromRepo()
+        public List<Job> GetJobList()
         {
             List<Job> currentList = new List<Job>();
-            currentList = jobRepo.GetList();
+            currentList = JobRepository.Instance.GetList();
 
             return currentList;
         }
 
-        public List<Customer> GetCustomerListFromRepo()
+        public List<Customer> GetCustomerList()
         {
             List<Customer> currentList = new List<Customer>();
-            currentList = customerRepo.GetList();
+            currentList = CustomerRepository.Instance.GetList();
 
             return currentList;
         }

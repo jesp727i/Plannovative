@@ -33,6 +33,7 @@ namespace UserInterfaceLayer.View
         {
             CreateCustomerView CCV = new CreateCustomerView();
             CCV.ShowDialog();
+            comboBoxCustomer.ItemsSource = CJVM.GetCostumerList(); // ? i viewmodel?
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

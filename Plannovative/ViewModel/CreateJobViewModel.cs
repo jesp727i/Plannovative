@@ -17,27 +17,18 @@ namespace UserInterfaceLayer.ViewModel
         public CreateJobViewModel()
         {
             BF = new BusinessFacade();
-
-            for (int i = 0; i<=4; i++)
-            {
-                BF.SaveCustomerToRepo("hanne" + i, "email", "66666666", "adresse 1", "4444", "by", "i");
-            }
-
             
-        }
-            
+        }   
              
         internal bool NewJob(string name, string customer, string description, string deadline, string priceType, string price)
         {
-
-
             return true;
         }
 
-        internal IEnumerable GetCostumerList()
+        internal IEnumerable GetCostumerList()   /// Hvorfor bruge IEnumerable??? :)
         {
             List<String> customerNames = new List<string>();
-            foreach (Customer Cust in BF.GetCustomerListFromRepo())
+            foreach (Customer Cust in BF.GetCustomerList())
             {
                 customerNames.Add(Cust.Name);
             }

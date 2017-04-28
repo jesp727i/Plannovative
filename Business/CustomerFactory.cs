@@ -9,8 +9,6 @@ namespace Business
 {
     public class CustomerFactory
     {
-
-        
         Customer currentCustomer;
         public void CreateCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
@@ -19,11 +17,9 @@ namespace Business
             AddToCustomerRepo();
         }
             
-           private void AddToCustomerRepo()
+        private void AddToCustomerRepo()
         {
             CustomerRepository.Instance.SaveCustomer(currentCustomer);
-            //CustomerRepository CustomerRepo = new CustomerRepository();
-            //CustomerRepo.SaveCustomer(currentCustomer);
         }
    }
 }
