@@ -36,7 +36,8 @@ namespace UserInterfaceLayer.View
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             CCVM.NewCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
-
+            MessageBox.Show(TxtName.Text + " er nu tilføjet!");
+            this.Close();
         }
     }
 }

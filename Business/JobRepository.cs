@@ -33,8 +33,6 @@ namespace Business
             }
         }
         #endregion
-
-
         public JobRepository()
         {
             jobList = new List<Job>();
@@ -43,16 +41,11 @@ namespace Business
         public void SaveJob(Job newJob)
         {
             jobList.Add(newJob);
-
-
         }
 
         public List<Job> GetList()
         {
             return jobList;
         }
-
-
-
     }
 }
