@@ -18,7 +18,7 @@ namespace Test
             jobFac = new JobFactory();
         }
 
-
+        
         [TestMethod]
         public void CanGetListFromRepo()
         {
