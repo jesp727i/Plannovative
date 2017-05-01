@@ -21,6 +21,7 @@ namespace Business
         {
             CustomerRepository.Instance.SaveCustomer(currentCustomer);
         }
+
    }
 }
 
