@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccessLayer;
 
 namespace Business
 {
@@ -34,9 +35,12 @@ namespace Business
             }
         }
         #endregion
+
+
+
         public CustomerRepository()
         {
-            customerList = new List<Customer>();
+            customerList = new List<Customer>();   
         }
 
         public void SaveCustomer(Customer newCustomer)

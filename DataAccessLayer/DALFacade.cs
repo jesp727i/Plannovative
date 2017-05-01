@@ -2,6 +2,7 @@
 using DomainLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,28 @@ namespace DataAccessLayer
 {
     public class DALFacade
     {
+
+        JobConnection jobConnection = new JobConnection();
+        CustomerConnection customerConnection = new CustomerConnection();
         public void SaveJobToDb(Job job)
         {
-            JobConnection newConnection = new JobConnection();
-            newConnection.SetVariables(job.Name, job.Customer.Phone, job.Description, job.Deadline, job.PriceType, job.Price);
-            newConnection.SaveJob();
+            jobConnection.SetVariables(job.Name, job.Customer.Phone, job.Description, job.Deadline, job.PriceType, job.Price);
+            jobConnection.SaveJob();
         }
+        public void SaveCustomerToDb(Customer customer)
+        {
+            customerConnection.SetVariables(customer.Name, customer.Email, customer.Phone, customer.Address, customer.Zip, customer.City, customer.Cvr);
+            customerConnection.spSaveCustomer();
+
+        }
+        public List<string[]> GetCustomersFromDb()
+        {
+            customerConnection.spGetCustomer();
+            return customerConnection.arrayList;
+
+        }
+
+
+
     }
 }
