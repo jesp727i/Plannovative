@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DomainLayer;
 
 namespace DataAccessLayer
 {
@@ -15,6 +16,9 @@ namespace DataAccessLayer
 
         bool exception = true;
         string exceptionString;
+        internal List<string[]> arrayList = new List<string[]>();
+
+        internal SqlDataReader reader;
 
         string name;
         string email;
@@ -76,5 +80,49 @@ namespace DataAccessLayer
             }
         }
 
+        internal void spGetCustomer()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmd2 = new SqlCommand("spGetCustomers", connection);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+                    reader = cmd2.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                          
+                            string[] newArray = new string[7];
+                            newArray[0] = reader["CustomerName"].ToString();
+                            newArray[1] = reader["Email"].ToString();
+                            newArray[2] = reader["Phone"].ToString();
+                            newArray[3] = reader["CustomerAddress"].ToString();
+                            newArray[4] = reader["Zip"].ToString();
+                            newArray[5] = reader["City"].ToString();
+                            newArray[6] = reader["CVR"].ToString();
+
+                            arrayList.Add(newArray);
+                        
+                        }
+
+                    }
+
+
+
+                }
+                catch (SqlException e)
+                {
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
+
+
+                }
+            }   
+       }
     }
 }

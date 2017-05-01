@@ -9,6 +9,15 @@ namespace Business
 {
     public class BusinessFacade
     {
+
+        JobFactory jobFac = new JobFactory();
+        CustomerFactory customerFac = new CustomerFactory();
+        public BusinessFacade()
+        {
+            customerFac.GetCustomersFromDAL();
+        }
+
+
         #region Singleton
         private static volatile BusinessFacade instance;
         private static object synchronizationRoot = new Object();
@@ -32,10 +41,7 @@ namespace Business
         }
         #endregion
 
-        JobFactory jobFac = new JobFactory();
-        //JobRepository jobRepo = new JobRepository();
-        CustomerFactory customerFac = new CustomerFactory();
-        //CustomerRepository customerRepo = new CustomerRepository();
+
 
         public void SaveJob(string name, Customer customer, string description, DateTime deadline, bool priceType, double price)
         {
