@@ -39,6 +39,41 @@ namespace DataAccessLayer
             this.jobPrice = jobPrice;
             //SaveJob();
         }
+
+
+        public void GetJobs()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand("GetJob", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string jobName = reader["JobName"].ToString();
+                            string customerPhone = reader["CustomerPhone"].ToString();
+                            string jobDescription = reader["JobDescription"].ToString();
+                            string jobDeadLine = reader["jobDeadLine"].ToString();
+                            bool jobPriceType = Convert.ToBoolean(reader["jobPriceType"]);
+                            double jobPrice = Convert.ToDouble(reader["jobPrice"]);
+                        }
+                    }
+                }
+
+                catch(SqlException e)
+                {
+                    
+                }
+
+
+            }
+        }
         public void SaveJob()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -64,6 +99,8 @@ namespace DataAccessLayer
                     exception = false;
                     SuccesMethod(exception);
                 }
+
+
             }
         }
 
