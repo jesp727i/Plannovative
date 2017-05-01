@@ -46,7 +46,7 @@ namespace DataAccessLayer
 
             return exceptionString;
         }
-        private void spSaveCustomer()
+        public void spSaveCustomer()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
