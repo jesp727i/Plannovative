@@ -13,6 +13,9 @@ namespace DataAccessLayer
         private static string connectionString =
          "Server=ealdb1.eal.local; Database= ejl48_db; User= ejl48_usr; Password=Baz1nga48;";
 
+        bool exception = true;
+        string exceptionString;
+
         string name;
         string email;
         string phone;
@@ -33,8 +36,16 @@ namespace DataAccessLayer
             
         }
 
+        private string SuccesMethod(bool exception)
+        {
 
+            if (exception)
+            {
+                exceptionString = "Kunden er gemt i databasen!";
+            }
 
+            return exceptionString;
+        }
         private void spSaveCustomer()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -46,25 +57,21 @@ namespace DataAccessLayer
                     cmd1.CommandType = CommandType.StoredProcedure;
 
                     cmd1.Parameters.Add(new SqlParameter("@CustomerName", name));
-
                     cmd1.Parameters.Add(new SqlParameter("@Email", email));
-
                     cmd1.Parameters.Add(new SqlParameter("@Phone", phone));
-
                     cmd1.Parameters.Add(new SqlParameter("@CustomerAddress", address));
-
                     cmd1.Parameters.Add(new SqlParameter("@Zip", zip));
-
                     cmd1.Parameters.Add(new SqlParameter("@City", city));
-
                     cmd1.Parameters.Add(new SqlParameter("@Cvr", cvr));
-
                     cmd1.ExecuteNonQuery();
                 }
-                catch (SqlException )
+                catch (SqlException e)
                 {
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
 
-
+                    
                 }
             }
         }
