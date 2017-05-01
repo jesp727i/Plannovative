@@ -2,6 +2,7 @@
 using DomainLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,12 @@ namespace DataAccessLayer
         {
             customerConnection.SetVariables(customer.Name, customer.Email, customer.Phone, customer.Address, customer.Zip, customer.City, customer.Cvr);
             customerConnection.spSaveCustomer();
+
+        }
+        public List<string[]> GetCustomersFromDb()
+        {
+            customerConnection.spGetCustomer();
+            return customerConnection.arrayList;
 
         }
 
