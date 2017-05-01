@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerConnection.cs" />
-    <Compile Include="Facade.cs" />
+    <Compile Include="DALFacade.cs" />
     <Compile Include="JobConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
