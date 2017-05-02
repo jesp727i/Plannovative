@@ -11,6 +11,9 @@ namespace DataAccessLayer
 {
     class CustomerConnection
     {
+        #region Variabler
+
+       
         private static string connectionString =
          "Server=ealdb1.eal.local; Database= ejl48_db; User= ejl48_usr; Password=Baz1nga48;";
 
@@ -27,6 +30,7 @@ namespace DataAccessLayer
         string zip;
         string city;
         string cvr;
+        #endregion
 
         public void SetVariables(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
@@ -50,7 +54,7 @@ namespace DataAccessLayer
 
             return exceptionString;
         }
-        public void spSaveCustomer()
+        internal void spSaveCustomer()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -79,7 +83,6 @@ namespace DataAccessLayer
                 }
             }
         }
-
         internal void spGetCustomer()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -124,5 +127,36 @@ namespace DataAccessLayer
                 }
             }   
        }
+        internal void spUpdateCustomer()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmd3 = new SqlCommand("spUpdateCustomer", connection);
+                    cmd3.CommandType = CommandType.StoredProcedure;
+
+                    cmd3.Parameters.Add(new SqlParameter("@CustomerName", name));
+                    cmd3.Parameters.Add(new SqlParameter("@Email", email));
+                    cmd3.Parameters.Add(new SqlParameter("@Phone", phone));
+                    cmd3.Parameters.Add(new SqlParameter("@CustomerAddress", address));
+                    cmd3.Parameters.Add(new SqlParameter("@Zip", zip));
+                    cmd3.Parameters.Add(new SqlParameter("@City", city));
+                    cmd3.Parameters.Add(new SqlParameter("@Cvr", cvr));
+                    cmd3.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
+
+
+                }
+            }
+
+        }
+
     }
 }
