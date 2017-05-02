@@ -40,8 +40,23 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(TxtTaskName.Text + comboBoxCustomer.Text + TxtDescription.Text + CalenderDeadline.SelectedDate + comboBoxPriceType.Text + TxtPrice.Text);
+            if (CalenderDeadline.SelectedDate == null)
+            {
+                CalenderDeadline.SelectedDate = DateTime.MaxValue;
+            }
+
+
+            if (TxtTaskName.Text =="" || comboBoxCustomer.Text == "")
+            {
+                MessageBox.Show("En opgave skal have både Opgave navn og en Kunde");
+
+            }
+            else
+            {
+            MessageBox.Show("Opgaven " + '"' + TxtTaskName.Text + '"' +  " er oprettet");
             BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text));
+            }
+
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -57,9 +72,20 @@ namespace UserInterfaceLayer.View
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            CreateCustomerView CCV = new CreateCustomerView(comboBoxCustomer.Text);
-            CCV.ShowDialog();
-            RefreshCustomer();
+
+            if (comboBoxCustomer.Text == "")
+            {
+                MessageBox.Show("En kunde skal vælges, før redigering");
+
+            }
+            else
+            {
+                CreateCustomerView CCV = new CreateCustomerView(comboBoxCustomer.Text);
+                CCV.ShowDialog();
+                RefreshCustomer();
+            }
+
         }
+
     }
 }
