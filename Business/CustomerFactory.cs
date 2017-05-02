@@ -11,39 +11,39 @@ namespace Business
 {
     public class CustomerFactory
     {
-        Customer currentCustomer;
+        
         DALFacade DBF = new DALFacade();
         public void CreateCustomerToDb(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             Customer newCustomer = new Customer(name, email, phone, address, zip, city, cvr);
-            currentCustomer = newCustomer;
-            AddToCustomerDb();
+            
+            AddToCustomerDb(newCustomer);
         }
         public void CreateCustomerFromDb(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             Customer newCustomer = new Customer(name, email, phone, address, zip, city, cvr);
-            currentCustomer = newCustomer;
-            AddToCustomerRepo();
+            
+            AddToCustomerRepo(newCustomer);
         }
 
-        private void AddToCustomerRepo()
+        private void AddToCustomerRepo(Customer customer)
         {
-            CustomerRepository.Instance.SaveCustomer(currentCustomer);
+            CustomerRepository.Instance.SaveCustomer(customer);
         }
 
         internal void GetCustomersFromDAL()
         {
-            List<string[]> customerData = DBF.GetCustomersFromDb();
+            List<Customer> customerData = DBF.GetCustomersFromDb();
 
-            foreach (string[] item in customerData)
+            foreach (Customer cust in customerData)
             {
-                CreateCustomerFromDb(item[0],item[1], item[2], item[3], item[4], item[5], item[6]);
+                AddToCustomerRepo(cust);
             }
         }
 
-        private void AddToCustomerDb()
+        private void AddToCustomerDb(Customer customer)
         {
-            DBF.SaveCustomerToDb(currentCustomer);
+            DBF.SaveCustomerToDb(customer);
         }
 
     }

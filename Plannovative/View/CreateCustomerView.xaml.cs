@@ -20,7 +20,7 @@ namespace UserInterfaceLayer.View
     /// Interaction logic for CreateCustomerView.xaml
     /// </summary>
     public partial class CreateCustomerView : Window
-    {
+    {   
         bool update = false;
 
         public CreateCustomerView()
@@ -59,6 +59,7 @@ namespace UserInterfaceLayer.View
             {
                 BusinessFacade.Instance.SaveCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
                 MessageBox.Show(TxtName.Text + " er nu tilføjet");
+
             }
             
             this.Close();
