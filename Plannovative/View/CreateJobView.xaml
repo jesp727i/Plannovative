@@ -4,15 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserInterfaceLayer.View"
-        xmlns:views = "clr-namespace:UserInterfaceLayer.View"
-        xmlns:ViewModel = "clr-namespace:UserInterfaceLayer.ViewModel"
+
         mc:Ignorable="d"
         Title="Opgave" Height="555" Width="420">
-    
-    <Window.DataContext>
-        <ViewModel:CreateJobViewModel/>
-    </Window.DataContext>
-    
+
     <Grid>
         <Button x:Name="BtnNewCustomer" Content="Ny kunde" HorizontalAlignment="Left" Margin="177,75,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="-0.483,0.868" Click="BtnNewCustomer_Click"/>
         <Calendar x:Name="CalenderDeadline" HorizontalAlignment="Left" Margin="177,229,0,0" VerticalAlignment="Top" Height="166" Width="168"/>
