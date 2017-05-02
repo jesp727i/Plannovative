@@ -35,12 +35,13 @@ namespace UserInterfaceLayer.View
             CreateCustomerView CCV = new CreateCustomerView();
             CCV.ShowDialog();
             RefreshCustomer();
+
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(TxtTaskName.Text + comboBoxCustomer.Text + TxtDescription.Text + CalenderDeadline.SelectedDate + comboBoxPriceType.Text + TxtPrice.Text);
-            //BF.SaveJob(TxtTaskName.Text + comboBoxCustomer.Text + TxtDescription.Text + CalenderDeadline.SelectedDate + comboBoxPriceType.Text + TxtPrice.Text);
+            BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text));
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -49,9 +50,16 @@ namespace UserInterfaceLayer.View
         }
         public void RefreshCustomer()
         {
-            
+            BF.LoadCustomersToRepo();
             this.comboBoxCustomer.ItemsSource = BF.GetCustomerNames();
 
+        }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCustomerView CCV = new CreateCustomerView(comboBoxCustomer.Text);
+            CCV.ShowDialog();
+            RefreshCustomer();
         }
     }
 }

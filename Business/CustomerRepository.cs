@@ -52,6 +52,10 @@ namespace Business
         {
             return customerList;
         }
+        public void ClearRepo()
+        {
+            customerList.Clear();
+        }
     }
 }
 
