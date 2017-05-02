@@ -25,5 +25,9 @@ namespace UserInterfaceLayer
             InitializeComponent();
         }
 
+        private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

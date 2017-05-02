@@ -56,20 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\CreateCustomerViewModel.cs" />
-    <Compile Include="ViewModel\CreateJobViewModel.cs" />
     <Compile Include="View\CreateCustomerView.xaml.cs">
       <DependentUpon>CreateCustomerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CreateJobView.xaml.cs">
       <DependentUpon>CreateJobView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyICommand.cs" />
-    <Compile Include="ViewModel\PlannovativeViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="BindableBase.cs" />
-    <Compile Include="View\PlannovativeView.xaml.cs">
-      <DependentUpon>PlannovativeView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -85,8 +76,6 @@
     </Compile>
     <Page Include="View\CreateJobView.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\PlannovativeView.xaml">
     </Page>
     <Page Include="View\CreateCustomerView.xaml">
       <SubType>Designer</SubType>
