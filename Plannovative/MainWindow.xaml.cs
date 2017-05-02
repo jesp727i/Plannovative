@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserInterfaceLayer.View;
 
 namespace UserInterfaceLayer
 {
@@ -27,7 +28,8 @@ namespace UserInterfaceLayer
 
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateJobView CJV = new CreateJobView();
+            CJV.ShowDialog();
         }
     }
 }
