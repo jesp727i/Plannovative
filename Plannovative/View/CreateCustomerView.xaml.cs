@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business;
+using DomainLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using UserInterfaceLayer.ViewModel;
 
 namespace UserInterfaceLayer.View
 {
@@ -20,12 +21,26 @@ namespace UserInterfaceLayer.View
     /// </summary>
     public partial class CreateCustomerView : Window
     {
-        CreateCustomerViewModel CCVM;
+        bool update = false;
 
         public CreateCustomerView()
         {
             InitializeComponent();
-            CCVM = new CreateCustomerViewModel();
+        }
+        public CreateCustomerView(string customerName)
+        {
+            InitializeComponent();
+
+            TxtPhone.IsEnabled = false;
+            Customer cust = BusinessFacade.Instance.GetCustomerByName(customerName);
+            TxtName.Text = cust.Name;
+            TxtEmail.Text = cust.Email;
+            TxtPhone.Text = cust.Phone;
+            TxtAddress.Text = cust.Address;
+            TxtZip.Text = cust.Zip;
+            TxtCity.Text = cust.City;
+            TxtCVR.Text = cust.CVR;
+            update = true;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -35,8 +50,17 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            CCVM.NewCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
-            MessageBox.Show(TxtName.Text + " er nu tilføjet!");
+            if (update)
+            {
+                BusinessFacade.Instance.UpdateCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
+                MessageBox.Show(TxtName.Text + " er nu redigeret");
+            }
+            else
+            {
+                BusinessFacade.Instance.SaveCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
+                MessageBox.Show(TxtName.Text + " er nu tilføjet");
+            }
+            
             this.Close();
         }
     }
