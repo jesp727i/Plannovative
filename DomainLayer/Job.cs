@@ -10,7 +10,7 @@ namespace Business
 {
     public class Job
     {
-        private Customer customer;
+        //private Customer customer;
         public string Name { get; set; }
         public Customer Customer { get; }
         public string Description { get; set; }
@@ -21,7 +21,7 @@ namespace Business
         public Job(string name, Customer customer, string description, DateTime deadline, bool priceType, double price)
         {
             this.Name = name;
-            this.customer = customer;
+            this.Customer = customer;
             this.Description = description;
             this.Deadline = deadline;
             this.PriceType = priceType;
