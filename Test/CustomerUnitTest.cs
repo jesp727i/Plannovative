@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Business;
 using DomainLayer;
-
+using DataAccessLayer;
 
 namespace Test
 {
@@ -60,7 +60,6 @@ namespace Test
             Assert.AreEqual(2, repoListCount);
 
         }
-
 
     }
 }
