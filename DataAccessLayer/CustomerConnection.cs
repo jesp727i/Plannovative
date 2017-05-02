@@ -19,7 +19,7 @@ namespace DataAccessLayer
 
         bool exception = true;
         string exceptionString;
-        internal List<string[]> arrayList = new List<string[]>();
+        internal List<Customer> customerList = new List<Customer>();
 
         internal SqlDataReader reader;
 
@@ -85,7 +85,7 @@ namespace DataAccessLayer
         }
         internal void spGetCustomer()
         {
-            arrayList.Clear();
+            customerList.Clear();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -99,24 +99,17 @@ namespace DataAccessLayer
                     {
                         while (reader.Read())
                         {
-                          
-                            string[] newArray = new string[7];
-                            newArray[0] = reader["CustomerName"].ToString();
-                            newArray[1] = reader["Email"].ToString();
-                            newArray[2] = reader["Phone"].ToString();
-                            newArray[3] = reader["CustomerAddress"].ToString();
-                            newArray[4] = reader["Zip"].ToString();
-                            newArray[5] = reader["City"].ToString();
-                            newArray[6] = reader["CVR"].ToString();
+                            Customer newCustomer = new Customer(reader["CustomerName"].ToString(), 
+                                reader["Email"].ToString(), 
+                                reader["Phone"].ToString(),
+                                reader["CustomerAddress"].ToString(),
+                                reader["Zip"].ToString(),
+                                reader["City"].ToString(),
+                                reader["CVR"].ToString());
 
-                            arrayList.Add(newArray);
-                        
+                            customerList.Add(newCustomer);
                         }
-
                     }
-
-
-
                 }
                 catch (SqlException e)
                 {
