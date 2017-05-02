@@ -10,7 +10,9 @@ namespace DataAccessLayer
 {
     public class JobConnection
     {
-        bool exception;
+        #region Variables
+
+        bool exception = true;
         string exceptionString;
         private static string connectionString = "Server=ealdb1.eal.local; Database= ejl48_db; User= ejl48_usr; Password=Baz1nga48;";
         string jobName;
@@ -19,6 +21,8 @@ namespace DataAccessLayer
         string jobDeadline;
         bool   jobPriceType;
         double jobPrice;
+
+        #endregion
 
         private string SuccesMethod(bool exception)
         {
@@ -29,6 +33,7 @@ namespace DataAccessLayer
             
             return exceptionString;
         }
+
         public void SetVariables(string jobName, string customerPhone, string jobDescription, DateTime jobDeadline, bool jobPriceType, double jobPrice )
         {
             this.jobName = jobName;
@@ -37,9 +42,7 @@ namespace DataAccessLayer
             this.jobDeadline = jobDeadline.ToString();
             this.jobPriceType = jobPriceType;
             this.jobPrice = jobPrice;
-            //SaveJob();
         }
-
 
         public void GetJobs()
         {
@@ -68,10 +71,10 @@ namespace DataAccessLayer
 
                 catch(SqlException e)
                 {
-                    
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
                 }
-
-
             }
         }
         public void SaveJob()
@@ -99,12 +102,7 @@ namespace DataAccessLayer
                     exception = false;
                     SuccesMethod(exception);
                 }
-
-
             }
-        }
-
-          
+        } 
     }
-
 }

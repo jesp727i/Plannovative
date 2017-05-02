@@ -13,11 +13,21 @@ namespace Business
         Job currentJob;
         DALFacade DBF = new DALFacade();
 
-        public void CreateJob(string name, Customer customer, string description, DateTime deadline, bool priceType, double price)
+        public void CreateJob(string name, Customer customer, string description, DateTime deadline, string priceType, double price)
         {
-            Job newJob = new Job(name, customer, description, deadline, priceType, price);
+            bool _priceType;
+
+            if (priceType == "Fast pris")
+            {
+                _priceType = true;
+            }
+            else
+            {
+                _priceType = false;
+            }
+            Job newJob = new Job(name, customer, description, deadline, _priceType, price);
             currentJob = newJob;
-           // AddToJobDatabase();
+            AddToJobDatabase();
             AddToJobRepo();
         }
 

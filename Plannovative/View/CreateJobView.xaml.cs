@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using UserInterfaceLayer.ViewModel;
+using Business;
+using DomainLayer;
 
 namespace UserInterfaceLayer.View
 {
@@ -20,32 +21,45 @@ namespace UserInterfaceLayer.View
     /// </summary>
     public partial class CreateJobView : Window
     {
+        BusinessFacade BF;
 
-        CreateJobViewModel CJVM;
         public CreateJobView()
         {
+            BF = BusinessFacade.Instance;
             InitializeComponent();
-            CJVM = new CreateJobViewModel();
-            comboBoxCustomer.ItemsSource = CJVM.GetCostumerList();
+            RefreshCustomer();
         }
 
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             CreateCustomerView CCV = new CreateCustomerView();
             CCV.ShowDialog();
-            comboBoxCustomer.ItemsSource = CJVM.GetCostumerList(); // ? i viewmodel?
+            RefreshCustomer();
+
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(TxtTaskName.Text + comboBoxCustomer.Text + TxtDescription.Text + CalenderDeadline.SelectedDate + comboBoxPriceType.Text + TxtPrice.Text);
-            //CJVM.NewJob(TxtTaskName, comboBoxCustomer, TxtDescription, CalenderDeadline, comboBoxPriceType, TxtPrice);
+            BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text));
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+        public void RefreshCustomer()
+        {
+            BF.LoadCustomersToRepo();
+            this.comboBoxCustomer.ItemsSource = BF.GetCustomerNames();
 
+        }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCustomerView CCV = new CreateCustomerView(comboBoxCustomer.Text);
+            CCV.ShowDialog();
+            RefreshCustomer();
+        }
     }
 }
