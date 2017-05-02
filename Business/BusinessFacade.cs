@@ -15,7 +15,7 @@ namespace Business
         CustomerFactory customerFac = new CustomerFactory();
         public BusinessFacade()
         {
-            customerFac.GetCustomersFromDAL();
+            //customerFac.GetCustomersFromDAL();
         }
 
 
@@ -75,6 +75,17 @@ namespace Business
             currentList = CustomerRepository.Instance.GetList();
 
             return currentList;
+        }
+
+        public List<string> GetCustomerNames()
+        {
+
+            List<string> custNames = new List<string>();
+            foreach (Customer cust in GetCustomerList())
+            {
+                custNames.Add(cust.Name);
+            }
+            return custNames;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,7 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //NewCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
+            BusinessFacade.Instance.SaveCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
             MessageBox.Show(TxtName.Text + " er nu tilføjet!");
             this.Close();
         }
