@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using UserInterfaceLayer.ViewModel;
 
 namespace UserInterfaceLayer.View
 {
@@ -20,12 +19,10 @@ namespace UserInterfaceLayer.View
     /// </summary>
     public partial class CreateCustomerView : Window
     {
-        CreateCustomerViewModel CCVM;
 
         public CreateCustomerView()
         {
             InitializeComponent();
-            CCVM = new CreateCustomerViewModel();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -35,7 +32,7 @@ namespace UserInterfaceLayer.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            CCVM.NewCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
+            //NewCustomer(TxtName.Text, TxtEmail.Text, TxtPhone.Text, TxtAddress.Text, TxtZip.Text, TxtCity.Text, TxtCity.Text);
             MessageBox.Show(TxtName.Text + " er nu tilføjet!");
             this.Close();
         }
