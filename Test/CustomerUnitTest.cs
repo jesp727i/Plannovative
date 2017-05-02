@@ -54,8 +54,8 @@ namespace Test
         {
             int repoListCount = CustRepo.GetList().Count;
             Assert.AreEqual(0, repoListCount);
-            CustFac.CreateCustomer("Asbjørn", "jens@asbjørn.dk", "24611933", "Bispevænget 1", "5000", "Odense", "88873");
-            CustFac.CreateCustomer("Jesper", "jens@asbjørn.dk", "2444933", "Bispevænget 3", "5000", "Odense", "88888");
+            CustFac.CreateCustomerToDb("Asbjørn", "jens@asbjørn.dk", "24611933", "Bispevænget 1", "5000", "Odense", "88873");
+            CustFac.CreateCustomerToDb("Jesper", "jens@asbjørn.dk", "2444933", "Bispevænget 3", "5000", "Odense", "88888");
             repoListCount = CustRepo.GetList().Count;
             Assert.AreEqual(2, repoListCount);
 

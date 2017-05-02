@@ -15,7 +15,7 @@ namespace Business
         CustomerFactory customerFac = new CustomerFactory();
         public BusinessFacade()
         {
-            //customerFac.GetCustomersFromDAL();
+            
         }
 
 
@@ -42,16 +42,21 @@ namespace Business
         }
         #endregion
 
-
-
-        public void SaveJob(string name, Customer customer, string description, DateTime deadline, bool priceType, double price)
+        public Customer GetCustomerByName(string customerName)
         {
+            List<Customer> searchList = GetCustomerList();
+            return searchList.Find(r => r.Name == customerName);
+        }
+
+        public void SaveJob(string name, string _customer, string description, DateTime deadline, string priceType, double price)
+        {
+            Customer customer = GetCustomerByName(_customer);
             jobFac.CreateJob(name, customer, description, deadline, priceType, price);
         }
 
         public void SaveCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
-            customerFac.CreateCustomer(name, email, phone, address, zip, city, cvr);
+            customerFac.CreateCustomerToDb(name, email, phone, address, zip, city, cvr);
             
         }
 
@@ -87,5 +92,11 @@ namespace Business
             }
             return custNames;
         }
+        public void LoadCustomersToRepo()
+        {
+            CustomerRepository.Instance.ClearRepo();
+            customerFac.GetCustomersFromDAL();
+        }
+        
     }
 }

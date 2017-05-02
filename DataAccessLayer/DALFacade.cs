@@ -22,7 +22,7 @@ namespace DataAccessLayer
 
         public void SaveCustomerToDb(Customer customer)
         {
-            customerConnection.SetVariables(customer.Name, customer.Email, customer.Phone, customer.Address, customer.Zip, customer.City, customer.Cvr);
+            customerConnection.SetVariables(customer.Name, customer.Email, customer.Phone, customer.Address, customer.Zip, customer.City, customer.CVR);
             customerConnection.spSaveCustomer();
         }
 

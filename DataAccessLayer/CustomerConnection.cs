@@ -85,6 +85,7 @@ namespace DataAccessLayer
         }
         internal void spGetCustomer()
         {
+            arrayList.Clear();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
