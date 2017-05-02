@@ -26,10 +26,10 @@ namespace DataAccessLayer
             customerConnection.spSaveCustomer();
         }
 
-        public List<string[]> GetCustomersFromDb()
+        public List<Customer> GetCustomersFromDb()
         {
             customerConnection.spGetCustomer();
-            return customerConnection.arrayList;
+            return customerConnection.customerList;
         }
 
         public void GetJobsFromDb()

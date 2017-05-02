@@ -10,7 +10,7 @@ namespace Business
 {
     public class CustomerRepository
     {
-      static List<Customer> customerList;
+        static List<Customer> customerList;
 
         #region Singleton
         private static volatile CustomerRepository instance;
@@ -35,8 +35,6 @@ namespace Business
             }
         }
         #endregion
-
-
 
         public CustomerRepository()
         {

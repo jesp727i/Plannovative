@@ -21,9 +21,7 @@ namespace DomainLayer
         public string City { get; set; }
         public string CVR { get; set; } 
 
-
-
-        public Customer( string name, string email, string phone, string address, string zip, string city, string cvr)
+        public Customer(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             Name = name;
             Email = email;
