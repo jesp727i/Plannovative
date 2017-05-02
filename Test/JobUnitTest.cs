@@ -63,16 +63,16 @@ namespace Test
 
             Assert.AreEqual(2, repoListCount);
         }
-        [TestMethod]
-        public void CanSaveOneJobFromFactory()
-        {
-            Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", "28734552", "denvej 10", "5000", "Odense", "88889999");
+        //[TestMethod]
+        //public void CanSaveOneJobFromFactory()
+        //{
+        //    Customer newCustomer = new Customer("Jimmi", "jimmi@hotmail.dk", "28734552", "denvej 10", "5000", "Odense", "88889999");
 
-            jobFac.CreateJob("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
-            jobFac.CreateJob("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
-            int repoListCount = jobRepo.GetList().Count;
-            Assert.AreEqual(2, repoListCount);
-        }
+        //    jobFac.CreateJob("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
+        //    jobFac.CreateJob("logo", newCustomer, "Lav et logo", Convert.ToDateTime("04/10/2017"), true, 200.00);
+        //    int repoListCount = jobRepo.GetList().Count;
+        //    Assert.AreEqual(2, repoListCount);
+        //}
 
 
     }
