@@ -1,4 +1,5 @@
-﻿using DomainLayer;
+﻿using DataAccessLayer;
+using DomainLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,12 @@ namespace Business
         {
             customerFac.CreateCustomer(name, email, phone, address, zip, city, cvr);
             
+        }
+
+        public void UpdateCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
+        {
+            DALFacade DALF = new DALFacade();
+            DALF.UpdateCustomerInDb(name, email, phone,address, zip, city, cvr);
         }
 
         public List<Job> GetJobList()
