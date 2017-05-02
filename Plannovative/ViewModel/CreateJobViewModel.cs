@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace UserInterfaceLayer.ViewModel
 {
-    class CreateJobViewModel
+    class CreateJobViewModel : BindableBase
     {
         BusinessFacade BF;
         public CreateJobViewModel()
@@ -20,9 +20,9 @@ namespace UserInterfaceLayer.ViewModel
             
         }   
              
-        internal bool NewJob(string name, string customer, string description, string deadline, string priceType, string price)
+        internal void NewJob(string name, string customer, string description, string deadline, string priceType, string price)
         {
-            return true;
+            
         }
 
         internal IEnumerable GetCostumerList()   /// Hvorfor bruge IEnumerable??? :)
