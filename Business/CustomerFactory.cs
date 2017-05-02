@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DomainLayer;
 using DataAccessLayer;
 using System.Data.SqlClient;
 
@@ -34,11 +33,7 @@ namespace Business
             foreach (string[] item in customerData)
             {
                 CreateCustomer(item[0],item[1], item[2], item[3], item[4], item[5], item[6]);
-
             }
-           
-
-
         }
 
         private void AddToCustomerDb()
