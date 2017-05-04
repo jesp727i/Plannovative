@@ -13,7 +13,7 @@ namespace Business
         #region Singleton
         private static volatile JobRepository instance;
         private static object synchronizationRoot = new Object();
-
+       
         public static JobRepository Instance
         {
             get
@@ -25,7 +25,7 @@ namespace Business
                         if (instance == null)
                         {
                             instance = new JobRepository();
-                            
+
                         }
                     }
                 }
@@ -47,6 +47,10 @@ namespace Business
         public List<Job> GetList()
         {
             return jobList;
+        }
+        public Job GetLatestJob()
+        {
+            return jobList[jobList.Count - 1];
         }
     }
 }
