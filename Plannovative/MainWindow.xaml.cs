@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business;
+using DomainLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,12 +26,86 @@ namespace UserInterfaceLayer
         public MainWindow()
         {
             InitializeComponent();
+            BusinessFacade.Instance.LoadCustomersToRepo(); 
         }
 
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
         {
             CreateJobView CJV = new CreateJobView();
+            BusinessFacade.Instance.CreateButtonClicked();
             CJV.ShowDialog();
+
+            Board board = new Board();
+            
+            if (!board.Closed())
+            {
+                Job latestJob = BusinessFacade.Instance.LatestJob();
+                StackPanel newStackPanel = new StackPanel();
+                newStackPanel.Background = Brushes.WhiteSmoke;
+                newStackPanel.Width = 300;
+                newStackPanel.Height = 80;
+                newStackPanel.Margin = new Thickness(5);
+                newStackPanel.Orientation = Orientation.Vertical;
+                Label nameLabel = new Label();
+                Label custLabel = new Label();
+                Label deadlineLabel = new Label();
+                nameLabel.Content = latestJob.Name;
+                custLabel.Content = latestJob.Customer.Name;
+                if (latestJob.Deadline == DateTime.MaxValue)
+                {
+                    deadlineLabel.Content = "Ingen deadline";
+                }
+                else
+                {
+                    deadlineLabel.Content = latestJob.Deadline;
+                }
+                
+                splTodo.Children.Add(newStackPanel);
+                newStackPanel.Children.Add(nameLabel);
+                newStackPanel.Children.Add(custLabel);
+                newStackPanel.Children.Add(deadlineLabel);
+            }
+        }
+        
+        private void StartLoad()
+        {
+            BusinessFacade.Instance.LoadJobToRepo();
+            List<Job> jobListToShow = BusinessFacade.Instance.GetJobList();
+
+            foreach (var item in jobListToShow)
+            {
+                StackPanel newStackPanel = new StackPanel();
+                newStackPanel.Background = Brushes.WhiteSmoke;
+                newStackPanel.Width = 300;
+                newStackPanel.Height = 80;
+                newStackPanel.Margin = new Thickness(5);
+                newStackPanel.Orientation = Orientation.Vertical;
+                Label nameLabel = new Label();
+                Label custLabel = new Label();
+                Label deadlineLabel = new Label();
+                nameLabel.Content = item.Name;
+                custLabel.Content = item.Customer.Name;
+                if (item.Deadline == DateTime.MaxValue)
+                {
+                    deadlineLabel.Content = "Ingen deadline";
+                }
+                else
+                {
+                    deadlineLabel.Content = item.Deadline;
+                }
+
+                splTodo.Children.Add(newStackPanel);
+                newStackPanel.Children.Add(nameLabel);
+                newStackPanel.Children.Add(custLabel);
+                newStackPanel.Children.Add(deadlineLabel);
+            }
+        }
+
+        private void BtnShowCustomers_Click(object sender, RoutedEventArgs e)
+        {
+            StartLoad();
+            BtnShowCustomers.IsEnabled = false;
         }
     }
+    
 }

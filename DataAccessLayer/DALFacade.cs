@@ -14,6 +14,8 @@ namespace DataAccessLayer
         JobConnection jobConnection = new JobConnection();
         CustomerConnection customerConnection = new CustomerConnection();
 
+        
+        
         public void SaveJobToDb(Job job)
         {
             jobConnection.SetVariables(job.Name, job.Customer.Phone, job.Description, job.Deadline, job.PriceType, job.Price);
@@ -32,9 +34,10 @@ namespace DataAccessLayer
             return customerConnection.customerList;
         }
 
-        public void GetJobsFromDb()
+        public List<Job> GetJobsFromDb()
         {
             jobConnection.GetJobs();
+            return jobConnection.jobList;
         }
 
         public void UpdateCustomerInDb(string name, string email, string phone, string address, string zip, string city, string cvr)
