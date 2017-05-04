@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business;
+using DomainLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,7 +13,8 @@ namespace DataAccessLayer
     public class JobConnection
     {
         #region Variables
-
+        internal List<Job> jobList = new List<Job>();
+        
         bool exception = true;
         string exceptionString;
         private static string connectionString = "Server=ealdb1.eal.local; Database= ejl48_db; User= ejl48_usr; Password=Baz1nga48;";
@@ -21,9 +24,10 @@ namespace DataAccessLayer
         string jobDeadline;
         bool   jobPriceType;
         double jobPrice;
+        
 
         #endregion
-
+        
         private string SuccesMethod(bool exception)
         {
             if (exception)
@@ -59,12 +63,16 @@ namespace DataAccessLayer
                     {
                         while (reader.Read())
                         {
-                            string jobName = reader["JobName"].ToString();
-                            string customerPhone = reader["CustomerPhone"].ToString();
-                            string jobDescription = reader["JobDescription"].ToString();
-                            string jobDeadLine = reader["jobDeadLine"].ToString();
-                            bool jobPriceType = Convert.ToBoolean(reader["jobPriceType"]);
-                            double jobPrice = Convert.ToDouble(reader["jobPrice"]);
+                            bool myBool = (bool)reader["JobPriceType"];
+                            
+                            Job newJob = new Job(reader["JobName"].ToString(),
+                                reader["CustomerPhone"].ToString(),
+                                reader["JobDescription"].ToString(),
+                                reader["JobDeadline"].ToString(),
+                                myBool,
+                                reader["JobPrice"].ToString());
+
+                            jobList.Add(newJob);
                         }
                     }
                 }

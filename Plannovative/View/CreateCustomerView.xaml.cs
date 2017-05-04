@@ -26,11 +26,13 @@ namespace UserInterfaceLayer.View
         public CreateCustomerView()
         {
             InitializeComponent();
+            BtnSave.IsEnabled = false;
         }
         public CreateCustomerView(string customerName)
         {
             InitializeComponent();
 
+            BtnSave.IsEnabled = false;
             TxtPhone.IsEnabled = false;
             Customer cust = BusinessFacade.Instance.GetCustomerByName(customerName);
             TxtName.Text = cust.Name;
@@ -63,6 +65,27 @@ namespace UserInterfaceLayer.View
             }
             
             this.Close();
+        }
+
+        private void OnTextChanged(object sender, EventArgs args)
+        {
+            
+        }
+
+        private void UpdateUserInterface()
+        {
+            this.BtnSave.IsEnabled = !string.IsNullOrWhiteSpace(this.TxtName.Text) &&
+                                    !string.IsNullOrWhiteSpace(this.TxtPhone.Text);
+        }
+
+        private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateUserInterface();
+        }
+
+        private void TxtPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateUserInterface();
         }
     }
 }
