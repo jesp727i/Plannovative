@@ -19,8 +19,7 @@ namespace Business
         {
             
         }
-
-
+        
         #region Singleton
         private static volatile BusinessFacade instance;
         private static object synchronizationRoot = new Object();
@@ -48,6 +47,7 @@ namespace Business
         {
             return JobRepository.Instance.GetLatestJob();
         }
+        #region CloseBtnPrinciple
         public void CloseButtonClicked()
         {
             board.BtnCloseClicked();
@@ -56,6 +56,8 @@ namespace Business
         {
             board.BtnCreateClicked();
         }
+        #endregion
+
         public Customer GetCustomerByName(string customerName)
         {
             List<Customer> searchList = GetCustomerList();
