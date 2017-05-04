@@ -54,6 +54,11 @@ namespace Business
         {
             customerList.Clear();
         }
+        public Customer FindCustomerByPhone(string phone)
+        {
+            Customer customer = customerList.Find(r => r.Phone == phone);
+            return customer;
+        }
     }
 }
 
