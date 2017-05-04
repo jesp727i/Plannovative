@@ -13,6 +13,8 @@ namespace Business
 
         JobFactory jobFac = new JobFactory();
         CustomerFactory customerFac = new CustomerFactory();
+        Board board = new Board();
+
         public BusinessFacade()
         {
             
@@ -42,6 +44,18 @@ namespace Business
         }
         #endregion
 
+        public Job LatestJob()
+        {
+            return JobRepository.Instance.GetLatestJob();
+        }
+        public void CloseButtonClicked()
+        {
+            board.BtnCloseClicked();
+        }
+        public void CreateButtonClicked()
+        {
+            board.BtnCreateClicked();
+        }
         public Customer GetCustomerByName(string customerName)
         {
             List<Customer> searchList = GetCustomerList();
@@ -51,7 +65,7 @@ namespace Business
         public void SaveJob(string name, string _customer, string description, DateTime deadline, string priceType, double price)
         {
             Customer customer = GetCustomerByName(_customer);
-            jobFac.CreateJob(name, customer, description, deadline, priceType, price);
+            jobFac.CreateJobToDb(name, customer, description, deadline, priceType, price);
         }
 
         public void SaveCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
@@ -73,7 +87,10 @@ namespace Business
 
             return currentList;
         }
-
+        public void LoadJobToRepo()
+        {
+            jobFac.GetJobsFromDAL();
+        }
         public List<Customer> GetCustomerList()
         {
             List<Customer> currentList = new List<Customer>();
@@ -92,6 +109,7 @@ namespace Business
             }
             return custNames;
         }
+        
         public void LoadCustomersToRepo()
         {
             CustomerRepository.Instance.ClearRepo();

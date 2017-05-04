@@ -21,9 +21,9 @@
                     <Label Height="23" Content="CVR nr." Margin="0,0,0,5"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <TextBox x:Name="TxtName" Height="23" Width="200" TextWrapping="Wrap" Text="" Margin="0,5,0,5"/>
+                    <TextBox x:Name="TxtName" Height="23" Width="200" TextWrapping="Wrap" Text="" Margin="0,5,0,5" TextChanged="TxtName_TextChanged"/>
                     <TextBox x:Name="TxtEmail" Height="23" TextWrapping="Wrap"  Margin="0,0,0,5"/>
-                    <TextBox x:Name="TxtPhone" Height="23" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtPhone" Height="23" TextWrapping="Wrap" Margin="0,0,0,5" TextChanged="TxtPhone_TextChanged"/>
                     <TextBox x:Name="TxtAddress" Height="23" TextWrapping="Wrap"  Margin="0,0,0,5"/>
                     <TextBox x:Name="TxtZip" Height="23" TextWrapping="Wrap"  Margin="0,0,0,5"/>
                     <TextBox x:Name="TxtCity" Height="23" TextWrapping="Wrap"  Margin="0,0,0,5"/>

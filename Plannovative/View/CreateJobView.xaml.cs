@@ -53,8 +53,9 @@ namespace UserInterfaceLayer.View
             }
             else
             {
-            MessageBox.Show("Opgaven " + '"' + TxtTaskName.Text + '"' +  " er oprettet");
-            BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text));
+                MessageBox.Show("Opgaven " + '"' + TxtTaskName.Text + '"' +  " er oprettet");
+                BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text));
+                this.Close();
             }
 
         }
@@ -62,6 +63,7 @@ namespace UserInterfaceLayer.View
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            BF.CloseButtonClicked();
         }
         public void RefreshCustomer()
         {
