@@ -29,7 +29,7 @@ namespace DataAccessLayer
         string address;
         string zip;
         string city;
-        string cvr;
+        string CVR;
         #endregion
 
         public void SetVariables(string name, string email, string phone, string address, string zip, string city, string cvr)
@@ -40,7 +40,7 @@ namespace DataAccessLayer
             this.address = address;
             this.zip = zip;
             this.city = city;
-            this.cvr = cvr;
+            this.CVR = cvr;
             
         }
 
@@ -70,7 +70,7 @@ namespace DataAccessLayer
                     cmd1.Parameters.Add(new SqlParameter("@CustomerAddress", address));
                     cmd1.Parameters.Add(new SqlParameter("@Zip", zip));
                     cmd1.Parameters.Add(new SqlParameter("@City", city));
-                    cmd1.Parameters.Add(new SqlParameter("@Cvr", cvr));
+                    cmd1.Parameters.Add(new SqlParameter("@Cvr", CVR));
                     cmd1.ExecuteNonQuery();
                 }
                 catch (SqlException e)
@@ -137,7 +137,7 @@ namespace DataAccessLayer
                     cmd3.Parameters.Add(new SqlParameter("@CustomerAddress", address));
                     cmd3.Parameters.Add(new SqlParameter("@Zip", zip));
                     cmd3.Parameters.Add(new SqlParameter("@City", city));
-                    cmd3.Parameters.Add(new SqlParameter("@Cvr", cvr));
+                    cmd3.Parameters.Add(new SqlParameter("@Cvr", CVR));
                     cmd3.ExecuteNonQuery();
                 }
                 catch (SqlException e)
@@ -145,8 +145,6 @@ namespace DataAccessLayer
                     exceptionString = "Der er sket en fejl: " + e.ToString();
                     exception = false;
                     SuccesMethod(exception);
-
-
                 }
             }
 
