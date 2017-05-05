@@ -23,4 +23,5 @@ namespace Business
             return closeClicked;
         }
     }
+
 }

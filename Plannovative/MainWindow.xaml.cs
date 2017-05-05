@@ -23,23 +23,25 @@ namespace UserInterfaceLayer
     /// </summary>
     public partial class MainWindow : Window
     {
+        BusinessFacade BF;
+
         public MainWindow()
         {
             InitializeComponent();
-            BusinessFacade.Instance.LoadCustomersToRepo(); 
+            BF = BusinessFacade.Instance;
+            BF.LoadCustomersToRepo(); 
         }
-
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
         {
             CreateJobView CJV = new CreateJobView();
-            BusinessFacade.Instance.CreateButtonClicked();
+            BF.CreateButtonClicked();
             CJV.ShowDialog();
 
             Board board = new Board();
             
             if (!board.Closed())
             {
-                Job latestJob = BusinessFacade.Instance.LatestJob();
+                Job latestJob = BF.LatestJob();
                 StackPanel newStackPanel = new StackPanel();
                 newStackPanel.Background = Brushes.WhiteSmoke;
                 newStackPanel.Width = 300;
@@ -65,12 +67,11 @@ namespace UserInterfaceLayer
                 newStackPanel.Children.Add(custLabel);
                 newStackPanel.Children.Add(deadlineLabel);
             }
-        }
-        
+        }     
         private void StartLoad()
         {
-            BusinessFacade.Instance.LoadJobToRepo();
-            List<Job> jobListToShow = BusinessFacade.Instance.GetJobList();
+            BF.LoadJobToRepo();
+            List<Job> jobListToShow = BF.GetJobList();
 
             foreach (var item in jobListToShow)
             {
@@ -100,7 +101,6 @@ namespace UserInterfaceLayer
                 newStackPanel.Children.Add(deadlineLabel);
             }
         }
-
         private void BtnShowCustomers_Click(object sender, RoutedEventArgs e)
         {
             StartLoad();
