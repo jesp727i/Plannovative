@@ -89,5 +89,19 @@ namespace UserInterfaceLayer.View
 
         }
 
+        private void comboBoxCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateUserInterface();
+        }
+
+        private void TxtTaskName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateUserInterface();
+        }
+        private void UpdateUserInterface()
+        {
+            this.BtnSave.IsEnabled = !string.IsNullOrWhiteSpace(this.comboBoxCustomer.Text) &&
+                                    !string.IsNullOrWhiteSpace(this.TxtTaskName.Text);
+        }
     }
 }
