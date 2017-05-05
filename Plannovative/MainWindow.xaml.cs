@@ -26,7 +26,8 @@ namespace UserInterfaceLayer
         public MainWindow()
         {
             InitializeComponent();
-            BusinessFacade.Instance.LoadCustomersToRepo(); 
+            BusinessFacade.Instance.LoadCustomersToRepo();
+            StartLoad();
         }
 
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
