@@ -26,7 +26,9 @@ namespace UserInterfaceLayer.View
         {
             BF = BusinessFacade.Instance;
             InitializeComponent();
+            this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingTrue);
             RefreshCustomer();
+            this.BtnSave.IsEnabled = false;
         }
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -37,6 +39,7 @@ namespace UserInterfaceLayer.View
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingFalse);
             if (CalenderDeadline.SelectedDate == null)
             {
                 CalenderDeadline.SelectedDate = DateTime.MaxValue;
@@ -58,6 +61,7 @@ namespace UserInterfaceLayer.View
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingFalse);
             this.Close();
             BF.CloseButtonClicked();
         }
@@ -84,5 +88,27 @@ namespace UserInterfaceLayer.View
 
         }
 
+        private void comboBoxCustomer_DropDownClosed(object sender, EventArgs e)
+        {
+            UpdateUserInterface();
+        }
+
+        private void TxtTaskName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateUserInterface();
+        }
+        private void UpdateUserInterface()
+        {
+            this.BtnSave.IsEnabled = !string.IsNullOrWhiteSpace(this.comboBoxCustomer.Text) &&
+                                    !string.IsNullOrWhiteSpace(this.TxtTaskName.Text);
+        }
+        void WindowClosingTrue(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+        }
+        void WindowClosingFalse(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = false;
+        }
     }
 }

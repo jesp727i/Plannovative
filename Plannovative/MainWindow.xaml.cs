@@ -28,8 +28,12 @@ namespace UserInterfaceLayer
         public MainWindow()
         {
             InitializeComponent();
+
             BF = BusinessFacade.Instance;
             BF.LoadCustomersToRepo(); 
+
+            StartLoad();
+
         }
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
         {
