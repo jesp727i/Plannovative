@@ -37,7 +37,7 @@ namespace DataAccessLayer
             
             return exceptionString;
         }
-        public void SetVariables(string jobName, string customerPhone, string jobDescription, DateTime jobDeadline, bool jobPriceType, double jobPrice )
+        public void SetVariables( string jobName, string customerPhone, string jobDescription, DateTime jobDeadline, bool jobPriceType, double jobPrice )
         {
             this.jobName = jobName;
             this.customerPhone = customerPhone;
@@ -46,6 +46,7 @@ namespace DataAccessLayer
             this.jobPriceType = jobPriceType;
             this.jobPrice = jobPrice;
         }
+
         public void GetJobs()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -110,6 +111,10 @@ namespace DataAccessLayer
                     SuccesMethod(exception);
                 }
             }
+        }
+        public void UpdateJob(Job job)
+        {
+
         } 
     }
 }

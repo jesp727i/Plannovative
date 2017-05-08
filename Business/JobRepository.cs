@@ -52,5 +52,11 @@ namespace Business
         {
             return jobList[jobList.Count - 1];
         }
+
+        internal Job UpdateRepJob(int id, string name, string description, DateTime deadline, string priceType, double price)
+        {
+            throw new NotImplementedException();
+            Job job = jobList.Where(n => n.opgaveID = id);
+        }
     }
 }
