@@ -39,5 +39,10 @@ namespace DataAccessLayer
             customerConnection.SetVariables(name, email, phone, address, zip, city, cvr);
             customerConnection.spUpdateCustomer();
         }
+
+        public void UpdateJobInDb(Job job)
+        {
+            jobConnection.UpdateJob(job);
+        }
     }
 }
