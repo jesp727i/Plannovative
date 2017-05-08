@@ -55,7 +55,7 @@ namespace Business
 
         internal Job GetJobByID(int id)
         {
-            return jobList.Find(n => n.OpgaveID == id);
+            return jobList.Find(n => n.JobID == id);
         }
 
         internal Job UpdateRepJob(int id, string name, string description, DateTime deadline, string priceType, double price)
