@@ -33,7 +33,6 @@ namespace UserInterfaceLayer
             BF.LoadCustomersToRepo();
             BF.LoadJobToRepo();
             StartLoad();
-
         }
         
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
@@ -48,17 +47,20 @@ namespace UserInterfaceLayer
             {
                 Job latestJob = BF.LatestJob();
                 StackPanel newStackPanel = new StackPanel();
+                
                 newStackPanel.Background = Brushes.WhiteSmoke;
                 newStackPanel.Width = 300;
                 newStackPanel.Height = 80;
                 newStackPanel.Margin = new Thickness(5);
                 newStackPanel.Orientation = Orientation.Vertical;
                 newStackPanel.MouseDown += MouseDownChild;
+
                 Label nameLabel = new Label();
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
                 nameLabel.Content = latestJob.Name;
                 custLabel.Content = latestJob.Customer.Name;
+
                 if (latestJob.Deadline == DateTime.MaxValue)
                 {
                     deadlineLabel.Content = "Ingen deadline";
@@ -72,18 +74,17 @@ namespace UserInterfaceLayer
                 newStackPanel.Children.Add(nameLabel);
                 newStackPanel.Children.Add(custLabel);
                 newStackPanel.Children.Add(deadlineLabel);
+                newStackPanel.DataContext = latestJob;
             }
         }     
         private void StartLoad()
         {
-            
             List<Job> jobListToShow = BF.GetJobList();
 
             foreach (var item in jobListToShow)
             {
                 StackPanel newStackPanel = new StackPanel();
-                newStackPanel.Name = item.Name;
-                //newStackPanel.RegisterName(item.Name, newStackPanel);
+                
                 newStackPanel.Background = Brushes.WhiteSmoke;
                 newStackPanel.Width = 300;
                 newStackPanel.Height = 80;
@@ -94,8 +95,10 @@ namespace UserInterfaceLayer
                 Label nameLabel = new Label();
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
+                Label idLabel = new Label();
                 nameLabel.Content = item.Name;
                 custLabel.Content = item.Customer.Name;
+                
                 if (item.Deadline == DateTime.MaxValue)
                 {
                     deadlineLabel.Content = "Ingen deadline";
@@ -109,6 +112,8 @@ namespace UserInterfaceLayer
                 newStackPanel.Children.Add(nameLabel);
                 newStackPanel.Children.Add(custLabel);
                 newStackPanel.Children.Add(deadlineLabel);
+                newStackPanel.Children.Add(idLabel);
+                newStackPanel.DataContext = item;
             }
         }
         
@@ -120,9 +125,10 @@ namespace UserInterfaceLayer
 
         private void MouseDownChild(object sender, MouseButtonEventArgs e)
         {
-            string splName = ((StackPanel)sender).Name;
-            
+            var splName = ((StackPanel)sender).DataContext;
+
             ShowJobView SJV = new ShowJobView(splName);
+            SJV.ShowDialog();
         }
     }
     
