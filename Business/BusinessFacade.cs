@@ -125,6 +125,13 @@ namespace Business
             CustomerRepository.Instance.ClearRepo();
             customerFac.GetCustomersFromDAL();
         }
+
+        public Job GetJobByName(string jobName)
+        {
+            Job job;
+            job = JobRepository.Instance.GetList().Find(e => e.Name == jobName);
+            return job;
+        }
         
     }
 }
