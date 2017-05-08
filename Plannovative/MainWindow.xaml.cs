@@ -30,11 +30,12 @@ namespace UserInterfaceLayer
             InitializeComponent();
 
             BF = BusinessFacade.Instance;
-            BF.LoadCustomersToRepo(); 
-
+            BF.LoadCustomersToRepo();
+            BF.LoadJobToRepo();
             StartLoad();
 
         }
+        
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
         {
             CreateJobView CJV = new CreateJobView();
@@ -52,6 +53,7 @@ namespace UserInterfaceLayer
                 newStackPanel.Height = 80;
                 newStackPanel.Margin = new Thickness(5);
                 newStackPanel.Orientation = Orientation.Vertical;
+                newStackPanel.MouseDown += MouseDownChild;
                 Label nameLabel = new Label();
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
@@ -74,17 +76,21 @@ namespace UserInterfaceLayer
         }     
         private void StartLoad()
         {
-            BF.LoadJobToRepo();
+            
             List<Job> jobListToShow = BF.GetJobList();
 
             foreach (var item in jobListToShow)
             {
                 StackPanel newStackPanel = new StackPanel();
+                newStackPanel.Name = item.Name;
+                //newStackPanel.RegisterName(item.Name, newStackPanel);
                 newStackPanel.Background = Brushes.WhiteSmoke;
                 newStackPanel.Width = 300;
                 newStackPanel.Height = 80;
                 newStackPanel.Margin = new Thickness(5);
                 newStackPanel.Orientation = Orientation.Vertical;
+                newStackPanel.MouseDown += MouseDownChild;
+                
                 Label nameLabel = new Label();
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
@@ -98,17 +104,25 @@ namespace UserInterfaceLayer
                 {
                     deadlineLabel.Content = item.Deadline;
                 }
-
+                
                 splTodo.Children.Add(newStackPanel);
                 newStackPanel.Children.Add(nameLabel);
                 newStackPanel.Children.Add(custLabel);
                 newStackPanel.Children.Add(deadlineLabel);
             }
         }
+        
         private void BtnShowCustomers_Click(object sender, RoutedEventArgs e)
         {
             StartLoad();
             BtnShowCustomers.IsEnabled = false;
+        }
+
+        private void MouseDownChild(object sender, MouseButtonEventArgs e)
+        {
+            string splName = ((StackPanel)sender).Name;
+            
+            ShowJobView SJV = new ShowJobView(splName);
         }
     }
     
