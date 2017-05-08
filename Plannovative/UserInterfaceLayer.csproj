@@ -62,6 +62,9 @@
     <Compile Include="View\CreateJobView.xaml.cs">
       <DependentUpon>CreateJobView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ShowJobView.xaml.cs">
+      <DependentUpon>ShowJobView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +81,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\CreateCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShowJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
