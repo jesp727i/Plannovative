@@ -27,7 +27,6 @@ namespace DataAccessLayer
         
 
         #endregion
-        
         private string SuccesMethod(bool exception)
         {
             if (exception)

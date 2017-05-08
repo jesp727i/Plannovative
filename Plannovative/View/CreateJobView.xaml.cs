@@ -22,7 +22,6 @@ namespace UserInterfaceLayer.View
     public partial class CreateJobView : Window
     {
         BusinessFacade BF;
-
         public CreateJobView()
         {
             BF = BusinessFacade.Instance;
@@ -31,7 +30,6 @@ namespace UserInterfaceLayer.View
             RefreshCustomer();
             this.BtnSave.IsEnabled = false;
         }
-
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             CreateCustomerView CCV = new CreateCustomerView();
@@ -39,7 +37,6 @@ namespace UserInterfaceLayer.View
             RefreshCustomer();
 
         }
-
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingFalse);
@@ -62,7 +59,6 @@ namespace UserInterfaceLayer.View
             }
 
         }
-
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingFalse);
@@ -75,7 +71,6 @@ namespace UserInterfaceLayer.View
             this.comboBoxCustomer.ItemsSource = BF.GetCustomerNames();
 
         }
-
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
 
