@@ -13,7 +13,6 @@ namespace Business
 
         JobFactory jobFac = new JobFactory();
         CustomerFactory customerFac = new CustomerFactory();
-        Board board = new Board();
 
         public BusinessFacade()
         {
@@ -47,16 +46,6 @@ namespace Business
         {
             return JobRepository.Instance.GetLatestJob();
         }
-        #region CloseBtnPrinciple
-        public void CloseButtonClicked()
-        {
-            board.BtnCloseClicked();
-        }
-        public void CreateButtonClicked()
-        {
-            board.BtnCreateClicked();
-        }
-        #endregion
 
         public Customer GetCustomerByName(string customerName)
         {
