@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Plannovative" Height="720" Width="1080" ResizeMode="NoResize">
+        Title="Plannovative" Height="720" Width="1080" ResizeMode="NoResize" Background="WhiteSmoke">
 
-    <Grid x:Name="MainContent" Width="1020">
+    <Grid x:Name="MainContent" Width="1020" Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="340"/>
             <ColumnDefinition Width="340"/>
@@ -18,7 +18,7 @@
             <Button x:Name="BtnCreateTask" Content="Opret opgave" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnCreateJob_Click" />
             <Button x:Name="BtnShowCustomers" Content="Hent opgaver" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnShowCustomers_Click"/>
         </StackPanel>
-        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Width="340" Margin="0,40,0,0" HorizontalAlignment="Center">
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Hidden" Width="340" Margin="0,40,0,0" HorizontalAlignment="Center">
             <StackPanel Name="splTodo" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
             </StackPanel>
         </ScrollViewer>

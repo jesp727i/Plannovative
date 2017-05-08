@@ -27,7 +27,6 @@ namespace DataAccessLayer
         
 
         #endregion
-        
         private string SuccesMethod(bool exception)
         {
             if (exception)
@@ -37,7 +36,6 @@ namespace DataAccessLayer
             
             return exceptionString;
         }
-
         public void SetVariables(string jobName, string customerPhone, string jobDescription, DateTime jobDeadline, bool jobPriceType, double jobPrice )
         {
             this.jobName = jobName;
@@ -47,13 +45,13 @@ namespace DataAccessLayer
             this.jobPriceType = jobPriceType;
             this.jobPrice = jobPrice;
         }
-
         public void GetJobs()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
+                    jobList.Clear();
                     connection.Open();
                     SqlCommand cmd = new SqlCommand("GetJob", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
