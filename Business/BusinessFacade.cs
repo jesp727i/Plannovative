@@ -82,6 +82,14 @@ namespace Business
             DALF.UpdateCustomerInDb(name, email, phone,address, zip, city, cvr);
         }
 
+        public void UpdateJob(int id, string name, string description, DateTime deadline, string priceType, double price)
+        {
+            DALFacade DALF = new DALFacade();
+            Job job = JobRepository.Instance.UpdateRepJob(id, name, description, deadline, priceType, price);
+            DALF.UpdateJobInDb(job);
+        }
+
+
         public List<Job> GetJobList()
         {
             List<Job> currentList = new List<Job>();
