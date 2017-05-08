@@ -111,6 +111,35 @@ namespace DataAccessLayer
                 }
             }
         }
+
+
+        public void InsertTimeAndDate()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    SqlCommand cmd = new SqlCommand("spInsertTimeAndDate", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@StartTime",));
+                    cmd.Parameters.Add(new SqlParameter("@EndTime", ));
+                    cmd.Parameters.Add(new SqlParameter("@WorkDate", ));
+                    cmd.Parameters.Add(new SqlParameter("@JobId", ));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
+                }
+            }
+        }
+
+
         public void UpdateJob(Job job)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
