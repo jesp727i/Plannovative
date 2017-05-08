@@ -19,8 +19,7 @@
             <Button x:Name="BtnShowCustomers" Content="Hent opgaver" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnShowCustomers_Click"/>
         </StackPanel>
         <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Hidden" Width="340" Margin="0,40,0,0" HorizontalAlignment="Center">
-            <StackPanel Name="splTodo" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
-            </StackPanel>
+            <StackPanel Name="splTodo" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center"/>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Width="340" Margin="0,40,0,0" HorizontalAlignment="Center">
             <StackPanel Name="splInProgress" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
