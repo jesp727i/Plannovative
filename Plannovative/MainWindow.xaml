@@ -19,14 +19,18 @@
             <Button x:Name="BtnShowCustomers" Content="Hent opgaver" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnShowCustomers_Click"/>
         </StackPanel>
         <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Hidden" Width="340" Margin="0,40,0,0" HorizontalAlignment="Center">
-            <StackPanel Name="splTodo" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center"/>
+            <StackPanel Name="splTodo" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
+                <Label Name="todoLabel" Content="Kommende" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+            </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Width="340" Margin="0,40,0,0" HorizontalAlignment="Center">
             <StackPanel Name="splInProgress" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
+                <Label Name="inProgressLabel" Content="Igangværende" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" Width="340" Margin="0,40,0,0" HorizontalAlignment="Center">
             <StackPanel Name="splDone" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
+                <Label Name="doneLabel" Content="Færdige" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
