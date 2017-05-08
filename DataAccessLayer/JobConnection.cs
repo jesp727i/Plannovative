@@ -113,7 +113,32 @@ namespace DataAccessLayer
         }
         public void UpdateJob(Job job)
         {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmd2 = new SqlCommand("spUpdateJob", connection);
+                    cmd2.CommandType = CommandType.StoredProcedure;
 
-        } 
+                    cmd2.Parameters.Add(new SqlParameter("@JobName", job.Name));
+                    cmd2.Parameters.Add(new SqlParameter("@JobDescription", job.Description));
+                    cmd2.Parameters.Add(new SqlParameter("@JobDeadline", job.DeadlineString));
+                    cmd2.Parameters.Add(new SqlParameter("@JobPriceType", job.PriceType));
+                    cmd2.Parameters.Add(new SqlParameter("@JobPrice", job.Price));
+                    cmd2.Parameters.Add(new SqlParameter("@JobID", job.JobID));
+
+                    cmd2.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
+                }
+            }
+
+        }
+     
     }
 }

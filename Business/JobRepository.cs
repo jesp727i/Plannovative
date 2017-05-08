@@ -60,8 +60,23 @@ namespace Business
 
         internal Job UpdateRepJob(int id, string name, string description, DateTime deadline, string priceType, double price)
         {
-            throw new NotImplementedException();
-            
+            bool _priceType;
+
+            if (priceType == "Fast pris")
+            {
+                _priceType = true;
+            }
+            else
+            {
+                _priceType = false;
+            }
+            Job job = GetJobByID(id);
+            job.Name = name;
+            job.Description = description;
+            job.Deadline = deadline;
+            job.PriceType = _priceType;
+            job.Price = price;
+            return job;
         }
     }
 }
