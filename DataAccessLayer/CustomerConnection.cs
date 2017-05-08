@@ -31,7 +31,6 @@ namespace DataAccessLayer
         string city;
         string CVR;
         #endregion
-
         public void SetVariables(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
             this.name = name;
@@ -43,7 +42,6 @@ namespace DataAccessLayer
             this.CVR = cvr;
             
         }
-
         private string SuccesMethod(bool exception)
         {
 
