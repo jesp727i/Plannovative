@@ -20,9 +20,9 @@ namespace Business
         public string Phone { get; set; }
         public string DeadlineString { get; set; }
         public string PriceString { get; set; }
-        public double TidBrugt { get; set; }
-        public int OpgaveID { get; set; }
-        public string position { get; set; }
+        public double TimeUsed { get; set; }
+        public int JobID { get; set; }
+        public string Position { get; set; }
 
         public Job(string name, string customer, string description, string deadline, bool priceType, string price)
         {
