@@ -111,9 +111,7 @@ namespace DataAccessLayer
                 }
             }
         }
-
-
-        public void InsertTimeAndDate()
+        public void InsertTimeAndDate(WorkTime updateTime)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -123,11 +121,10 @@ namespace DataAccessLayer
 
                     SqlCommand cmd = new SqlCommand("spInsertTimeAndDate", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@StartTime",));
-                    cmd.Parameters.Add(new SqlParameter("@EndTime", ));
-                    cmd.Parameters.Add(new SqlParameter("@WorkDate", ));
-                    cmd.Parameters.Add(new SqlParameter("@JobId", ));
-
+                    cmd.Parameters.Add(new SqlParameter("@StartTime",updateTime.StartTime));
+                    cmd.Parameters.Add(new SqlParameter("@EndTime",updateTime.EndTime ));
+                    cmd.Parameters.Add(new SqlParameter("@WorkDate",updateTime.WorkDate ));
+                    cmd.Parameters.Add(new SqlParameter("@JobId", updateTime.JobId));
                     cmd.ExecuteNonQuery();
                 }
                 catch (SqlException e)
@@ -138,8 +135,6 @@ namespace DataAccessLayer
                 }
             }
         }
-
-
         public void UpdateJob(Job job)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
