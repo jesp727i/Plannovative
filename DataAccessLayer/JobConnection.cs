@@ -25,7 +25,6 @@ namespace DataAccessLayer
         bool   jobPriceType;
         double jobPrice;
         
-
         #endregion
         private string SuccesMethod(bool exception)
         {
@@ -45,7 +44,6 @@ namespace DataAccessLayer
             this.jobPriceType = jobPriceType;
             this.jobPrice = jobPrice;
         }
-
         public void GetJobs()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -111,7 +109,7 @@ namespace DataAccessLayer
                 }
             }
         }
-        public void InsertTimeAndDate(WorkTime updateTime)
+        public void InsertTimeAndDate(WorkTime workTime)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -121,10 +119,10 @@ namespace DataAccessLayer
 
                     SqlCommand cmd = new SqlCommand("spInsertTimeAndDate", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@StartTime",updateTime.StartTime));
-                    cmd.Parameters.Add(new SqlParameter("@EndTime",updateTime.EndTime ));
-                    cmd.Parameters.Add(new SqlParameter("@WorkDate",updateTime.WorkDate ));
-                    cmd.Parameters.Add(new SqlParameter("@JobId", updateTime.JobId));
+                    cmd.Parameters.Add(new SqlParameter("@StartTime",workTime.StartTime));
+                    cmd.Parameters.Add(new SqlParameter("@EndTime",workTime.EndTime ));
+                    cmd.Parameters.Add(new SqlParameter("@WorkDate",workTime.WorkDate ));
+                    cmd.Parameters.Add(new SqlParameter("@JobId", workTime.JobId));
                     cmd.ExecuteNonQuery();
                 }
                 catch (SqlException e)
