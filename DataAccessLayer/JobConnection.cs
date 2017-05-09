@@ -61,14 +61,28 @@ namespace DataAccessLayer
                         while (reader.Read())
                         {
                             bool myBool = (bool)reader["JobPriceType"];
-                            
+
                             Job newJob = new Job(reader["JobName"].ToString(),
                                 reader["CustomerPhone"].ToString(),
                                 reader["JobDescription"].ToString(),
                                 reader["JobDeadline"].ToString(),
                                 myBool,
-                                reader["JobPrice"].ToString());
+                                reader["JobPrice"].ToString(),
+                                (int)reader["Postion"],
+                                (int)reader["JobId"]);
 
+
+                            WorkTime newWorkTime = new WorkTime(
+                                (TimeSpan)reader["StartTime"],
+                                (TimeSpan)reader["EndTime"],
+                                (DateTime)reader["WorkDate"],
+                                (int)reader["JobId"]);
+
+
+
+
+                            newJob.WorkTimeList.Add(newWorkTime);
+                  
                             jobList.Add(newJob);
                         }
                     }
@@ -82,7 +96,7 @@ namespace DataAccessLayer
                 }
             }
         }
-        public void SaveJob()
+        public void SaveJob(Job job)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -92,12 +106,14 @@ namespace DataAccessLayer
 
                     SqlCommand cmd = new SqlCommand("spSaveJob", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@JobName", jobName));
-                    cmd.Parameters.Add(new SqlParameter("@CustomerPhone", customerPhone));
-                    cmd.Parameters.Add(new SqlParameter("@JobDescription", jobDescription));
-                    cmd.Parameters.Add(new SqlParameter("@JobDeadline", jobDeadline));
-                    cmd.Parameters.Add(new SqlParameter("@JobPriceType", jobPriceType));
-                    cmd.Parameters.Add(new SqlParameter("@JobPrice", jobPrice));
+                    cmd.Parameters.Add(new SqlParameter("@JobName", job.Name));
+                    cmd.Parameters.Add(new SqlParameter("@CustomerPhone", job.Customer.Phone));
+                    cmd.Parameters.Add(new SqlParameter("@JobDescription", job.Description));
+                    cmd.Parameters.Add(new SqlParameter("@JobDeadline", job.Deadline));
+                    cmd.Parameters.Add(new SqlParameter("@JobPriceType", job.PriceType));
+                    cmd.Parameters.Add(new SqlParameter("@JobPrice", job.Price));
+                    cmd.Parameters.Add(new SqlParameter("@Position", job.Position));
+                    cmd.Parameters.Add(new SqlParameter("@TimeUsed", job.TimeUsed));
 
                     cmd.ExecuteNonQuery();
                 }
