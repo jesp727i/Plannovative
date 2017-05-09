@@ -1,22 +1,24 @@
-﻿//using System;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using Business;
-//using DomainLayer;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Business;
+using DomainLayer;
+using System.Collections.Generic;
 
-//namespace Test
-//{
-//    [TestClass]
-//    public class JobUnitTest
-//    {
-//        JobRepository jobRepo;
-//        JobFactory jobFac;
 
-//        [TestInitialize]
-//        public void initialize()
-//        {
-//            jobRepo = new JobRepository();
-//            jobFac = new JobFactory();
-//        }
+namespace Test
+{
+    [TestClass]
+    public class JobUnitTest
+    {
+        JobRepository jobRepo;
+        JobFactory jobFac;
+
+        [TestInitialize]
+        public void initialize()
+        {
+            jobRepo = new JobRepository();
+            jobFac = new JobFactory();
+        }
 
 
 //        [TestMethod]
@@ -78,3 +80,33 @@
 //    }
 //}
 
+        [TestMethod]
+        public void TimespanTest()
+        {
+            TimeSpan TS1 = new TimeSpan(0, 2, 30);
+            TimeSpan TS2 = new TimeSpan(3, 3, 50);
+            TimeSpan TS3 = TS2 - TS1;
+            TimeSpan Result = new TimeSpan(3,1,20);
+            Assert.AreEqual(Result.Hours,3);
+            Assert.AreEqual(Result,TS3);
+           
+        }
+
+        [TestMethod]
+        public void CalculateTimeUsedTest()
+        {
+            List<WorkTime> TimeList = new List<WorkTime>();
+            WorkTime WT01 = new WorkTime(new TimeSpan( 10,30,00), new TimeSpan (12,30,00), new DateTime(), 10);
+            WorkTime WT02 = new WorkTime(new TimeSpan(11, 30, 00), new TimeSpan(17, 30, 00), new DateTime(), 25);
+            WorkTime WT03 = new WorkTime(new TimeSpan(07, 00, 00), new TimeSpan(12, 30, 00), new DateTime(), 12);
+
+            TimeList.Add(WT01);
+            TimeList.Add(WT02);
+            TimeList.Add(WT03);
+
+            JobLogic JL = new JobLogic();
+            Assert.AreEqual(JL.CalculateTimeUsed(TimeList), 13.5);
+        
+        }
+    }
+}
