@@ -54,7 +54,7 @@ namespace UserInterfaceLayer.View
             else
             {
                 MessageBox.Show("Opgaven " + '"' + TxtTaskName.Text + '"' +  " er oprettet");
-                BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text));
+                BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text),1);
                 this.Close();
             }
 
@@ -87,12 +87,10 @@ namespace UserInterfaceLayer.View
             }
 
         }
-
         private void comboBoxCustomer_DropDownClosed(object sender, EventArgs e)
         {
             UpdateUserInterface();
         }
-
         private void TxtTaskName_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateUserInterface();

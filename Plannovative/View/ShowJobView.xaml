@@ -26,7 +26,7 @@
         <Label x:Name="CustomerLabel"  Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,42,0,0" VerticalAlignment="Top" Width="168"/>
         <Label x:Name="DeadlineLabel"  Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,76,0,0" VerticalAlignment="Top" Width="168"/>
         <Label x:Name="PriceLabel"  Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,102,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="TimeUsedtLabel" Content="6,5 timer" Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,133,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TimeUsedtLabel"  Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,133,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DescriptionLabel" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="78" Margin="49.2,381,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
         <ComboBox x:Name="comboBoxStartTime" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,218,0,0" VerticalAlignment="Top" Width="56" Height="22">
             <ComboBoxItem Content="08:00"/>
@@ -70,10 +70,10 @@
             <ComboBoxItem Content="16:30"/>
             <ComboBoxItem Content="17:00"/>
         </ComboBox>
-        <Calendar Grid.Column="1" HorizontalAlignment="Left" Margin="49.2,186,0,0" VerticalAlignment="Top" Height="171" Width="191"/>
-        <Button x:Name="BtnAddTime" Content="Tilføj" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,319,0,0" VerticalAlignment="Top" Width="56"/>
+        <Calendar x:Name="CalenderDate" Grid.Column="1" HorizontalAlignment="Left" Margin="49.2,186,0,0" VerticalAlignment="Top" Height="171" Width="191"/>
+        <Button x:Name="BtnAddTime" Content="Tilføj" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,319,0,0" VerticalAlignment="Top" Width="56" Click="BtnAddTime_Click"/>
         <Button x:Name="BtnUpdateJob" Content="Rediger opgave" Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,486,0,0" VerticalAlignment="Top" Width="86"/>
         <Button x:Name="BtnInvoice" Content="Se faktura" HorizontalAlignment="Left" Margin="233.2,486,0,0" VerticalAlignment="Top" Width="63" Grid.Column="1"/>
-        <Button x:Name="BtnClose" Content="Luk" HorizontalAlignment="Left" Margin="38,486,0,0" VerticalAlignment="Top" Width="55" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnClose" Content="Luk" HorizontalAlignment="Left" Margin="38,486,0,0" VerticalAlignment="Top" Width="55" Grid.ColumnSpan="2" Click="BtnClose_Click"/>
     </Grid>
 </Window>

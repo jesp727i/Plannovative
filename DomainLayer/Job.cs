@@ -10,7 +10,7 @@ namespace Business
 {
     public class Job
     {
-        //private Customer customer;
+        #region Properties
         public string Name { get; set; }
         public Customer Customer { get; }
         public string Description { get; set; }
@@ -22,9 +22,18 @@ namespace Business
         public string PriceString { get; set; }
         public double TimeUsed { get; set; }
         public int JobID { get; set; }
-        public string Position { get; set; }
+        public int Position { get; set; }
+        public List<WorkTime> WorkTimeList { get; set; }
+        #endregion
 
-        public Job(string name, string customer, string description, string deadline, bool priceType, string price)
+        public void AddToWorkTimeList(WorkTime workTime)
+        {
+            WorkTimeList.Add(workTime);
+        }
+
+        //Konstruktor der bruges når der hentes fra databasen
+        public Job(string name, string customer, string description, string deadline,
+            bool priceType, string price, int postion, int jobId)
         {
             this.Name = name;
             this.Phone = customer;
@@ -32,9 +41,13 @@ namespace Business
             this.DeadlineString = deadline;
             this.PriceType = priceType;
             this.PriceString = price;
+            this.Position = postion;
+            this.JobID = jobId;
+            this.WorkTimeList = new List<WorkTime>();
         }
-
-        public Job(string name, Customer customer, string description, DateTime deadline, bool priceType, double price)
+        //konstruktor  der skal bruges når der ligges i databasen.
+        public Job(string name, Customer customer, string description, DateTime deadline, bool priceType, 
+            double price, int position)
         {
             this.Name = name;
             this.Customer = customer;
@@ -42,6 +55,8 @@ namespace Business
             this.Deadline = deadline;
             this.PriceType = priceType;
             this.Price = price;
+            this.Position = position;
+            WorkTimeList = new List<WorkTime>();
         }
     }
 }

@@ -53,10 +53,10 @@ namespace Business
             return searchList.Find(r => r.Name == customerName);
         }
 
-        public void SaveJob(string name, string _customer, string description, DateTime deadline, string priceType, double price)
+        public void SaveJob(string name, string _customer, string description, DateTime deadline, string priceType, double price, int position)
         {
             Customer customer = GetCustomerByName(_customer);
-            jobFac.CreateJobToDb(name, customer, description, deadline, priceType, price);
+            jobFac.CreateJobToDb(name, customer, description, deadline, priceType, price, position);
         }
 
         public void SaveCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
