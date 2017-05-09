@@ -24,11 +24,9 @@ namespace UserInterfaceLayer
     public partial class MainWindow : Window
     {
         BusinessFacade BF;
-
         public MainWindow()
         {
             InitializeComponent();
-
             BF = BusinessFacade.Instance;
             BF.LoadCustomersToRepo();
             BF.LoadJobToRepo();
@@ -38,9 +36,7 @@ namespace UserInterfaceLayer
         private void BtnCreateJob_Click(object sender, RoutedEventArgs e)
         {
             CreateJobView CJV = new CreateJobView();
-            
             CJV.ShowDialog();
-
             splTodo.Children.Clear();
             LoadBoard();
         }     
