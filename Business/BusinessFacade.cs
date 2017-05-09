@@ -10,7 +10,7 @@ namespace Business
 {
     public class BusinessFacade
     {
-
+        DALFacade DALF = new DALFacade();
         JobFactory jobFac = new JobFactory();
         CustomerFactory customerFac = new CustomerFactory();
 
@@ -67,7 +67,6 @@ namespace Business
 
         public void UpdateCustomer(string name, string email, string phone, string address, string zip, string city, string cvr)
         {
-            DALFacade DALF = new DALFacade();
             DALF.UpdateCustomerInDb(name, email, phone,address, zip, city, cvr);
         }
 
@@ -77,7 +76,6 @@ namespace Business
             Job job = JobRepository.Instance.UpdateRepJob(id, name, description, deadline, priceType, price);
             DALF.UpdateJobInDb(job);
         }
-
 
         public List<Job> GetJobList()
         {
@@ -97,7 +95,6 @@ namespace Business
 
             return currentList;
         }
-
         public List<string> GetCustomerNames()
         {
 
@@ -108,19 +105,20 @@ namespace Business
             }
             return custNames;
         }
-        
         public void LoadCustomersToRepo()
         {
             CustomerRepository.Instance.ClearRepo();
             customerFac.GetCustomersFromDAL();
         }
-
         public Job GetJobByName(string jobName)
         {
             Job job;
             job = JobRepository.Instance.GetList().Find(e => e.Name == jobName);
             return job;
         }
-        
+        public void SaveTimeAndDate(WorkTime workTime)
+        {
+            DALF.InsertTimeAndDateInDb(workTime);
+        }
     }
 }
