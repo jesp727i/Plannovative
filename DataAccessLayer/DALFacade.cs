@@ -16,8 +16,7 @@ namespace DataAccessLayer
         
         public void SaveJobToDb(Job job)
         {
-            jobConnection.SetVariables(job.Name, job.Customer.Phone, job.Description, job.Deadline, job.PriceType, job.Price);
-            jobConnection.SaveJob();
+            jobConnection.SaveJob(job);
         }
         public void SaveCustomerToDb(Customer customer)
         {

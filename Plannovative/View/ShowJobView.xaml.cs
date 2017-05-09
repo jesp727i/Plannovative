@@ -1,4 +1,5 @@
 ﻿using Business;
+using DomainLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace UserInterfaceLayer.View
     public partial class ShowJobView : Window
     {
         Job job;
-
+        
         public ShowJobView(object currentJob)
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace UserInterfaceLayer.View
             JobLabel.Content = job.Name;
             CustomerLabel.Content = job.Customer.Name;
             DeadlineLabel.Content = job.Deadline.ToString();
+            TimeUsedtLabel.Content = job.TimeUsed;
             if (job.PriceType)
             {
                 PriceLabel.Content = job.Price.ToString() + " kr.";
@@ -44,6 +46,19 @@ namespace UserInterfaceLayer.View
             
             DescriptionLabel.Text = job.Description;
         }
-        
+
+        private void BtnAddTime_Click(object sender, RoutedEventArgs e)
+        {
+            WorkTime workTime = new WorkTime(TimeSpan.Parse(comboBoxStartTime.Text),TimeSpan.Parse(comboBoxEndTime.Text),
+                CalenderDate.SelectedDate.Value,job.JobID);
+            job.AddToWorkTimeList(workTime);
+            MessageBox.Show("Nye arbejdstider på opgaven tilføjet!\n" + "Dato: " + CalenderDate.SelectedDate.Value.Day +"/" + CalenderDate.SelectedDate.Value.Month + "-" + CalenderDate.SelectedDate.Value.Year + "\n Fra " + comboBoxStartTime.Text + " Til " + comboBoxEndTime.Text);
+
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
