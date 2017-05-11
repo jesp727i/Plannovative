@@ -12,7 +12,7 @@ namespace Business
     {
         #region Properties
         public string Name { get; set; }
-        public Customer Customer { get; }
+        public Customer Customer { get; set; }
         public string Description { get; set; }
         public DateTime Deadline { get; set; }
         public bool PriceType { get; set; }
@@ -26,28 +26,40 @@ namespace Business
         public List<WorkTime> WorkTimeList { get; set; }
         #endregion
 
-        public void AddToWorkTimeList(WorkTime workTime)
-        {
-            WorkTimeList.Add(workTime);
-        }
+        //konstruktor der skal bruges når et customer objekt er fundet ud fra det telefon nummer som kommer fra databasen.
+        //Her bliver customer objektet linket til job objektet.
 
-        //Konstruktor der bruges når der hentes fra databasen
-        public Job(string name, string customer, string description, string deadline,
-            bool priceType, string price, int postion, int jobId)
+        public Job(string name, Customer customer, string description, DateTime deadline, bool priceType, 
+            double price, int position, int jobId)
+        {
+            this.Name = name;
+            this.Customer = customer;
+            this.Description = description;
+            this.Deadline = deadline;
+            this.PriceType = priceType;
+            this.Price = price;
+            this.Position = position;
+            this.JobID = jobId;
+            WorkTimeList = new List<WorkTime>();
+        }
+        //Kontruktor der bruges når der bliver hentet information fra databasen. Inden at der er fundet et tilhørende customer
+        //objekt ud fra telefon nummeret som, er det der linker Job og Customer sammen i databasen.
+        public Job(string name, string customer, string description, DateTime deadline, bool priceType, double price, int position, int jobId)
         {
             this.Name = name;
             this.Phone = customer;
             this.Description = description;
-            this.DeadlineString = deadline;
+            this.Deadline = deadline;
             this.PriceType = priceType;
-            this.PriceString = price;
-            this.Position = postion;
+            this.Price = price;
+            this.Position = position;
             this.JobID = jobId;
-            this.WorkTimeList = new List<WorkTime>();
+            WorkTimeList = new List<WorkTime>();
         }
-        //konstruktor  der skal bruges når der ligges i databasen.
-        public Job(string name, Customer customer, string description, DateTime deadline, bool priceType, 
-            double price, int position)
+
+        //Konstruktor der skal bruges når der bliver oprettet et job ude i UI, og som skal hele vejen ned til DAL og,
+        //Derfra gemmes i databasen.
+        public Job(string name, Customer customer, string description, DateTime deadline, bool priceType, double price, int position)
         {
             this.Name = name;
             this.Customer = customer;
