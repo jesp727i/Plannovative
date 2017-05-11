@@ -30,7 +30,7 @@ namespace DataAccessLayer
         }
         public List<Job> GetJobsFromDb()
         {
-            jobConnection.GetJobs();
+            jobConnection.spGetJobs();
             return jobConnection.jobList;
         }
         public void UpdateCustomerInDb(string name, string email, string phone, string address, string zip, string city, string cvr)
