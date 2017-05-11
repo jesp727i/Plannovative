@@ -22,11 +22,13 @@ namespace UserInterfaceLayer.View
     public partial class ShowJobView : Window
     {
         Job job;
+        BusinessFacade BF;
         
         public ShowJobView(object currentJob)
         {
             InitializeComponent();
             job = (Job)currentJob;
+            BF = BusinessFacade.Instance;
             setJobToView();
         }
         private void setJobToView()
@@ -50,10 +52,10 @@ namespace UserInterfaceLayer.View
         private void BtnAddTime_Click(object sender, RoutedEventArgs e)
         {
             WorkTime workTime = new WorkTime(TimeSpan.Parse(comboBoxStartTime.Text),TimeSpan.Parse(comboBoxEndTime.Text),
-                CalenderDate.SelectedDate.Value,job.JobID);
-            job.AddToWorkTimeList(workTime);
+                CalenderDate.SelectedDate.Value, job.JobID);
+            job.WorkTimeList.Add(workTime);
             MessageBox.Show("Nye arbejdstider på opgaven tilføjet!\n" + "Dato: " + CalenderDate.SelectedDate.Value.Day +"/" + CalenderDate.SelectedDate.Value.Month + "-" + CalenderDate.SelectedDate.Value.Year + "\n Fra " + comboBoxStartTime.Text + " Til " + comboBoxEndTime.Text);
-
+            BF.SaveTimeAndDate(workTime);
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)

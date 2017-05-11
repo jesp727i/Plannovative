@@ -96,9 +96,9 @@ namespace Test
         public void CalculateTimeUsedTest()
         {
             List<WorkTime> TimeList = new List<WorkTime>();
-            WorkTime WT01 = new WorkTime(new TimeSpan( 10,30,00), new TimeSpan (12,30,00), new DateTime(), 10);
-            WorkTime WT02 = new WorkTime(new TimeSpan(11, 30, 00), new TimeSpan(17, 30, 00), new DateTime(), 25);
-            WorkTime WT03 = new WorkTime(new TimeSpan(07, 00, 00), new TimeSpan(12, 30, 00), new DateTime(), 12);
+            WorkTime WT01 = new WorkTime(new TimeSpan( 10,30,00), new TimeSpan (12,30,00), new DateTime());
+            WorkTime WT02 = new WorkTime(new TimeSpan(11, 30, 00), new TimeSpan(17, 30, 00), new DateTime());
+            WorkTime WT03 = new WorkTime(new TimeSpan(07, 00, 00), new TimeSpan(12, 30, 00), new DateTime());
 
             TimeList.Add(WT01);
             TimeList.Add(WT02);
