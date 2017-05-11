@@ -12,7 +12,8 @@ namespace Business
     {
         DALFacade DBF = new DALFacade();
 
-        public void CreateJobToDb(string name, Customer customer, string description, DateTime deadline, string priceType, double price, int position)
+        public void CreateJobToDb(string name, Customer customer, string description, DateTime deadline, 
+            string priceType, double price, int position)
         {
             bool _priceType;
 
@@ -30,12 +31,12 @@ namespace Business
             AddToJobRepo(newJob);
         }
 
-        public void CreateJobFromDb(string name, string customerPhone, string description, string deadline, bool priceType, string price, int position)
+        public void CreateJobFromDb(Job job)
         {
-            Customer customer = CustomerRepository.Instance.FindCustomerByPhone(customerPhone);
-            Job newJob = new Job(name, customer, description, Convert.ToDateTime(deadline), priceType, double.Parse(price), position);
+            Customer customer = CustomerRepository.Instance.FindCustomerByPhone(job.Phone);
+            job.Customer = customer;
             
-            AddToJobRepo(newJob);
+            AddToJobRepo(job);
         }
 
         private void AddToJobRepo(Job job)
@@ -53,7 +54,7 @@ namespace Business
 
             foreach (Job job in jobData)
             {
-                CreateJobFromDb(job.Name, job.Phone, job.Description, job.DeadlineString, job.PriceType, job.PriceString, job.Position);
+                CreateJobFromDb(job);
             }
         }
     }
