@@ -79,19 +79,20 @@ namespace Business
 
         public List<Job> GetJobList()
         {
-            List<Job> currentList = new List<Job>();
-            currentList = JobRepository.Instance.GetList();
+            //List<Job> currentList = new List<Job>();
+            List<Job> currentList = JobRepository.Instance.GetList();
 
             return currentList;
         }
         public void LoadJobToRepo()
         {
+            JobRepository.Instance.ClearRepo();
             jobFac.GetJobsFromDAL();
         }
         public List<Customer> GetCustomerList()
         {
-            List<Customer> currentList = new List<Customer>();
-            currentList = CustomerRepository.Instance.GetList();
+            //List<Customer> currentList = new List<Customer>();
+            List<Customer> currentList = CustomerRepository.Instance.GetList();
 
             return currentList;
         }
