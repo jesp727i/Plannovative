@@ -43,6 +43,10 @@ namespace Business
         {
             jobList.Add(newJob);
         }
+        public void ClearRepo()
+        {
+            jobList.Clear();
+        }
 
         public List<Job> GetList()
         {
