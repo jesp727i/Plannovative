@@ -62,15 +62,15 @@ namespace DataAccessLayer
                         while (readerJob.Read())
                         {
                             Job newJob = new Job(readerJob["JobName"].ToString(),
-                                readerJob["CustomerPhone"].ToString(),
                                 readerJob["JobDescription"].ToString(),
                                 (DateTime)readerJob["JobDeadline"],
                                 (bool)readerJob["JobPriceType"],
                                 (double)readerJob["JobPrice"],
-                                (int)readerJob["Position"],
-                                (int)readerJob["JobId"]);
+                                (int)readerJob["Position"]);
 
-                            
+                            newJob.JobID = (int)readerJob["JobId"];
+                            newJob.CustomerPhone = readerJob["CustomerPhone"].ToString();
+
                             spGetWorkTime(newJob);
                             jobList.Add(newJob);
                         }
@@ -185,7 +185,7 @@ namespace DataAccessLayer
 
                     cmd2.Parameters.Add(new SqlParameter("@JobName", job.Name));
                     cmd2.Parameters.Add(new SqlParameter("@JobDescription", job.Description));
-                    cmd2.Parameters.Add(new SqlParameter("@JobDeadline", job.DeadlineString));
+                    cmd2.Parameters.Add(new SqlParameter("@JobDeadline", job.Deadline));
                     cmd2.Parameters.Add(new SqlParameter("@JobPriceType", job.PriceType));
                     cmd2.Parameters.Add(new SqlParameter("@JobPrice", job.Price));
                     cmd2.Parameters.Add(new SqlParameter("@JobID", job.JobID));
