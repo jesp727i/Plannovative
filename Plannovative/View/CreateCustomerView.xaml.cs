@@ -33,6 +33,7 @@ namespace UserInterfaceLayer.View
         public CreateCustomerView(string customerName)
         {
             InitializeComponent();
+            
             BF = BusinessFacade.Instance;
             BtnSave.IsEnabled = false;
             TxtPhone.IsEnabled = false;

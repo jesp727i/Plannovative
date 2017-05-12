@@ -25,24 +25,17 @@ namespace Business
             {
                 _priceType = false;
             }
-            Job newJob = new Job(name, customer, description, deadline, _priceType, price, position);
+            Job newJob = new Job(name, description, deadline, _priceType, price, position);
+            newJob.Customer = customer;
             
             AddToJobDb(newJob);
-            AddToJobRepo(newJob);
         }
-
-        public void CreateJobFromDb(Job job)
-        {
-            Customer customer = CustomerRepository.Instance.FindCustomerByPhone(job.Phone);
-            job.Customer = customer;
-            
-            AddToJobRepo(job);
-        }
-
+        
         private void AddToJobRepo(Job job)
         {
             JobRepository.Instance.SaveJob(job);
         }
+
         private void AddToJobDb(Job job)
         {
             DBF.SaveJobToDb(job);
@@ -54,7 +47,8 @@ namespace Business
 
             foreach (Job job in jobData)
             {
-                CreateJobFromDb(job);
+                job.Customer = CustomerRepository.Instance.FindCustomerByPhone(job.CustomerPhone);
+                AddToJobRepo(job);
             }
         }
     }

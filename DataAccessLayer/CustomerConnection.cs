@@ -52,7 +52,7 @@ namespace DataAccessLayer
 
             return exceptionString;
         }
-        internal void spSaveCustomer()
+        internal void spSaveCustomer(Customer customer)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -62,13 +62,13 @@ namespace DataAccessLayer
                     SqlCommand cmd1 = new SqlCommand("spSaveCustomer", connection);
                     cmd1.CommandType = CommandType.StoredProcedure;
 
-                    cmd1.Parameters.Add(new SqlParameter("@CustomerName", name));
-                    cmd1.Parameters.Add(new SqlParameter("@Email", email));
-                    cmd1.Parameters.Add(new SqlParameter("@Phone", phone));
-                    cmd1.Parameters.Add(new SqlParameter("@CustomerAddress", address));
-                    cmd1.Parameters.Add(new SqlParameter("@Zip", zip));
-                    cmd1.Parameters.Add(new SqlParameter("@City", city));
-                    cmd1.Parameters.Add(new SqlParameter("@Cvr", CVR));
+                    cmd1.Parameters.Add(new SqlParameter("@CustomerName", customer.Name));
+                    cmd1.Parameters.Add(new SqlParameter("@Email", customer.Email));
+                    cmd1.Parameters.Add(new SqlParameter("@Phone", customer.Phone));
+                    cmd1.Parameters.Add(new SqlParameter("@CustomerAddress", customer.Address));
+                    cmd1.Parameters.Add(new SqlParameter("@Zip", customer.Zip));
+                    cmd1.Parameters.Add(new SqlParameter("@City", customer.City));
+                    cmd1.Parameters.Add(new SqlParameter("@Cvr", customer.CVR));
                     cmd1.ExecuteNonQuery();
                 }
                 catch (SqlException e)
