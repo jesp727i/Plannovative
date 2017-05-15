@@ -163,7 +163,14 @@ namespace DataAccessLayer
                     cmd.Parameters.Add(new SqlParameter("@EndTime",workTime.EndTime ));
                     cmd.Parameters.Add(new SqlParameter("@WorkDate",workTime.WorkDate ));
                     cmd.Parameters.Add(new SqlParameter("@JobId", workTime.JobId));
-                    cmd.ExecuteNonQuery();
+                    SqlDataReader readerWorktime = cmd.ExecuteReader();
+                    if (readerWorktime.HasRows)
+                    {
+                        while (readerWorktime.Read())
+                        {
+                            workTime.Id = (int)readerWorktime["workId"];
+                        }
+                    }
                 }
                 catch (SqlException e)
                 {
@@ -183,12 +190,13 @@ namespace DataAccessLayer
                     SqlCommand cmd2 = new SqlCommand("spUpdateJob", connection);
                     cmd2.CommandType = CommandType.StoredProcedure;
 
-                    cmd2.Parameters.Add(new SqlParameter("@JobName", job.Name));
-                    cmd2.Parameters.Add(new SqlParameter("@JobDescription", job.Description));
-                    cmd2.Parameters.Add(new SqlParameter("@JobDeadline", job.Deadline));
-                    cmd2.Parameters.Add(new SqlParameter("@JobPriceType", job.PriceType));
-                    cmd2.Parameters.Add(new SqlParameter("@JobPrice", job.Price));
-                    cmd2.Parameters.Add(new SqlParameter("@JobID", job.JobID));
+                    cmd2.Parameters.Add(new SqlParameter("@jobName", job.Name));
+                    cmd2.Parameters.Add(new SqlParameter("@customerPhone", job.CustomerPhone));
+                    cmd2.Parameters.Add(new SqlParameter("@jobDescription", job.Description));
+                    cmd2.Parameters.Add(new SqlParameter("@jobDeadline", job.Deadline));
+                    cmd2.Parameters.Add(new SqlParameter("@jobPriceType", job.PriceType));
+                    cmd2.Parameters.Add(new SqlParameter("@jobPrice", job.Price));
+                    cmd2.Parameters.Add(new SqlParameter("@jobID", job.JobID));
 
                     cmd2.ExecuteNonQuery();
                 }
