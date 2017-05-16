@@ -22,6 +22,7 @@ namespace UserInterfaceLayer.View
     public partial class CreateJobView : Window
     {
         BusinessFacade BF;
+        Job job;
         public CreateJobView()
         {
             BF = BusinessFacade.Instance;
@@ -29,6 +30,24 @@ namespace UserInterfaceLayer.View
             this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingTrue);
             RefreshCustomer();
             this.BtnSave.IsEnabled = false;
+        }
+
+        public CreateJobView(object jobObject)
+        {
+            BF = BusinessFacade.Instance;
+            InitializeComponent();
+            this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingTrue);
+            RefreshCustomer();
+            job = (Job)jobObject;
+            TxtTaskName.Text = job.Name;
+            TxtDescription.Text = job.Description;
+            TxtPrice.Text = job.Price.ToString();
+            if (!job.PriceType)
+            {
+                comboBoxPriceType.SelectedIndex = 1;
+            }
+
+
         }
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
         {

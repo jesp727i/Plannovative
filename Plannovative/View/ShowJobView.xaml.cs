@@ -60,5 +60,12 @@ namespace UserInterfaceLayer.View
         {
             this.Close();
         }
+
+        private void BtnUpdateJob_Click(object sender, RoutedEventArgs e)
+        {
+            var jobObjekt = job;
+            CreateJobView SJW = new CreateJobView(jobObjekt);
+            SJW.ShowDialog();
+        }
     }
 }
