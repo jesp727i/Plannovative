@@ -51,16 +51,21 @@ namespace UserInterfaceLayer.View
 
         private void BtnAddTime_Click(object sender, RoutedEventArgs e)
         {
-            WorkTime workTime = new WorkTime(TimeSpan.Parse(comboBoxStartTime.Text),TimeSpan.Parse(comboBoxEndTime.Text),
-                CalenderDate.SelectedDate.Value, job.JobID);
-            job.WorkTimeList.Add(workTime);
+            BF.SaveTimeAndDate(TimeSpan.Parse(comboBoxStartTime.Text), TimeSpan.Parse(comboBoxEndTime.Text),
+                CalenderDate.SelectedDate.Value, job);
             MessageBox.Show("Nye arbejdstider på opgaven tilføjet!\n" + "Dato: " + CalenderDate.SelectedDate.Value.Day +"/" + CalenderDate.SelectedDate.Value.Month + "-" + CalenderDate.SelectedDate.Value.Year + "\n Fra " + comboBoxStartTime.Text + " Til " + comboBoxEndTime.Text);
-            BF.SaveTimeAndDate(workTime);
+            TimeUsedtLabel.Content = job.TimeUsed;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnUpdateJob_Click(object sender, RoutedEventArgs e)
+        {
+            CreateJobView CJW = new CreateJobView(job);
+            CJW.ShowDialog();
         }
     }
 }
