@@ -62,7 +62,7 @@ namespace Business
             return jobList.Find(n => n.JobID == id);
         }
 
-        internal Job UpdateRepJob(int id, string name, string description, DateTime deadline, string priceType, double price)
+        internal Job UpdateRepJob(int id, string name, string customerPhone, string description, DateTime deadline, string priceType, double price)
         {
             bool _priceType;
 
@@ -75,6 +75,7 @@ namespace Business
                 _priceType = false;
             }
             Job job = GetJobByID(id);
+            job.CustomerPhone = customerPhone;
             job.Name = name;
             job.Description = description;
             job.Deadline = deadline;
