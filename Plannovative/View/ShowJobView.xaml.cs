@@ -51,6 +51,10 @@ namespace UserInterfaceLayer.View
 
         private void BtnAddTime_Click(object sender, RoutedEventArgs e)
         {
+            if (CalenderDate.SelectedDate == null)
+            {
+                CalenderDate.SelectedDate = CalenderDate.DisplayDate;
+            }
             BF.SaveTimeAndDate(TimeSpan.Parse(comboBoxStartTime.Text), TimeSpan.Parse(comboBoxEndTime.Text),
                 CalenderDate.SelectedDate.Value, job);
             MessageBox.Show("Nye arbejdstider på opgaven tilføjet!\n" + "Dato: " + CalenderDate.SelectedDate.Value.Day +"/" + CalenderDate.SelectedDate.Value.Month + "-" + CalenderDate.SelectedDate.Value.Year + "\n Fra " + comboBoxStartTime.Text + " Til " + comboBoxEndTime.Text);
