@@ -35,11 +35,13 @@ namespace UserInterfaceLayer.View
         }
         public CreateJobView(Job job) 
         {
+            BF = BusinessFacade.Instance;
             this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingTrue);
             InitializeComponent();
             update = true;
             TxtDescription.Text = job.Description;
             TxtPrice.Text = job.Price.ToString();
+            CalenderDeadline.SelectedDate = job.Deadline;
             RefreshCustomer();
             if (!job.PriceType)
             {
