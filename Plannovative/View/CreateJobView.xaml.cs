@@ -30,6 +30,13 @@ namespace UserInterfaceLayer.View
             RefreshCustomer();
             this.BtnSave.IsEnabled = false;
         }
+        public CreateJobView(Job job) 
+        {
+            this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingTrue);
+            InitializeComponent();
+            TxtTaskName.Text = job.Name;
+        }
+
         private void BtnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             CreateCustomerView CCV = new CreateCustomerView();
@@ -107,5 +114,7 @@ namespace UserInterfaceLayer.View
         {
             e.Cancel = false;
         }
+
+
     }
 }
