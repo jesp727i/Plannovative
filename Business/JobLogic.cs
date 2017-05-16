@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public class JobLogic
+    static public class JobLogic
     {
-        public double CalculateTimeUsed(List<WorkTime> ListWorkTime)
+        static public double CalculateTimeUsed(List<WorkTime> ListWorkTime)
         {
 
             double returnResult = 0;

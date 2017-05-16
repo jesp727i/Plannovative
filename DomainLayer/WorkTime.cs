@@ -11,7 +11,8 @@ namespace DomainLayer
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public DateTime WorkDate { get; set; }
-        public int JobId { get; set; } 
+        public int JobId { get; set; }
+        public int Id { get; set; }
 
 
         public WorkTime(TimeSpan startTime, TimeSpan endTime, DateTime workDate)

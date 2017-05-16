@@ -30,7 +30,7 @@
         <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="233.232,486,0,0" VerticalAlignment="Top" Width="55" Click="BtnSave_Click" Grid.Column="1"/>
         <Button x:Name="BtnClose" Content="Luk" HorizontalAlignment="Left" Margin="38,486,0,0" VerticalAlignment="Top" Width="55" Click="BtnClose_Click" Grid.ColumnSpan="2"/>
         <Label x:Name="label1_Copy3" Content="DKK" HorizontalAlignment="Left" Margin="261.232,439,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBox x:Name="TxtTaskName" HorizontalAlignment="Left" Height="23" Margin="88.232,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Text="{Binding job.Name}" Grid.Column="1" TextChanged="TxtTaskName_TextChanged"/>
+        <TextBox x:Name="TxtTaskName" HorizontalAlignment="Left" Height="23" Margin="88.232,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Grid.Column="1" TextChanged="TxtTaskName_TextChanged"/>
         <TextBox x:Name="TxtDescription" HorizontalAlignment="Left" Height="118" Margin="88.232,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Grid.Column="1"/>
         <TextBox x:Name="TxtPrice" HorizontalAlignment="Left" Height="23" Margin="88.232,442,0,0" Text ="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Grid.Column="1"/>
         <Button x:Name="BtnUpdate" Content="Rediger kunde" HorizontalAlignment="Left" Margin="166.232,75,0,0" VerticalAlignment="Top" Width="90

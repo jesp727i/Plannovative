@@ -51,5 +51,9 @@ namespace Business
                 AddToJobRepo(job);
             }
         }
+        internal WorkTime CreateWorkTimeForJob(TimeSpan startTime, TimeSpan endTime, DateTime date, int jobId)
+        {
+            return new WorkTime(startTime, endTime, date, jobId);
+        }
     }
 }

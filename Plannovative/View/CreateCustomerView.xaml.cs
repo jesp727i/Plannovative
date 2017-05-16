@@ -67,10 +67,7 @@ namespace UserInterfaceLayer.View
             
             this.Close();
         }
-        private void OnTextChanged(object sender, EventArgs args)
-        {
-            
-        }
+
         private void UpdateUserInterface()
         {
             this.BtnSave.IsEnabled = !string.IsNullOrWhiteSpace(this.TxtName.Text) &&

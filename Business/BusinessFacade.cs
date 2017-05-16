@@ -88,6 +88,19 @@ namespace Business
         {
             JobRepository.Instance.ClearRepo();
             jobFac.GetJobsFromDAL();
+            CalculateTimeUsedOnJobs();
+            
+        }
+        internal void CalculateTimeUsedOnJobs()
+        {
+            foreach (Job job in JobRepository.Instance.GetList())
+            {
+                job.TimeUsed = JobLogic.CalculateTimeUsed(job.WorkTimeList);
+            }
+        }
+        internal void CalculateTimeUsedOnAJob(Job job)
+        {
+            job.TimeUsed = JobLogic.CalculateTimeUsed(job.WorkTimeList);
         }
         public List<Customer> GetCustomerList()
         {
@@ -117,9 +130,13 @@ namespace Business
             job = JobRepository.Instance.GetList().Find(e => e.Name == jobName);
             return job;
         }
-        public void SaveTimeAndDate(WorkTime workTime)
+        public void SaveTimeAndDate(TimeSpan startTime, TimeSpan endTime, DateTime date, Job job)
         {
+            WorkTime workTime = jobFac.CreateWorkTimeForJob(startTime, endTime, date, job.JobID);
             DALF.InsertTimeAndDateInDb(workTime);
+            job.WorkTimeList.Add(workTime);
+            CalculateTimeUsedOnAJob(job);
+            
         }
     }
 }
