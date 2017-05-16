@@ -53,7 +53,7 @@ namespace DataAccessLayer
                     jobList.Clear();
                     connection.Open();
                     
-                    SqlCommand cmdGetJobs = new SqlCommand("GetJobTest", connection);
+                    SqlCommand cmdGetJobs = new SqlCommand("spGetJob", connection);
                     cmdGetJobs.CommandType = CommandType.StoredProcedure;
                     SqlDataReader readerJob = cmdGetJobs.ExecuteReader();
 
@@ -128,7 +128,7 @@ namespace DataAccessLayer
                 {
                     connection.Open();
 
-                    SqlCommand cmd = new SqlCommand("SaveJobTest", connection);
+                    SqlCommand cmd = new SqlCommand("spSaveJob", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@JobName", job.Name));
                     cmd.Parameters.Add(new SqlParameter("@CustomerPhone", job.Customer.Phone));
@@ -137,7 +137,6 @@ namespace DataAccessLayer
                     cmd.Parameters.Add(new SqlParameter("@JobPriceType", job.PriceType));
                     cmd.Parameters.Add(new SqlParameter("@JobPrice", job.Price));
                     cmd.Parameters.Add(new SqlParameter("@Position", job.Position));
-                    cmd.Parameters.Add(new SqlParameter("@TimeUsed", job.TimeUsed));
 
                     cmd.ExecuteNonQuery();
                 }
