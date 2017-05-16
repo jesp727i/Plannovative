@@ -58,7 +58,12 @@ namespace Business
         {
             Customer customer = customerList.Find(r => r.Phone == phone);
             return customer;
-        } 
+        }
+        public Customer GetCustomerByNameFromRepo(string customerName)
+        {
+            
+            return customerList.Find(r => r.Name == customerName);
+        }
     }
 }
 

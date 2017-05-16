@@ -36,7 +36,7 @@ namespace UserInterfaceLayer.View
             JobLabel.Content = job.Name;
             CustomerLabel.Content = job.Customer.Name;
             DeadlineLabel.Content = job.Deadline.ToString();
-            TimeUsedtLabel.Content = job.TimeUsed;
+            TimeUsedtLabel.Content = job.TimeUsed + " Timer";
             if (job.PriceType)
             {
                 PriceLabel.Content = job.Price.ToString() + " kr.";
@@ -70,6 +70,7 @@ namespace UserInterfaceLayer.View
         {
             CreateJobView CJW = new CreateJobView(job);
             CJW.ShowDialog();
+            setJobToView();
         }
     }
 }
