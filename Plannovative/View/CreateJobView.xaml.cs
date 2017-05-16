@@ -21,6 +21,9 @@ namespace UserInterfaceLayer.View
     /// </summary>
     public partial class CreateJobView : Window
     {
+        bool update = false;
+        int Position;
+        int JobId;
         BusinessFacade BF;
         public CreateJobView()
         {
@@ -32,8 +35,20 @@ namespace UserInterfaceLayer.View
         }
         public CreateJobView(Job job) 
         {
+            BF = BusinessFacade.Instance;
             this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingTrue);
             InitializeComponent();
+            update = true;
+            TxtDescription.Text = job.Description;
+            TxtPrice.Text = job.Price.ToString();
+            CalenderDeadline.SelectedDate = job.Deadline;
+            RefreshCustomer();
+            if (!job.PriceType)
+            {
+                comboBoxPriceType.SelectedIndex = 1;
+            }
+            Position = job.Position;
+            JobId = job.JobID;
             TxtTaskName.Text = job.Name;
         }
 
@@ -60,9 +75,16 @@ namespace UserInterfaceLayer.View
             }
             else
             {
-                MessageBox.Show("Opgaven " + '"' + TxtTaskName.Text + '"' +  " er oprettet");
-                BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text),1);
-                this.Close();
+                if (!update)
+                {
+                    MessageBox.Show("Opgaven " + '"' + TxtTaskName.Text + '"' + " er oprettet");
+                    BF.SaveJob(TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text), 1);
+                }
+                else
+                {
+                    BF.UpdateJob(JobId, TxtTaskName.Text, comboBoxCustomer.Text, TxtDescription.Text, CalenderDeadline.SelectedDate.Value, comboBoxPriceType.Text, double.Parse(TxtPrice.Text));
+                }
+               this.Close();
             }
 
         }

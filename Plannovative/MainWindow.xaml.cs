@@ -36,21 +36,36 @@ namespace UserInterfaceLayer
         {
             CreateJobView CJV = new CreateJobView();
             CJV.ShowDialog();
-            splTodo.Children.Clear();
             LoadBoard();
         }     
         private void LoadBoard()
         {
+            splTodo.Children.Clear();
             BF.LoadJobToRepo();
             List<Job> jobListToShow = BF.GetJobList();
 
             foreach (var job in jobListToShow)
             {
-                StackPanel newStackPanel = new StackPanel();
                 
-                newStackPanel.Background = Brushes.WhiteSmoke;
+                StackPanel newStackPanel = new StackPanel();
+                DateTime today = DateTime.Today;
+                double daysToDeadLine = (job.Deadline - today).TotalDays;
                 newStackPanel.Width = 300;
                 newStackPanel.Height = 80;
+                if (daysToDeadLine < 14)
+                {
+                    newStackPanel.Background = Brushes.OrangeRed;
+                }
+                else if (daysToDeadLine < 28)
+                {
+                    newStackPanel.Background = Brushes.Gold;
+                }
+                else
+                {
+                    newStackPanel.Background = Brushes.GreenYellow;
+                }
+
+                
                 newStackPanel.Margin = new Thickness(5);
                 newStackPanel.Orientation = Orientation.Vertical;
                 newStackPanel.MouseDown += MouseDownChild;
@@ -91,6 +106,8 @@ namespace UserInterfaceLayer
 
             ShowJobView SJV = new ShowJobView(jobClicked);
             SJV.ShowDialog();
+            LoadBoard();
+
         }
     }
     

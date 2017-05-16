@@ -36,7 +36,7 @@ namespace UserInterfaceLayer.View
             JobLabel.Content = job.Name;
             CustomerLabel.Content = job.Customer.Name;
             DeadlineLabel.Content = job.Deadline.ToString();
-            TimeUsedtLabel.Content = job.TimeUsed;
+            TimeUsedtLabel.Content = job.TimeUsed + " Timer";
             if (job.PriceType)
             {
                 PriceLabel.Content = job.Price.ToString() + " kr.";
@@ -51,6 +51,10 @@ namespace UserInterfaceLayer.View
 
         private void BtnAddTime_Click(object sender, RoutedEventArgs e)
         {
+            if (CalenderDate.SelectedDate == null)
+            {
+                CalenderDate.SelectedDate = CalenderDate.DisplayDate;
+            }
             BF.SaveTimeAndDate(TimeSpan.Parse(comboBoxStartTime.Text), TimeSpan.Parse(comboBoxEndTime.Text),
                 CalenderDate.SelectedDate.Value, job);
             MessageBox.Show("Nye arbejdstider på opgaven tilføjet!\n" + "Dato: " + CalenderDate.SelectedDate.Value.Day +"/" + CalenderDate.SelectedDate.Value.Month + "-" + CalenderDate.SelectedDate.Value.Year + "\n Fra " + comboBoxStartTime.Text + " Til " + comboBoxEndTime.Text);
@@ -66,6 +70,7 @@ namespace UserInterfaceLayer.View
         {
             CreateJobView CJW = new CreateJobView(job);
             CJW.ShowDialog();
+            setJobToView();
         }
     }
 }
