@@ -22,8 +22,8 @@
         <Label x:Name="label1" Content="Beskrivelse" HorizontalAlignment="Left" Margin="38,102,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label x:Name="label1_Copy" Content="Deadline" HorizontalAlignment="Left" Margin="38,229,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="comboBoxPriceType" HorizontalAlignment="Left" Margin="88.232,411,0,0" VerticalAlignment="Top" Width="168" Grid.Column="1">
-            <ComboBoxItem IsSelected="True">Fast pris</ComboBoxItem>
-            <ComboBoxItem>Timepris</ComboBoxItem>
+            <ComboBoxItem x:Name="fast" IsSelected="True">Fast pris</ComboBoxItem>
+            <ComboBoxItem x:Name="time">Timepris</ComboBoxItem>
         </ComboBox>
         <Label x:Name="label1_Copy1" Content="Pris type" HorizontalAlignment="Left" Margin="38,408,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label x:Name="label1_Copy2" Content="Pris" HorizontalAlignment="Left" Margin="38,438,0,0" VerticalAlignment="Top"/>

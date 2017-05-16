@@ -49,7 +49,7 @@ namespace Business
 
         public Customer GetCustomerByName(string customerName)
         {
-            List<Customer> searchList = GetCustomerList();
+            List<Customer> searchList = CustomerRepository.Instance.GetList();
             return searchList.Find(r => r.Name == customerName);
         }
 
@@ -70,10 +70,10 @@ namespace Business
             DALF.UpdateCustomerInDb(name, email, phone,address, zip, city, cvr);
         }
 
-        public void UpdateJob(int id, string name, string description, DateTime deadline, string priceType, double price)
+        public void UpdateJob(int id, string name, string customerPhone, string description, DateTime deadline, string priceType, double price)
         {
             DALFacade DALF = new DALFacade();
-            Job job = JobRepository.Instance.UpdateRepJob(id, name, description, deadline, priceType, price);
+            Job job = JobRepository.Instance.UpdateRepJob(id, name, customerPhone, description, deadline, priceType, price);
             DALF.UpdateJobInDb(job);
         }
 
@@ -102,18 +102,12 @@ namespace Business
         {
             job.TimeUsed = JobLogic.CalculateTimeUsed(job.WorkTimeList);
         }
-        public List<Customer> GetCustomerList()
-        {
-            //List<Customer> currentList = new List<Customer>();
-            List<Customer> currentList = CustomerRepository.Instance.GetList();
 
-            return currentList;
-        }
         public List<string> GetCustomerNames()
         {
 
             List<string> custNames = new List<string>();
-            foreach (Customer cust in GetCustomerList())
+            foreach (Customer cust in CustomerRepository.Instance.GetList())
             {
                 custNames.Add(cust.Name);
             }
