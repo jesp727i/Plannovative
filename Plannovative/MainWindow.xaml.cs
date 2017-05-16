@@ -29,7 +29,6 @@ namespace UserInterfaceLayer
             InitializeComponent();
             BF = BusinessFacade.Instance;
             BF.LoadCustomersToRepo();
-            BF.LoadJobToRepo();
             LoadBoard();
         }
         
@@ -42,9 +41,10 @@ namespace UserInterfaceLayer
         }     
         private void LoadBoard()
         {
+            BF.LoadJobToRepo();
             List<Job> jobListToShow = BF.GetJobList();
 
-            foreach (var item in jobListToShow)
+            foreach (var job in jobListToShow)
             {
                 StackPanel newStackPanel = new StackPanel();
                 
@@ -59,16 +59,16 @@ namespace UserInterfaceLayer
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
                 Label idLabel = new Label();
-                nameLabel.Content = item.Name;
-                custLabel.Content = item.Customer.Name;
+                nameLabel.Content = job.Name;
+                custLabel.Content = job.Customer.Name;
                 
-                if (item.Deadline == DateTime.MaxValue)
+                if (job.Deadline == DateTime.MaxValue)
                 {
                     deadlineLabel.Content = "Ingen deadline";
                 }
                 else
                 {
-                    deadlineLabel.Content = item.Deadline;
+                    deadlineLabel.Content = job.Deadline;
                 }
                 
                 splTodo.Children.Add(newStackPanel);
@@ -76,21 +76,20 @@ namespace UserInterfaceLayer
                 newStackPanel.Children.Add(custLabel);
                 newStackPanel.Children.Add(deadlineLabel);
                 newStackPanel.Children.Add(idLabel);
-                newStackPanel.DataContext = item;
+                newStackPanel.DataContext = job;
             }
         }
         
         private void BtnShowCustomers_Click(object sender, RoutedEventArgs e)
         {
-            LoadBoard();
-            BtnShowCustomers.IsEnabled = false;
+            
         }
 
         private void MouseDownChild(object sender, MouseButtonEventArgs e)
         {
-            var splName = ((StackPanel)sender).DataContext;
+            var jobClicked = ((StackPanel)sender).DataContext;
 
-            ShowJobView SJV = new ShowJobView(splName);
+            ShowJobView SJV = new ShowJobView(jobClicked);
             SJV.ShowDialog();
         }
     }

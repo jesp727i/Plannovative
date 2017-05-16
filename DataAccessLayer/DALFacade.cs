@@ -20,8 +20,7 @@ namespace DataAccessLayer
         }
         public void SaveCustomerToDb(Customer customer)
         {
-            customerConnection.SetVariables(customer.Name, customer.Email, customer.Phone, customer.Address, customer.Zip, customer.City, customer.CVR);
-            customerConnection.spSaveCustomer();
+            customerConnection.spSaveCustomer(customer);
         }
         public List<Customer> GetCustomersFromDb()
         {
@@ -30,7 +29,7 @@ namespace DataAccessLayer
         }
         public List<Job> GetJobsFromDb()
         {
-            jobConnection.GetJobs();
+            jobConnection.spGetJobs();
             return jobConnection.jobList;
         }
         public void UpdateCustomerInDb(string name, string email, string phone, string address, string zip, string city, string cvr)

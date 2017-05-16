@@ -11,14 +11,25 @@ namespace DomainLayer
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public DateTime WorkDate { get; set; }
-        public int JobId { get; set; }
+        public int JobId { get; set; } 
+
+
+        public WorkTime(TimeSpan startTime, TimeSpan endTime, DateTime workDate)
+        {
+            this.StartTime = startTime;
+            this.EndTime = endTime;
+            this.WorkDate = workDate;        
+        }
+
 
         public WorkTime(TimeSpan startTime, TimeSpan endTime, DateTime workDate, int jobId)
         {
             this.StartTime = startTime;
             this.EndTime = endTime;
             this.WorkDate = workDate;
-            this.JobId = jobId;         
+            this.JobId = jobId;
         }
+
+
     }
 }

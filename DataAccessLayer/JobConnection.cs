@@ -44,7 +44,7 @@ namespace DataAccessLayer
             this.jobPriceType = jobPriceType;
             this.jobPrice = jobPrice;
         }
-        public void GetJobs()
+        public void spGetJobs()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -52,43 +52,67 @@ namespace DataAccessLayer
                 {
                     jobList.Clear();
                     connection.Open();
-                    SqlCommand cmd = new SqlCommand("GetJob", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+                    SqlCommand cmdGetJobs = new SqlCommand("GetJobTest", connection);
+                    cmdGetJobs.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader readerJob = cmdGetJobs.ExecuteReader();
 
-                    if (reader.HasRows)
+                    if (readerJob.HasRows)
                     {
-                        while (reader.Read())
+                        while (readerJob.Read())
                         {
-                            bool myBool = (bool)reader["JobPriceType"];
+                            Job newJob = new Job(readerJob["JobName"].ToString(),
+                                readerJob["JobDescription"].ToString(),
+                                (DateTime)readerJob["JobDeadline"],
+                                (bool)readerJob["JobPriceType"],
+                                (double)readerJob["JobPrice"],
+                                (int)readerJob["Position"]);
 
-                            Job newJob = new Job(reader["JobName"].ToString(),
-                                reader["CustomerPhone"].ToString(),
-                                reader["JobDescription"].ToString(),
-                                reader["JobDeadline"].ToString(),
-                                myBool,
-                                reader["JobPrice"].ToString(),
-                                (int)reader["Postion"],
-                                (int)reader["JobId"]);
+                            newJob.JobID = (int)readerJob["JobId"];
+                            newJob.CustomerPhone = readerJob["CustomerPhone"].ToString();
 
-
-                            WorkTime newWorkTime = new WorkTime(
-                                (TimeSpan)reader["StartTime"],
-                                (TimeSpan)reader["EndTime"],
-                                (DateTime)reader["WorkDate"],
-                                (int)reader["JobId"]);
-
-
-
-
-                            newJob.WorkTimeList.Add(newWorkTime);
-                  
+                            spGetWorkTime(newJob);
                             jobList.Add(newJob);
                         }
                     }
                 }
 
                 catch(SqlException e)
+                {
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
+                }
+            }
+        }
+        public void spGetWorkTime(Job job)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmdGetWorktime = new SqlCommand("spGetWorkTimeByJobId", connection);
+                    cmdGetWorktime.Parameters.Add(new SqlParameter("@JobId", job.JobID));
+                    cmdGetWorktime.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader readerWorktime = cmdGetWorktime.ExecuteReader();
+
+                    if (readerWorktime.HasRows)
+                    {
+                        while (readerWorktime.Read())
+                        {
+                            WorkTime newWorkTime = new WorkTime(
+                                (TimeSpan)readerWorktime["StartTime"],
+                                (TimeSpan)readerWorktime["EndTime"],
+                                (DateTime)readerWorktime["WorkDate"],
+                                (int)readerWorktime["JobId"]);
+
+                            job.WorkTimeList.Add(newWorkTime);
+                        }
+                    }
+                }
+
+                catch (SqlException e)
                 {
                     exceptionString = "Der er sket en fejl: " + e.ToString();
                     exception = false;
@@ -104,7 +128,7 @@ namespace DataAccessLayer
                 {
                     connection.Open();
 
-                    SqlCommand cmd = new SqlCommand("spSaveJob", connection);
+                    SqlCommand cmd = new SqlCommand("SaveJobTest", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@JobName", job.Name));
                     cmd.Parameters.Add(new SqlParameter("@CustomerPhone", job.Customer.Phone));
@@ -161,7 +185,7 @@ namespace DataAccessLayer
 
                     cmd2.Parameters.Add(new SqlParameter("@JobName", job.Name));
                     cmd2.Parameters.Add(new SqlParameter("@JobDescription", job.Description));
-                    cmd2.Parameters.Add(new SqlParameter("@JobDeadline", job.DeadlineString));
+                    cmd2.Parameters.Add(new SqlParameter("@JobDeadline", job.Deadline));
                     cmd2.Parameters.Add(new SqlParameter("@JobPriceType", job.PriceType));
                     cmd2.Parameters.Add(new SqlParameter("@JobPrice", job.Price));
                     cmd2.Parameters.Add(new SqlParameter("@JobID", job.JobID));

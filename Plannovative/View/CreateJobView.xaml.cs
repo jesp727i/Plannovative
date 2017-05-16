@@ -82,7 +82,6 @@ namespace UserInterfaceLayer.View
         {
             this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosingFalse);
             this.Close();
-            //BF.CloseButtonClicked();
         }
         public void RefreshCustomer()
         {
