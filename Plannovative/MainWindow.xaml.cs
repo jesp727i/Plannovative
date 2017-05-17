@@ -54,6 +54,8 @@ namespace UserInterfaceLayer
                 double daysToDeadLine = (job.Deadline - today).TotalDays;
                 newStackPanel.Width = 300;
                 newStackPanel.Height = 80;
+                
+                
                 if (daysToDeadLine < 14)
                 {
                     newStackPanel.Background = Brushes.OrangeRed;
@@ -76,7 +78,27 @@ namespace UserInterfaceLayer
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
                 Label idLabel = new Label();
+                DockPanel CustAndDead = new DockPanel();
+                CustAndDead.Width = 300;
+                                
+                // Lir til hvordan designet af den viste opgave er:
+
+
+
+                custLabel.HorizontalAlignment = HorizontalAlignment.Left;
+
+                nameLabel.FontFamily = new FontFamily("Impact");
+                nameLabel.HorizontalAlignment = HorizontalAlignment.Left;
+                nameLabel.FontSize = 20;
+
+                deadlineLabel.FontStyle = FontStyles.Italic;
+                deadlineLabel.FontFamily = new FontFamily("Delecious");
+                deadlineLabel.FontSize = 10;
+                deadlineLabel.HorizontalAlignment = HorizontalAlignment.Right;
+                       
+
                 nameLabel.Content = job.Name;
+                
                 custLabel.Content = job.Customer.Name;
 
                 if (job.Deadline == DateTime.MaxValue)
@@ -102,11 +124,12 @@ namespace UserInterfaceLayer
                 Button b = new Button();
                 b.Content = ">";
                 newStackPanel.Children.Add(nameLabel);
-                newStackPanel.Children.Add(custLabel);
-                newStackPanel.Children.Add(deadlineLabel);
+                CustAndDead.Children.Add(custLabel);
+                CustAndDead.Children.Add(deadlineLabel);
                 newStackPanel.Children.Add(idLabel);
                 newStackPanel.Children.Add(b);
                 newStackPanel.DataContext = job;
+                newStackPanel.Children.Add(CustAndDead);
             }
         }
         
