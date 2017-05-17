@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UserInterfaceLayer.View;
+using System.Windows.Media.Animation;
 
 namespace UserInterfaceLayer
 {
@@ -40,15 +41,18 @@ namespace UserInterfaceLayer
         }     
         private void LoadBoard()
         {
+            //"rengør" boardet så der er klar til at blive loadet opgaver ind på ny.
             splTodo.Children.Clear();
             splInProgress.Children.Clear();
             splDone.Children.Clear();
             BF.LoadJobToRepo();
             List<Job> jobListToShow = BF.GetJobList();
 
+            //Får alle jobs frem på bordet, og giver dem farve alt efter hvor lang
+            //tid der er til deadline
             foreach (var job in jobListToShow)
             {
-
+               
                 StackPanel newStackPanel = new StackPanel();
                 DateTime today = DateTime.Today;
                 double daysToDeadLine = (job.Deadline - today).TotalDays;
@@ -56,6 +60,7 @@ namespace UserInterfaceLayer
                 newStackPanel.Height = 100;
                 
                 
+
                 if (daysToDeadLine < 14)
                 {
                     newStackPanel.Background = Brushes.OrangeRed;
@@ -69,38 +74,80 @@ namespace UserInterfaceLayer
                     newStackPanel.Background = Brushes.GreenYellow;
                 }
 
-
+                //Bestemmer hvordan stacpanels skal se ud i de 3 kolonner
+                Border border = new Border();
+                border.CornerRadius = new CornerRadius(35);
+                newStackPanel.Children.Add(border);
                 newStackPanel.Margin = new Thickness(5);
                 newStackPanel.Orientation = Orientation.Vertical;
                 newStackPanel.MouseDown += MouseDownChild;
+                
 
+                //instantiering af labels og knap en en "opgave" har på boardet.
                 Label nameLabel = new Label();
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
                 Label idLabel = new Label();
                 DockPanel CustAndDead = new DockPanel();
-                CustAndDead.Width = 300;
-                                
-                // Lir til hvordan designet af den viste opgave er:
+                Button forwardButton = new Button();
+                Button backButton = new Button();
+                
+               
+                //kode der sørger for at der ikke er en frem-knap" hvis opgaven er færdig
+                if (job.Position == 1)
+                {
+                    splTodo.Children.Add(newStackPanel);
+                    newStackPanel.Children.Add(forwardButton);
+                    forwardButton.Margin = new Thickness(5, 5, 5, 5);
+                  
+                }
+                else if (job.Position == 2)
+                {
+                    DockPanel backAndForward = new DockPanel();
+                    backAndForward.Children.Add(backButton);
+                    backAndForward.Children.Add(forwardButton);
+                    splInProgress.Children.Add(newStackPanel);
+                    newStackPanel.Children.Add(backAndForward);
+                    
+                    forwardButton.Margin = new Thickness(5, 5, 5, 5);
+                    backButton.Margin = new Thickness(5, 5, 5, 5);
+                }
+                else if (job.Position == 3)
+                {
+                    splDone.Children.Add(newStackPanel);
+                    CustAndDead.Margin = new Thickness(0, 20, 0, 0);
+                }
 
 
-
+                //kundenavn på opgaven
                 custLabel.HorizontalAlignment = HorizontalAlignment.Left;
+                custLabel.Content = job.Customer.Name;
 
+                //Navnet på opgaven
                 nameLabel.FontFamily = new FontFamily("Impact");
                 nameLabel.HorizontalAlignment = HorizontalAlignment.Left;
                 nameLabel.FontSize = 20;
+                nameLabel.Content = job.Name;
 
+                //DeadLine på opgaven
                 deadlineLabel.FontStyle = FontStyles.Italic;
                 deadlineLabel.FontFamily = new FontFamily("Delecious");
                 deadlineLabel.FontSize = 10;
                 deadlineLabel.HorizontalAlignment = HorizontalAlignment.Right;
-                       
 
-                nameLabel.Content = job.Name;
-                
-                custLabel.Content = job.Customer.Name;
+                //"Tilbage-knappen"
+                backButton.Content = "<";
+                backButton.Click += BtnMoveJobBack_Click;
+                backButton.DataContext = job;
+                backButton.HorizontalAlignment = HorizontalAlignment.Left;
 
+                //"Frem-knappen"
+                forwardButton.Content = ">";
+                forwardButton.Click += BtnMoveJob_Click;
+                forwardButton.DataContext = job;
+                forwardButton.HorizontalAlignment = HorizontalAlignment.Right;
+
+                // Hvis der ingen deadline er på opgaven.
                 if (job.Deadline == DateTime.MaxValue)
                 {
                     deadlineLabel.Content = "Ingen deadline";
@@ -108,12 +155,9 @@ namespace UserInterfaceLayer
                 else
                 {
                     deadlineLabel.Content = job.Deadline;
-                }
-                
-                Button b = new Button();
-                b.Content = ">";
-                b.Click += BtnMoveJob_Click;
-                b.DataContext = job;
+                }     
+                        
+                //tilføjer alle labels til et jobs stackpanel.
                 newStackPanel.Children.Add(nameLabel);
                 CustAndDead.Children.Add(custLabel);
                 CustAndDead.Children.Add(deadlineLabel);
@@ -121,20 +165,6 @@ namespace UserInterfaceLayer
                 newStackPanel.DataContext = job;
                 newStackPanel.Children.Add(CustAndDead);
                 
-                if (job.Position == 1)
-                {
-                    splTodo.Children.Add(newStackPanel);
-                    newStackPanel.Children.Add(b);
-                }
-                else if (job.Position == 2)
-                {
-                    splInProgress.Children.Add(newStackPanel);
-                    newStackPanel.Children.Add(b);
-                }
-                else if (job.Position == 3)
-                {
-                    splDone.Children.Add(newStackPanel);
-                }
             }
         }
         
@@ -160,6 +190,17 @@ namespace UserInterfaceLayer
             BF.MoveJob(job);
             LoadBoard();
         }
+
+        private void BtnMoveJobBack_Click(object sender, RoutedEventArgs e)
+        {
+            var jobClicked = ((Button)sender).DataContext;
+            Job job = (Job)jobClicked;
+            job.Position = job.Position - 1;
+            BF.MoveJob(job);
+            LoadBoard();
+        }
+
+
     }
     
 }
