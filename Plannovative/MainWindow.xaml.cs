@@ -41,12 +41,14 @@ namespace UserInterfaceLayer
         private void LoadBoard()
         {
             splTodo.Children.Clear();
+            splInProgress.Children.Clear();
+            splDone.Children.Clear();
             BF.LoadJobToRepo();
             List<Job> jobListToShow = BF.GetJobList();
 
             foreach (var job in jobListToShow)
             {
-                
+
                 StackPanel newStackPanel = new StackPanel();
                 DateTime today = DateTime.Today;
                 double daysToDeadLine = (job.Deadline - today).TotalDays;
@@ -65,18 +67,18 @@ namespace UserInterfaceLayer
                     newStackPanel.Background = Brushes.GreenYellow;
                 }
 
-                
+
                 newStackPanel.Margin = new Thickness(5);
                 newStackPanel.Orientation = Orientation.Vertical;
                 newStackPanel.MouseDown += MouseDownChild;
-                
+
                 Label nameLabel = new Label();
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
                 Label idLabel = new Label();
                 nameLabel.Content = job.Name;
                 custLabel.Content = job.Customer.Name;
-                
+
                 if (job.Deadline == DateTime.MaxValue)
                 {
                     deadlineLabel.Content = "Ingen deadline";
@@ -85,12 +87,25 @@ namespace UserInterfaceLayer
                 {
                     deadlineLabel.Content = job.Deadline;
                 }
-                
-                splTodo.Children.Add(newStackPanel);
+                if (job.Position == 1)
+                {
+                    splTodo.Children.Add(newStackPanel);
+                }
+                else if (job.Position == 2)
+                {
+                    splInProgress.Children.Add(newStackPanel);
+                }
+                else if (job.Position == 3)
+                {
+                    splDone.Children.Add(newStackPanel);
+                }
+                Button b = new Button();
+                b.Content = ">";
                 newStackPanel.Children.Add(nameLabel);
                 newStackPanel.Children.Add(custLabel);
                 newStackPanel.Children.Add(deadlineLabel);
                 newStackPanel.Children.Add(idLabel);
+                newStackPanel.Children.Add(b);
                 newStackPanel.DataContext = job;
             }
         }
