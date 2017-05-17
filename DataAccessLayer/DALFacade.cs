@@ -46,6 +46,10 @@ namespace DataAccessLayer
         {
             jobConnection.InsertTimeAndDate(workTime);
         }
+        public void UpdatePotsionOnJobInDB(Job job)
+        {
+            jobConnection.UpdatePotsionOnJob(job);
+        }
 
     }
 }

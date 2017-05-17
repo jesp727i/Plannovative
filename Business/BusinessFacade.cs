@@ -132,5 +132,10 @@ namespace Business
             CalculateTimeUsedOnAJob(job);
             
         }
+        public void MoveJob(Job job)
+        {
+            DALF.UpdatePotsionOnJobInDB(job);
+
+        }
     }
 }
