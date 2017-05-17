@@ -53,7 +53,7 @@ namespace UserInterfaceLayer
                 DateTime today = DateTime.Today;
                 double daysToDeadLine = (job.Deadline - today).TotalDays;
                 newStackPanel.Width = 300;
-                newStackPanel.Height = 80;
+                newStackPanel.Height = 100;
                 
                 
                 if (daysToDeadLine < 14)
@@ -109,27 +109,32 @@ namespace UserInterfaceLayer
                 {
                     deadlineLabel.Content = job.Deadline;
                 }
+                
+                Button b = new Button();
+                b.Content = ">";
+                b.Click += BtnMoveJob_Click;
+                b.DataContext = job;
+                newStackPanel.Children.Add(nameLabel);
+                CustAndDead.Children.Add(custLabel);
+                CustAndDead.Children.Add(deadlineLabel);
+                newStackPanel.Children.Add(idLabel);
+                newStackPanel.DataContext = job;
+                newStackPanel.Children.Add(CustAndDead);
+                
                 if (job.Position == 1)
                 {
                     splTodo.Children.Add(newStackPanel);
+                    newStackPanel.Children.Add(b);
                 }
                 else if (job.Position == 2)
                 {
                     splInProgress.Children.Add(newStackPanel);
+                    newStackPanel.Children.Add(b);
                 }
                 else if (job.Position == 3)
                 {
                     splDone.Children.Add(newStackPanel);
                 }
-                Button b = new Button();
-                b.Content = ">";
-                newStackPanel.Children.Add(nameLabel);
-                CustAndDead.Children.Add(custLabel);
-                CustAndDead.Children.Add(deadlineLabel);
-                newStackPanel.Children.Add(idLabel);
-                newStackPanel.Children.Add(b);
-                newStackPanel.DataContext = job;
-                newStackPanel.Children.Add(CustAndDead);
             }
         }
         
@@ -146,6 +151,14 @@ namespace UserInterfaceLayer
             SJV.ShowDialog();
             LoadBoard();
 
+        }
+        private void BtnMoveJob_Click(object sender, RoutedEventArgs e)
+        {
+            var jobClicked = ((Button)sender).DataContext;
+            Job job = (Job)jobClicked;
+            job.Position = job.Position + 1;
+            BF.MoveJob(job);
+            LoadBoard();
         }
     }
     
