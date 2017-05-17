@@ -41,17 +41,19 @@ namespace UserInterfaceLayer
         private void LoadBoard()
         {
             splTodo.Children.Clear();
+            splInProgress.Children.Clear();
+            splDone.Children.Clear();
             BF.LoadJobToRepo();
             List<Job> jobListToShow = BF.GetJobList();
 
             foreach (var job in jobListToShow)
             {
-                
+
                 StackPanel newStackPanel = new StackPanel();
                 DateTime today = DateTime.Today;
                 double daysToDeadLine = (job.Deadline - today).TotalDays;
                 newStackPanel.Width = 300;
-                newStackPanel.Height = 80;
+                newStackPanel.Height = 100;
                 
                 
                 if (daysToDeadLine < 14)
@@ -67,11 +69,11 @@ namespace UserInterfaceLayer
                     newStackPanel.Background = Brushes.GreenYellow;
                 }
 
-                
+
                 newStackPanel.Margin = new Thickness(5);
                 newStackPanel.Orientation = Orientation.Vertical;
                 newStackPanel.MouseDown += MouseDownChild;
-                
+
                 Label nameLabel = new Label();
                 Label custLabel = new Label();
                 Label deadlineLabel = new Label();
@@ -98,7 +100,7 @@ namespace UserInterfaceLayer
                 nameLabel.Content = job.Name;
                 
                 custLabel.Content = job.Customer.Name;
-                
+
                 if (job.Deadline == DateTime.MaxValue)
                 {
                     deadlineLabel.Content = "Ingen deadline";
@@ -108,13 +110,31 @@ namespace UserInterfaceLayer
                     deadlineLabel.Content = job.Deadline;
                 }
                 
-                splTodo.Children.Add(newStackPanel);
+                Button b = new Button();
+                b.Content = ">";
+                b.Click += BtnMoveJob_Click;
+                b.DataContext = job;
                 newStackPanel.Children.Add(nameLabel);
                 CustAndDead.Children.Add(custLabel);
                 CustAndDead.Children.Add(deadlineLabel);
                 newStackPanel.Children.Add(idLabel);
                 newStackPanel.DataContext = job;
                 newStackPanel.Children.Add(CustAndDead);
+                
+                if (job.Position == 1)
+                {
+                    splTodo.Children.Add(newStackPanel);
+                    newStackPanel.Children.Add(b);
+                }
+                else if (job.Position == 2)
+                {
+                    splInProgress.Children.Add(newStackPanel);
+                    newStackPanel.Children.Add(b);
+                }
+                else if (job.Position == 3)
+                {
+                    splDone.Children.Add(newStackPanel);
+                }
             }
         }
         
@@ -131,6 +151,14 @@ namespace UserInterfaceLayer
             SJV.ShowDialog();
             LoadBoard();
 
+        }
+        private void BtnMoveJob_Click(object sender, RoutedEventArgs e)
+        {
+            var jobClicked = ((Button)sender).DataContext;
+            Job job = (Job)jobClicked;
+            job.Position = job.Position + 1;
+            BF.MoveJob(job);
+            LoadBoard();
         }
     }
     
