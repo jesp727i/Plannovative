@@ -208,6 +208,29 @@ namespace DataAccessLayer
             }
 
         }
+        public void UpdatePotsionOnJob(Job job)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmd3 = new SqlCommand("spMoveJob", connection);
+                    cmd3.CommandType = CommandType.StoredProcedure;
+
+                    cmd3.Parameters.Add(new SqlParameter("@Positsion", job.Position));
+                    cmd3.Parameters.Add(new SqlParameter("@jobID", job.JobID));
+
+                    cmd3.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    exceptionString = "Der er sket en fejl: " + e.ToString();
+                    exception = false;
+                    SuccesMethod(exception);
+                }
+            }
+        }
      
     }
 }
