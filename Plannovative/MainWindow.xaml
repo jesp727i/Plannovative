@@ -18,19 +18,19 @@
             <Button x:Name="BtnCreateTask" Content="Opret opgave" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnCreateJob_Click" />
             <Button x:Name="BtnShowCustomers" Content="Hent opgaver" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnShowCustomers_Click"/>
         </StackPanel>
-        <Label Name="todoLabel" Height="40" Grid.Column="0" Panel.ZIndex="1" Content="Kommende" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="0,0,0,560"/>
+        <Label Name="todoLabel" Height="40" Grid.Column="0" Panel.ZIndex="1" Content="Kommende" HorizontalAlignment="Center" FontFamily="Italic"  FontWeight="Bold" FontSize="18" Margin="0,0,0,560"/>
         <ScrollViewer Grid.Column="0" Background="Gray" VerticalScrollBarVisibility="Hidden" Width="340" Margin="5,40,5,5" HorizontalAlignment="Center">
             <StackPanel Name="splTodo" Width="330" Background="Gray" Margin="5,40,5,5" HorizontalAlignment="Center">
                 
             </StackPanel>
         </ScrollViewer>
-        <Label Name="inProgressLabel" Grid.Column="1" Panel.ZIndex="1" Content="Igangværende" HorizontalAlignment="Center" FontWeight="Bold" Height="40" FontSize="18" Margin="0,0,0,560"/>
+        <Label Name="inProgressLabel" Grid.Column="1" Panel.ZIndex="1" FontFamily="Italic" Content="Igangværende" HorizontalAlignment="Center" FontWeight="Bold" Height="40" FontSize="18" Margin="0,0,0,560"/>
         <ScrollViewer Grid.Column="1" Background="Gray" VerticalScrollBarVisibility="Auto" Width="340" Margin="5,40,5,5" HorizontalAlignment="Center">
             <StackPanel Name="splInProgress" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
                 
             </StackPanel>
         </ScrollViewer>
-        <Label Name="doneLabel" Grid.Column="2" Panel.ZIndex="1" Content="Færdige" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Height="40" Margin="0,0,0,560"/>
+        <Label Name="doneLabel" Grid.Column="2" Panel.ZIndex="1" FontFamily="Italic" Content="Færdige" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Height="40" Margin="0,0,0,560"/>
         <ScrollViewer Grid.Column="2" Background="Gray" VerticalScrollBarVisibility="Auto" Width="340" Margin="5,40,5,5" HorizontalAlignment="Center">
             <StackPanel Name="splDone" Width="330" Background="Gray" Margin="5,5,5,5" HorizontalAlignment="Center">
                 
