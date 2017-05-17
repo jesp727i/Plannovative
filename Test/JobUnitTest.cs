@@ -92,21 +92,21 @@ namespace Test
            
         }
 
-        [TestMethod]
-        public void CalculateTimeUsedTest()
-        {
-            List<WorkTime> TimeList = new List<WorkTime>();
-            WorkTime WT01 = new WorkTime(new TimeSpan( 10,30,00), new TimeSpan (12,30,00), new DateTime());
-            WorkTime WT02 = new WorkTime(new TimeSpan(11, 30, 00), new TimeSpan(17, 30, 00), new DateTime());
-            WorkTime WT03 = new WorkTime(new TimeSpan(07, 00, 00), new TimeSpan(12, 30, 00), new DateTime());
+        //[TestMethod]
+        //public void CalculateTimeUsedTest()
+        //{
+        //    List<WorkTime> TimeList = new List<WorkTime>();
+        //    WorkTime WT01 = new WorkTime(new TimeSpan( 10,30,00), new TimeSpan (12,30,00), new DateTime());
+        //    WorkTime WT02 = new WorkTime(new TimeSpan(11, 30, 00), new TimeSpan(17, 30, 00), new DateTime());
+        //    WorkTime WT03 = new WorkTime(new TimeSpan(07, 00, 00), new TimeSpan(12, 30, 00), new DateTime());
 
-            TimeList.Add(WT01);
-            TimeList.Add(WT02);
-            TimeList.Add(WT03);
+        //    TimeList.Add(WT01);
+        //    TimeList.Add(WT02);
+        //    TimeList.Add(WT03);
 
-            JobLogic JL = new JobLogic();
-            Assert.AreEqual(JL.CalculateTimeUsed(TimeList), 13.5);
+        //    JobLogic JL = new JobLogic();
+        //    Assert.AreEqual(JL.CalculateTimeUsed(TimeList), 13.5);
         
-        }
+        //}
     }
 }
