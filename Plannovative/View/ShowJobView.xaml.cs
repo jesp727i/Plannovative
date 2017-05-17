@@ -47,6 +47,27 @@ namespace UserInterfaceLayer.View
             }
             
             DescriptionLabel.Text = job.Description;
+            int i = 0;
+            int t = 2;
+            string k = "0";
+            while (i < 24)
+            {
+                if (i == 10)
+                {
+                    k = "";
+                }
+                if (t % 2 == 0)
+                {
+                    comboBoxStartTime.Items.Add(k + i + ":00");
+                }
+                else
+                {
+                    comboBoxStartTime.Items.Add(k + i + ":30");
+                    i++;
+                }
+                t++;
+            }
+            comboBoxStartTime.Items.Add("24:00");
         }
 
         private void BtnAddTime_Click(object sender, RoutedEventArgs e)
