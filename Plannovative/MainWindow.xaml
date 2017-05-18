@@ -16,7 +16,7 @@
         <StackPanel Grid.Column="0" Orientation="Horizontal" Width="340" Margin="0,0,1,649">
             <TextBox x:Name="TxtBoxSearch" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Søg" VerticalAlignment="Top" Width="120"/>
             <Button x:Name="BtnCreateTask" Content="Opret opgave" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnCreateJob_Click" />
-            <Button x:Name="BtnShowCustomers" Content="Hent opgaver" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnShowCustomers_Click"/>
+            <Button x:Name="BtnShowCustomers" Content="Kunder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="BtnShowCustomers_Click"/>
         </StackPanel>
         <Label Name="todoLabel" Height="40" Grid.Column="0" Panel.ZIndex="1" Content="Kommende" HorizontalAlignment="Center" FontFamily="Italic"  FontWeight="Bold" FontSize="18" Margin="0,0,0,560"/>
         <ScrollViewer Grid.Column="0" Background="Gray" VerticalScrollBarVisibility="Visible" Width="340" Margin="0,80,0,5" HorizontalAlignment="Center">
