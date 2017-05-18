@@ -28,48 +28,8 @@
         <Label x:Name="PriceLabel"  Grid.Column="1" HorizontalAlignment="Left" Margin="88,107,0,0" VerticalAlignment="Top"/>
         <Label x:Name="TimeUsedtLabel"  Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,133,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DescriptionLabel" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="78" Margin="49.2,381,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
-        <ComboBox x:Name="comboBoxStartTime" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,218,0,0" VerticalAlignment="Top" Width="56" Height="22">
-            <ComboBoxItem Content="08:00"/>
-            <ComboBoxItem Content="08:30"/>
-            <ComboBoxItem Content="09:00"/>
-            <ComboBoxItem Content="09:30"/>
-            <ComboBoxItem Content="10:00"/>
-            <ComboBoxItem Content="10:30"/>
-            <ComboBoxItem Content="11:00"/>
-            <ComboBoxItem Content="11:30"/>
-            <ComboBoxItem Content="12:00"/>
-            <ComboBoxItem Content="12:30"/>
-            <ComboBoxItem Content="13:00"/>
-            <ComboBoxItem Content="13:30"/>
-            <ComboBoxItem Content="14:00"/>
-            <ComboBoxItem Content="14:30"/>
-            <ComboBoxItem Content="15:00"/>
-            <ComboBoxItem Content="15:30"/>
-            <ComboBoxItem Content="16:00"/>
-            <ComboBoxItem Content="16:30"/>
-            <ComboBoxItem Content="17:00"/>
-        </ComboBox>
-        <ComboBox x:Name="comboBoxEndTime" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,276,0,0" VerticalAlignment="Top" Width="56" Height="22">
-            <ComboBoxItem Content="08:00"/>
-            <ComboBoxItem Content="08:30"/>
-            <ComboBoxItem Content="09:00"/>
-            <ComboBoxItem Content="09:30"/>
-            <ComboBoxItem Content="10:00"/>
-            <ComboBoxItem Content="10:30"/>
-            <ComboBoxItem Content="11:00"/>
-            <ComboBoxItem Content="11:30"/>
-            <ComboBoxItem Content="12:00"/>
-            <ComboBoxItem Content="12:30"/>
-            <ComboBoxItem Content="13:00"/>
-            <ComboBoxItem Content="13:30"/>
-            <ComboBoxItem Content="14:00"/>
-            <ComboBoxItem Content="14:30"/>
-            <ComboBoxItem Content="15:00"/>
-            <ComboBoxItem Content="15:30"/>
-            <ComboBoxItem Content="16:00"/>
-            <ComboBoxItem Content="16:30"/>
-            <ComboBoxItem Content="17:00"/>
-        </ComboBox>
+        <ComboBox x:Name="comboBoxStartTime" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,218,0,0" VerticalAlignment="Top" Width="56" Height="22" DropDownClosed="comboBoxStartTime_DropDownClosed"></ComboBox>
+        <ComboBox x:Name="comboBoxEndTime" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,276,0,0" VerticalAlignment="Top" Width="56" Height="22"></ComboBox>
         <Calendar x:Name="CalenderDate" Grid.Column="1" HorizontalAlignment="Left" Margin="49.2,186,0,0" VerticalAlignment="Top" Height="171" Width="191"/>
         <Button x:Name="BtnAddTime" Content="Tilføj" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,319,0,0" VerticalAlignment="Top" Width="56" Click="BtnAddTime_Click"/>
         <Button x:Name="BtnUpdateJob" Content="Rediger opgave" Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,486,0,0" VerticalAlignment="Top" Width="90" Click="BtnUpdateJob_Click"/>
