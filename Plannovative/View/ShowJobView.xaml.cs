@@ -80,7 +80,7 @@ namespace UserInterfaceLayer.View
             BF.SaveTimeAndDate(TimeSpan.Parse(comboBoxStartTime.Text), TimeSpan.Parse(comboBoxEndTime.Text),
                 CalenderDate.SelectedDate.Value, job);
             MessageBox.Show("Nye arbejdstider på opgaven tilføjet!\n" + "Dato: " + CalenderDate.SelectedDate.Value.Day +"/" + CalenderDate.SelectedDate.Value.Month + "-" + CalenderDate.SelectedDate.Value.Year + "\n Fra " + comboBoxStartTime.Text + " Til " + comboBoxEndTime.Text);
-            TimeUsedtLabel.Content = job.TimeUsed;
+            TimeUsedtLabel.Content = job.TimeUsed + " Timer";
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -129,7 +129,6 @@ namespace UserInterfaceLayer.View
                 }
                 t++;
             }
-            comboBoxEndTime.Items.Add("00:00");
         }
     }
 }
