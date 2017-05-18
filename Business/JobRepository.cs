@@ -85,6 +85,9 @@ namespace Business
             job.Price = price;
             return job;
         }
-
+        internal void SortJobsByDeadline()
+        {
+            jobList = jobList.OrderBy(x => x.Deadline).ToList();
+        }
     }
 }

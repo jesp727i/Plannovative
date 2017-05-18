@@ -36,7 +36,11 @@ namespace UserInterfaceLayer.View
             comboBoxEndTime.IsEnabled = false;
             JobLabel.Content = job.Name;
             CustomerLabel.Content = job.Customer.Name;
-            DeadlineLabel.Content = job.Deadline.ToString();
+            DeadlineLabel.Content = job.Deadline.ToString("dd-MM-yyyy");
+            if (job.Deadline.ToString() == DateTime.MaxValue.ToString())
+            {
+                DeadlineLabel.Content = "Ingen deadline";
+            }
             TimeUsedtLabel.Content = job.TimeUsed + " Timer";
             if (job.PriceType)
             {
