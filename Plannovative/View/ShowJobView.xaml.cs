@@ -33,6 +33,7 @@ namespace UserInterfaceLayer.View
         }
         private void setJobToView()
         {
+            comboBoxEndTime.IsEnabled = false;
             JobLabel.Content = job.Name;
             CustomerLabel.Content = job.Customer.Name;
             DeadlineLabel.Content = job.Deadline.ToString();
@@ -67,7 +68,7 @@ namespace UserInterfaceLayer.View
                 }
                 t++;
             }
-            comboBoxStartTime.Items.Add("24:00");
+
         }
 
         private void BtnAddTime_Click(object sender, RoutedEventArgs e)
@@ -92,6 +93,43 @@ namespace UserInterfaceLayer.View
             CreateJobView CJW = new CreateJobView(job);
             CJW.ShowDialog();
             setJobToView();
+        }
+
+        private void comboBoxStartTime_DropDownClosed(object sender, EventArgs e)
+        {
+            comboBoxEndTime.Items.Clear();
+            comboBoxEndTime.IsEnabled = true;
+            int i = 0;
+            int t = 2;
+            string k = "0";
+            string result;
+            bool startResult = false;
+            while (i < 24)
+            {
+
+                if (i == 10)
+                {
+                    k = "";
+                }
+                if (t % 2 == 0)
+                {
+                    result = k + i + ":00";
+                }
+                else
+                {
+                    result = k + i + ":30";
+                    i++;
+                }
+                if (startResult)
+                {
+                    comboBoxEndTime.Items.Add(result);
+                } else if (comboBoxStartTime.Text == result)
+                {
+                    startResult = true;
+                }
+                t++;
+            }
+            comboBoxEndTime.Items.Add("00:00");
         }
     }
 }
