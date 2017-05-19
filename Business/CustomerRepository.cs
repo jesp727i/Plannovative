@@ -64,6 +64,11 @@ namespace Business
             
             return customerList.Find(r => r.Name == customerName);
         }
+
+        public void OrderCustomerByName()
+        {
+            customerList = customerList.OrderBy(x => x.Name).ToList();
+        }
     }
 }
 
