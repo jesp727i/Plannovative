@@ -52,6 +52,7 @@ namespace UserInterfaceLayer.View
             }
             
             DescriptionLabel.Text = job.Description;
+            // kodestykke der fylder comboboxstart, så man kan vælge tidspunkter, når man skal tilføje tid.
             int i = 0;
             int t = 2;
             string k = "0";

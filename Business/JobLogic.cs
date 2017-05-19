@@ -12,11 +12,11 @@ namespace Business
         static public double CalculateTimeUsed(List<WorkTime> ListWorkTime)
         {
 
-            double returnResult = 0;
+            double result = 0;
 
             foreach (WorkTime WT in ListWorkTime)
             {
-                double result;
+                
 
                 TimeSpan WTresult = WT.EndTime- WT.StartTime;
                 result = WTresult.Hours;
@@ -24,10 +24,10 @@ namespace Business
                 {
                     result = result + 0.50;
                 }
-                returnResult = returnResult + result;
+                
             }   
 
-            return returnResult;
+            return result;
         }
     }
 }

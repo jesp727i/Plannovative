@@ -61,11 +61,11 @@ namespace UserInterfaceLayer
                 
                 
 
-                if (daysToDeadLine < 14)
+                if (daysToDeadLine < 3)
                 {
                     newStackPanel.Background = Brushes.OrangeRed;
                 }
-                else if (daysToDeadLine < 28)
+                else if (daysToDeadLine < 7)
                 {
                     newStackPanel.Background = Brushes.Gold;
                 }
@@ -115,7 +115,9 @@ namespace UserInterfaceLayer
                 else if (job.Position == 3)
                 {
                     splDone.Children.Add(newStackPanel);
-                    CustAndDead.Margin = new Thickness(0, 20, 0, 0);
+                    newStackPanel.Children.Add(backButton);
+                    CustAndDead.Margin = new Thickness(0, 0, 0, 0);
+                    backButton.Margin = new Thickness(5, 5, 5, 5); 
                 }
 
 

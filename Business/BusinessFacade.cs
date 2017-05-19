@@ -118,6 +118,7 @@ namespace Business
         {
             CustomerRepository.Instance.ClearRepo();
             customerFac.GetCustomersFromDAL();
+            CustomerRepository.Instance.OrderCustomerByName();
         }
         public Job GetJobByName(string jobName)
         {
