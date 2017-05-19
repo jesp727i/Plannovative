@@ -89,7 +89,8 @@ namespace Business
             JobRepository.Instance.ClearRepo();
             jobFac.GetJobsFromDAL();
             CalculateTimeUsedOnJobs();
-            
+            JobRepository.Instance.SortJobsByDeadline();
+
         }
         internal void CalculateTimeUsedOnJobs()
         {
@@ -117,6 +118,7 @@ namespace Business
         {
             CustomerRepository.Instance.ClearRepo();
             customerFac.GetCustomersFromDAL();
+            CustomerRepository.Instance.OrderCustomerByName();
         }
         public Job GetJobByName(string jobName)
         {
