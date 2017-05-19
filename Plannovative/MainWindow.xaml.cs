@@ -148,13 +148,13 @@ namespace UserInterfaceLayer
                 forwardButton.HorizontalAlignment = HorizontalAlignment.Right;
 
                 // Hvis der ingen deadline er på opgaven.
-                if (job.Deadline == DateTime.MaxValue)
+                if (job.Deadline.ToString() == DateTime.MaxValue.ToString())
                 {
                     deadlineLabel.Content = "Ingen deadline";
                 }
                 else
                 {
-                    deadlineLabel.Content = job.Deadline;
+                    deadlineLabel.Content = job.Deadline.ToString("dd-MM-yyyy");
                 }     
                         
                 //tilføjer alle labels til et jobs stackpanel.
