@@ -84,6 +84,13 @@ namespace Business
 
             return currentList;
         }
+
+        public List<Customer> GetCustomerList()
+        {
+            List<Customer> currentlist = CustomerRepository.Instance.GetList();
+
+            return currentlist;
+        }
         public void LoadJobToRepo()
         {
             JobRepository.Instance.ClearRepo();
