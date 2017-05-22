@@ -33,7 +33,7 @@
         <Calendar x:Name="CalenderDate" Grid.Column="1" HorizontalAlignment="Left" Margin="49.2,186,0,0" VerticalAlignment="Top" Height="171" Width="191"/>
         <Button x:Name="BtnAddTime" Content="Tilføj" Grid.Column="1" HorizontalAlignment="Left" Margin="240.2,319,0,0" VerticalAlignment="Top" Width="56" Click="BtnAddTime_Click"/>
         <Button x:Name="BtnUpdateJob" Content="Rediger opgave" Grid.Column="1" HorizontalAlignment="Left" Margin="88.2,486,0,0" VerticalAlignment="Top" Width="90" Click="BtnUpdateJob_Click"/>
-        <Button x:Name="BtnInvoice" Content="Se faktura" HorizontalAlignment="Left" Margin="233.2,486,0,0" VerticalAlignment="Top" Width="63" Grid.Column="1"/>
+        <Button x:Name="BtnInvoice" Content="Se faktura" HorizontalAlignment="Left" Margin="233.2,486,0,0" VerticalAlignment="Top" Width="63" Grid.Column="1" Click="BtnInvoice_Click"/>
         <Button x:Name="BtnClose" Content="Luk" HorizontalAlignment="Left" Margin="38,486,0,0" VerticalAlignment="Top" Width="55" Grid.ColumnSpan="2" Click="BtnClose_Click"/>
     </Grid>
 </Window>
