@@ -1,0 +1,34 @@
+﻿<Window x:Class="Plannovative.ShowInvoice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Plannovative"
+        mc:Ignorable="d"
+        Title="ShowInvoice" Height="600" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="278*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="infoStack" Background="BlueViolet" Margin="10,99.6,0,427.4" HorizontalAlignment="Left" Width="774" Grid.Row="1">
+            <DockPanel x:Name ="infoDock" Height="32" Margin="10,0,9.6,0" >
+                <Label x:Name="infoDate" Content="Dato" Height="42" Margin="0,0,25,0" HorizontalAlignment="Left" Width="50"/>
+                <Label x:Name="infoStart" Content="Start tidspunkt" Height="42" Margin="0,0,25,0" HorizontalAlignment="Center" Width="100"/>
+                <Label x:Name="infoEnd" Content="Slut tidspunkt" Height="42" Margin="25,0,0,0" HorizontalAlignment="Left" Width="96"/>
+                <Label x:Name="infoCalculatedTimeADay" Content="Samlet tid" Height="42" Margin="0,0,0,0" HorizontalAlignment="Right" Width="96"/>
+            </DockPanel>
+
+        </StackPanel>
+        <StackPanel Name ="spInvoice" Height="210" Margin="10,128.6,9.6,0" VerticalAlignment="Top" Background="Gray" Grid.Row="1"/>
+        <StackPanel x:Name ="splInvoiceBottom" Margin="10,338.6,9.6,37.4" RenderTransformOrigin="0.436,3.696" Grid.Row="1" Background="LimeGreen"/>
+
+        <Button x:Name="Close_Button" Content="Luk" HorizontalAlignment="Left" Margin="10,524.6,0,0" VerticalAlignment="Top" Width="75" Click="Close_Button_Click" Grid.Row="1" Height="19"/>
+        <Button x:Name="Print_Button" Content="Udskriv" HorizontalAlignment="Center" Margin="333,524.6,385.6,0" VerticalAlignment="Top" Width="75" Click="Print_Button_Click" Grid.Row="1" Height="19"/>
+        <Button x:Name="SaveInovice_Button" Content="Gem" HorizontalAlignment="Right" Margin="0,524.6,9.6,0" VerticalAlignment="Top" Width="75" Click="SaveInovice_Button_Click" Grid.Row="1" Height="19"/>
+        <StackPanel Name ="HeaderInovoice"  Height="100" Margin="489,14,0,0" VerticalAlignment="Top" Width="295" Grid.RowSpan="2" Background="Coral" Orientation="Vertical" HorizontalAlignment="Left"/>
+        <StackPanel x:Name ="customerHeader" HorizontalAlignment="Left" Height="100" Margin="10,14,0,0" VerticalAlignment="Top" Width="479" Background="Turquoise" Grid.RowSpan="2"/>
+
+    </Grid>
+</Window>
