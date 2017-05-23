@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="ExistingJobView" Height="300" Width="300">
     <Grid>
-        
+        <ScrollViewer Grid.Column="0" Background="Gray" VerticalScrollBarVisibility="Visible" Width="274" Margin="10,10,9.6,10.4" HorizontalAlignment="Center">
+            <StackPanel x:Name="JobsStackPanel"   HorizontalAlignment="Left" VerticalAlignment="Top" Width="264"/>
+        </ScrollViewer>
+
     </Grid>
 </Window>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DomainLayer;
+using Business;
 
 namespace UserInterfaceLayer.View
 {
@@ -28,7 +29,42 @@ namespace UserInterfaceLayer.View
 
         public ExistingJobView(Customer cust)
         {
-            
+           InitializeComponent();
+           List<Job> Joblist =  BusinessFacade.Instance.GetJobsForCustomer(cust);
+           LoadJobListBoard(Joblist);
         }
+
+        private void LoadJobListBoard(List<Job> joblist)
+        {
+
+            foreach (Job job in joblist)
+            {
+                DockPanel DockPanelForJobs = new DockPanel();
+
+                Label JobNameLabel = new Label();
+                JobNameLabel.Content = job.Name;
+
+
+
+                JobsStackPanel.Children.Add(DockPanelForJobs);
+                
+                DockPanelForJobs.Children.Add(JobNameLabel);
+                DockPanelForJobs.Background = Brushes.WhiteSmoke;
+                DockPanelForJobs.Margin = new Thickness(5,3,5,3);
+                DockPanelForJobs.Width = 254;
+                DockPanelForJobs.DataContext = job;
+                DockPanelForJobs.MouseLeftButtonDown += ExistingJob_click;
+
+            }
+        }
+        public void ExistingJob_click(object sender, RoutedEventArgs e)
+        {
+            var JobsClicked = ((DockPanel)sender).DataContext;
+            Job job = (Job)JobsClicked;
+            ShowJobView EJV = new ShowJobView(job);
+            EJV.ShowDialog();
+        }
+
+
     }
 }

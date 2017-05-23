@@ -146,5 +146,9 @@ namespace Business
             DALF.UpdatePotsionOnJobInDB(job);
 
         }
+        public List<Job> GetJobsForCustomer(Customer cust)
+        {
+            return JobRepository.Instance.GetJobForCustomer(cust);
+        }
     }
 }
