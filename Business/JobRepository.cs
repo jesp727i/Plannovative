@@ -89,5 +89,10 @@ namespace Business
         {
             jobList = jobList.OrderBy(x => x.Deadline).ToList();
         }
+        public List<Job> GetJobForCustomer(Customer cust)
+        {
+            List<Job> CustomerJobList = jobList.FindAll(x => x.Customer == cust).ToList().OrderBy(x=> x.Deadline).ToList();
+            return CustomerJobList;
+        }
     }
 }
