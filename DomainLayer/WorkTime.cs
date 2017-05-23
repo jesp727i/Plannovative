@@ -11,6 +11,7 @@ namespace DomainLayer
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public DateTime WorkDate { get; set; }
+    //    public int TimeInInt { get; private set; }
         public int JobId { get; set; }
         public int Id { get; set; }
 
@@ -29,6 +30,21 @@ namespace DomainLayer
             this.EndTime = endTime;
             this.WorkDate = workDate;
             this.JobId = jobId;
+        }
+
+        public double CalculatedTimeStartEnd()
+        {
+            double result = 0;         
+            TimeSpan WTresult = EndTime - StartTime;
+            result = WTresult.Hours;
+                if (WTresult.Minutes == 30)
+                {
+                    result = result + 0.50;
+                }   
+
+            return result;
+
+
         }
 
 

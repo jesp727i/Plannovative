@@ -166,13 +166,19 @@ namespace UserInterfaceLayer
                 newStackPanel.Children.Add(idLabel);
                 newStackPanel.DataContext = job;
                 newStackPanel.Children.Add(CustAndDead);
-                
+
+               
+
+
+
             }
         }
         
         private void BtnShowCustomers_Click(object sender, RoutedEventArgs e)
         {
-            
+            CustomersView CV = new CustomersView();
+            CV.ShowDialog();
+            LoadBoard();
         }
 
         private void MouseDownChild(object sender, MouseButtonEventArgs e)
