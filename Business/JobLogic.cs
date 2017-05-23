@@ -19,7 +19,7 @@ namespace Business
                 
 
                 TimeSpan WTresult = WT.EndTime- WT.StartTime;
-                result = WTresult.Hours;
+                result = result + WTresult.Hours;
                 if (WTresult.Minutes == 30)
                 {
                     result = result + 0.50;

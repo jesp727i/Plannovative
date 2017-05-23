@@ -5,30 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Plannovative"
         mc:Ignorable="d"
-        Title="ShowInvoice" Height="600" Width="800" ResizeMode="NoResize">
+        Title="ShowInvoice" Height="700" Width="800" ResizeMode="NoResize" Background="WhiteSmoke">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="278*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="infoStack" Background="BlueViolet" Margin="10,99.6,0,427.4" HorizontalAlignment="Left" Width="774" Grid.Row="1">
-            <DockPanel x:Name ="infoDock" Height="32" Margin="10,0,9.6,0" >
-                <Label x:Name="infoDate" Content="Dato" Height="42" Margin="0,0,25,0" HorizontalAlignment="Left" Width="50"/>
-                <Label x:Name="infoStart" Content="Start tidspunkt" Height="42" Margin="0,0,25,0" HorizontalAlignment="Center" Width="100"/>
-                <Label x:Name="infoEnd" Content="Slut tidspunkt" Height="42" Margin="25,0,0,0" HorizontalAlignment="Left" Width="96"/>
-                <Label x:Name="infoCalculatedTimeADay" Content="Samlet tid" Height="42" Margin="0,0,0,0" HorizontalAlignment="Right" Width="96"/>
+        <StackPanel x:Name="infoStack" Margin="10,167.2,0,422.4" HorizontalAlignment="Left" Width="774" Grid.Row="1">
+            <DockPanel x:Name ="infoDock" Height="32" Margin="0,0,9.4,0" Background="Gray">
+                <Label x:Name="infoDate" Content="Dato" Height="42" Margin="0,0,25,0" HorizontalAlignment="Left" Width="50" FontWeight="Bold"/>
+                <Label x:Name="infoCalculatedTimeADay" Content="Antal" Height="42" Margin="0,0,0,0" HorizontalAlignment="Left" Width="96" FontWeight="Bold"/>
+                <Label x:Name="units" Content="Enhed" Height="42" Margin="0,0,0,0" HorizontalAlignment="Left" Width="96" FontWeight="Bold"/>
+                <Label x:Name="price" Content="Pris" Height="42" Margin="0,0,0,0" HorizontalAlignment="Left" Width="96" FontWeight="Bold"/>
+                <Label x:Name="totalPrice" Content="Beløb" Height="42" Margin="0,0,0,0" HorizontalAlignment="Right" Width="96" FontWeight="Bold"/>
+
             </DockPanel>
 
         </StackPanel>
-        <StackPanel Name ="spInvoice" Height="210" Margin="10,128.6,9.6,0" VerticalAlignment="Top" Background="Gray" Grid.Row="1"/>
-        <StackPanel x:Name ="splInvoiceBottom" Margin="10,338.6,9.6,37.4" RenderTransformOrigin="0.436,3.696" Grid.Row="1" Background="LimeGreen"/>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Margin="10,201.2,9.6,274.4" Grid.Row="1" Width="774">
+            <StackPanel Name ="spInvoice" VerticalAlignment="Top" >
+            </StackPanel>
+        </ScrollViewer>
 
-        <Button x:Name="Close_Button" Content="Luk" HorizontalAlignment="Left" Margin="10,524.6,0,0" VerticalAlignment="Top" Width="75" Click="Close_Button_Click" Grid.Row="1" Height="19"/>
-        <Button x:Name="Print_Button" Content="Udskriv" HorizontalAlignment="Center" Margin="333,524.6,385.6,0" VerticalAlignment="Top" Width="75" Click="Print_Button_Click" Grid.Row="1" Height="19"/>
-        <Button x:Name="SaveInovice_Button" Content="Gem" HorizontalAlignment="Right" Margin="0,524.6,9.6,0" VerticalAlignment="Top" Width="75" Click="SaveInovice_Button_Click" Grid.Row="1" Height="19"/>
-        <StackPanel Name ="HeaderInovoice"  Height="100" Margin="489,14,0,0" VerticalAlignment="Top" Width="295" Grid.RowSpan="2" Background="Coral" Orientation="Vertical" HorizontalAlignment="Left"/>
-        <StackPanel x:Name ="customerHeader" HorizontalAlignment="Left" Height="100" Margin="10,14,0,0" VerticalAlignment="Top" Width="479" Background="Turquoise" Grid.RowSpan="2"/>
+        <Button x:Name="Close_Button" Content="Luk" HorizontalAlignment="Left" Margin="10,624.2,0,0" VerticalAlignment="Top" Width="75" Click="Close_Button_Click" Grid.Row="1" Height="19"/>
+        <Button x:Name="Print_Button" Content="Udskriv" HorizontalAlignment="Center" Margin="320,624.2,373.6,0" VerticalAlignment="Top" Width="100" Click="Print_Button_Click" Grid.Row="1" Height="19"/>
+        <Button x:Name="SaveInovice_Button" Content="Gem" HorizontalAlignment="Right" Margin="0,624.2,9.6,0" VerticalAlignment="Top" Width="75" Click="SaveInovice_Button_Click" Grid.Row="1" Height="19" />
+        <StackPanel Name ="HeaderInovoice"  Height="165" Margin="489,14,0,0" VerticalAlignment="Top" Width="295" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Background="LightBlue">
+            <Label x:Name="headerHeader" Content="Sabrina Paulsen" FontSize="25" FontFamily="italic" FontWeight="Bold"/>
+            <Label x:Name="headerUnder" Content="Éntrepreneur og designer" />
+
+        </StackPanel>
+        <StackPanel x:Name ="customerHeader" HorizontalAlignment="Left" Height="94" Margin="15,68.2,0,0" VerticalAlignment="Top" Width="474" Grid.Row="1"/>
+        <StackPanel x:Name ="VATAndTotalPrice" HorizontalAlignment="Right" Height="100" Margin="0,384.2,9.6,0" Grid.Row="1" VerticalAlignment="Top" Width="295" Background="LightGray">
+            <Label x:Name="subTotal" Content="Subtotal uden moms" Margin="0,0,174.2,0" FontWeight="Black"/>
+            <Label x:Name="VAT" Content="Moms 25% af" Margin="0,0,174.2,0"/>
+            <Label x:Name="invoiceTotal" Content="Total DKK" Margin="0,0,174.2,0"/>
+
+        </StackPanel>
+        <StackPanel x:Name ="splInvoiceBottom1" Margin="10,489.2,665.6,54.4" RenderTransformOrigin="0.436,3.696" Grid.Row="1">
+
+            <Label x:Name="compani" Content="SAPA Group APs:" FontWeight="Bold"/>
+            <Label x:Name="email" Content="E-mail:" FontWeight="Bold"/>
+            <Label x:Name="cvrNr" Content="Cvr Nr:" FontWeight="Bold"/>
+            <Label x:Name="VATNr" Content="Moms nr:" FontWeight="Bold"/>
+
+        </StackPanel>
+        <StackPanel x:Name ="footer2" HorizontalAlignment="Left" Height="110" Margin="133,489.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="218">
+            <Label x:Name="compani2" Content="J	M	Terkelsensvej	4,	6731	Tjæreborg" HorizontalAlignment="Right"/>
+            <Label x:Name="email2" Content="Sabrina-paulsen@hotmail.com" HorizontalAlignment="Right"/>
+            <Label x:Name="cvrNr2" Content="35506101" HorizontalAlignment="Right"/>
+            <Label x:Name="VATNr2" Content="38071211" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <StackPanel x:Name="footer3" HorizontalAlignment="Left" Height="110" Margin="453,489.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="184">
+            <Label x:Name="Bank" Content="Bank:" FontWeight="Bold"/>
+            <Label x:Name="RegNr" Content="Reg.Nr:" FontWeight="Bold"/>
+            <Label x:Name="KontoNr" Content="KontoNr:" FontWeight="Bold"/>
+            <Label x:Name="KontoOwner" Content="Kontoindehaver:" FontWeight="Bold"/>
+        </StackPanel>
+
+        <StackPanel x:Name= "footer4"  HorizontalAlignment="Left" Height="110" Margin="597,489.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="187">
+            <Label x:Name="Bank2" Content="Sydbank" HorizontalAlignment="Right"/>
+            <Label x:Name="RegNr2" Content="7701" HorizontalAlignment="Right"/>
+            <Label x:Name="KontoNr2" Content="2564928" HorizontalAlignment="Right"/>
+            <Label x:Name="KontoOwner2" Content="Sabrina	Schmidt	Paulsen" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <Label x:Name="InoviceSingleHeader" Content="Faktura" HorizontalAlignment="Left" Margin="15,13.2,0,0" VerticalAlignment="Top" Height="50" Width="244" FontSize="20" Grid.Row="1"/>
 
     </Grid>
 </Window>
