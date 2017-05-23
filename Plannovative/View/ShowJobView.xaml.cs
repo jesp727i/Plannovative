@@ -1,5 +1,6 @@
 ﻿using Business;
 using DomainLayer;
+using Plannovative;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,6 +135,13 @@ namespace UserInterfaceLayer.View
                 }
                 t++;
             }
+        }
+
+        private void BtnInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            ShowInvoice showInovoiceView = new ShowInvoice(job);
+            showInovoiceView.ShowDialog();
+
         }
     }
 }
