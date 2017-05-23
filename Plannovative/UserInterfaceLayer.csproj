@@ -65,6 +65,12 @@
     <Compile Include="View\CreateJobView.xaml.cs">
       <DependentUpon>CreateJobView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CustomersView.xaml.cs">
+      <DependentUpon>CustomersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExistingJobView.xaml.cs">
+      <DependentUpon>ExistingJobView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ShowJobView.xaml.cs">
       <DependentUpon>ShowJobView.xaml</DependentUpon>
     </Compile>
@@ -88,6 +94,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\CreateCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ExistingJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
