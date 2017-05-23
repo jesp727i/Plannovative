@@ -1,0 +1,20 @@
+﻿<Window x:Class="UserInterfaceLayer.View.CustomersView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterfaceLayer.View"
+        mc:Ignorable="d"
+        Title="CustomersView" Height="600" Width="800" ResizeMode="NoResize">
+
+    <Grid>
+        <Label x:Name="Search" Content="Søg" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="110" Margin="10,-3,0,0"/>
+        <StackPanel HorizontalAlignment="Left" Height="20" Margin="10,12,0,0" VerticalAlignment="Top" Width="206"/>
+        <ScrollViewer Grid.Column="0" Background="Gray" VerticalScrollBarVisibility="Visible" Width="774" Margin="10,27,9.6,-0.6" HorizontalAlignment="Center">
+            <StackPanel x:Name="CustomersStackPanel"   HorizontalAlignment="Left" Margin="0,0,-0.4,-0.4" VerticalAlignment="Top" Width="774"/>
+        </ScrollViewer>
+
+
+
+    </Grid>
+</Window>
