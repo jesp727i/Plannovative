@@ -23,16 +23,20 @@ namespace Plannovative
     {
         
         Job currentJob;
+        BusinessFacade BF;
 
         public ShowInvoice(Job job)
         {
             InitializeComponent();
            currentJob = job;
+            BF = BusinessFacade.Instance;
             LoadInvoices();
+
         }
 
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
 
         }
 
@@ -50,55 +54,64 @@ namespace Plannovative
         {
             spInvoice.Children.Clear();
 
+
+            //Til hver linje i fakturaen
             foreach (WorkTime times in currentJob.WorkTimeList)
             {
                 StackPanel invoiceSpl = new StackPanel();
-                invoiceSpl.Background = Brushes.Aqua;
-
-
-                Label startTime = new Label();
-                Label endTime = new Label();
+                invoiceSpl.Margin = new Thickness(0, 0, 0, 5);              
+                                                
                 Label workDate = new Label();
-                Label calculatedTimeADay = new Label();
-                DockPanel workStartEndCalculatedTimeADay = new DockPanel();
+                Label calculatedTimeADayLabel = new Label();
+                DockPanel workTimeInfo = new DockPanel();
+                Label unitType = new Label();
+                Label Price = new Label();
+                Label numbersTimesPrice = new Label();
 
 
-                calculatedTimeADay.Content = times.EndTime - times.StartTime;
-                startTime.Content = times.StartTime;
-                endTime.Content = times.EndTime;
+
                 workDate.Content = times.WorkDate;
-
+                calculatedTimeADayLabel.Content = times.CalculatedTimeStartEnd() ;
+                unitType.Content = currentJob.PriceType;
+                if (currentJob.PriceType)
+                {
+                    unitType.Content = "Fast";
+                }
+                else
+                {
+                    unitType.Content = "Timer";
+                }
+                Price.Content = currentJob.Price;
+                
 
                 workDate.HorizontalAlignment = HorizontalAlignment.Left;
                 workDate.Margin = new Thickness(0, 0, 30, 0);
-                startTime.HorizontalAlignment = HorizontalAlignment.Center;
-                startTime.Margin = new Thickness(0, 0, 25, 0);
-                endTime.Margin = new Thickness(75, 0, 0, 0);
-                calculatedTimeADay.HorizontalAlignment = HorizontalAlignment.Right;
+                calculatedTimeADayLabel.HorizontalAlignment = HorizontalAlignment.Left;
+                calculatedTimeADayLabel.Margin = new Thickness(0, 0, 30, 0);
+                unitType.Margin = new Thickness(0, 0, 60, 0);
+                numbersTimesPrice.HorizontalAlignment = HorizontalAlignment.Right;
+
+                // numbersTimesPrice.Content = times.CalculatedTimeStartEnd();
+
+                numbersTimesPrice.Content = times.CalculatedTimeStartEnd() * currentJob.Price;
 
 
-                workStartEndCalculatedTimeADay.Children.Add(workDate);
-                workStartEndCalculatedTimeADay.Children.Add(startTime);
-                workStartEndCalculatedTimeADay.Children.Add(endTime);
-                workStartEndCalculatedTimeADay.Children.Add(calculatedTimeADay);
 
-                invoiceSpl.Children.Add(workStartEndCalculatedTimeADay);
+                
+
+
+
+
+                workTimeInfo.Children.Add(workDate);
+                workTimeInfo.Children.Add(calculatedTimeADayLabel);
+                workTimeInfo.Children.Add(unitType);
+                workTimeInfo.Children.Add(Price);
+                workTimeInfo.Children.Add(numbersTimesPrice);
+
+                invoiceSpl.Children.Add(workTimeInfo);
                 spInvoice.Children.Add(invoiceSpl);
             }
 
-            //Logo Header (til højre i toppen)
-            StackPanel HeaderDock = new StackPanel();
-            HeaderDock.Orientation = Orientation.Vertical;
-            Label sabrinaLogo = new Label();
-            sabrinaLogo.FontSize = 25;
-            sabrinaLogo.Content = "SABRINA PAULSEN";
-            Label sabrinaLogo2 = new Label();
-            sabrinaLogo2.Content = "Entrepreneur og designmanager";
-                         
-            HeaderDock.Children.Add(sabrinaLogo);
-            HeaderDock.Children.Add(sabrinaLogo2);
-            
-            HeaderInovoice.Children.Add(HeaderDock);
 
             //CustomerHeader (til venstre i toppen)
 
@@ -110,7 +123,7 @@ namespace Plannovative
 
             Label customerName = new Label();
             customerName.Content = currentJob.Customer.Name;
-            customerName.FontFamily = new FontFamily("Italic");
+            customerName.FontWeight = FontWeights.Bold;
             Label CustomerAdress = new Label();
             CustomerAdress.Content = currentJob.Customer.Address;
             Label zipAndCity = new Label();
@@ -121,21 +134,29 @@ namespace Plannovative
             customerDock.Children.Add(zipAndCity);
 
             customerHeader.Children.Add(customerDock);
-            
 
-        
+            // MOMS og samlet pris på opgaven
 
-        
+            StackPanel totalPrice = new StackPanel();
+            totalPrice.Orientation = Orientation.Vertical;
+
+            Label withoutVAT = new Label();
+            withoutVAT.Content = "Subtotal uden moms:  " + (currentJob.Price * currentJob.TimeUsed);
+
+            Label onlyVAT = new Label();
+            onlyVAT.Content = "MOMS 25% af " + (currentJob.Price * currentJob.TimeUsed) + "     " + (currentJob.Price * currentJob.TimeUsed)/4 + "   // Momsen";
+
+            Label withVAT = new Label();
+            withVAT.Content = "Total DKK " + (currentJob.Price * currentJob.TimeUsed) + "//Momsen" ;
 
 
+            totalPrice.Children.Add(withoutVAT);
+            totalPrice.Children.Add(onlyVAT);
+            totalPrice.Children.Add(withVAT);
+
+            VATAndTotalPrice.Children.Add(totalPrice);
 
 
-            
-            
-            
-           
-            
-           
         }
 
 
