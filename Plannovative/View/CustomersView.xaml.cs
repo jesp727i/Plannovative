@@ -29,6 +29,7 @@ namespace UserInterfaceLayer.View
         }
         public void LoadCustomerBoard()
         {
+            CustomersStackPanel.Children.Clear();
             foreach (Customer Cust in BusinessFacade.Instance.GetCustomerList())
             {
                 DockPanel DockPanelForCustomer = new DockPanel();
@@ -72,6 +73,7 @@ namespace UserInterfaceLayer.View
                 BtnExistingJobs.HorizontalAlignment = HorizontalAlignment.Right;
                 BtnExistingJobs.Margin = new Thickness(0, 0, 5, 0);
                 BtnExistingJobs.DataContext = Cust;
+                BtnExistingJobs.Click += BtnExistingJob_click;
 
                 DockPanelForButtons.Children.Add(BtnCustomerUpdate);
                 DockPanelForButtons.Children.Add(BtnExistingJobs);
@@ -94,6 +96,8 @@ namespace UserInterfaceLayer.View
             CreateCustomerView CCV = new CreateCustomerView(cust.Name);
             CCV.ShowDialog();
             BusinessFacade.Instance.LoadCustomersToRepo();
+            BusinessFacade.Instance.LoadJobToRepo();
+            
             LoadCustomerBoard();
         }
 
