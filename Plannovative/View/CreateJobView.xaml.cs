@@ -56,6 +56,7 @@ namespace UserInterfaceLayer.View
         {
             CreateCustomerView CCV = new CreateCustomerView();
             CCV.ShowDialog();
+            BF.LoadCustomersToRepo();
             RefreshCustomer();
 
         }
@@ -95,7 +96,7 @@ namespace UserInterfaceLayer.View
         }
         public void RefreshCustomer()
         {
-            BF.LoadCustomersToRepo();
+            
             this.comboBoxCustomer.ItemsSource = BF.GetCustomerNames();
 
         }
